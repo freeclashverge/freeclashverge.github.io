@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-22087.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>os模块，os.walk()方法解释与使用</title>
+        <meta name="description" content="os.walk方法，主要是用来遍历一个目录内各个子目录和子文件。 python的定义格式如下： def walk(top, topdown=True, onerror=None, followlink" />
+        <link rel="icon" href="__ADDON__/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                                        <a class="navbar-brand logo_h" href="/"><span>Free Clash Verge</span></a>
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>os模块，os.walk()方法解释与使用</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p><strong>os.walk方法，主要是用来遍历一个目录内各个子目录和子文件。</strong></p> <p>python的定义格式如下：</p> <pre><code class="prism language-python"><span class="token keyword">def</span> <span class="token function">walk</span><span class="token punctuation">(</span>top<span class="token punctuation">,</span> topdown<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> onerror<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> followlinks<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span> </code></pre> <p>top参数，是要遍历的目录。<br /> topdown参数，为True的时候，优先遍历top目录。<br /><strong>剩下两个函数我也没搞懂。。。。</strong></p> <p>示例，目录结构如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/740cda448de60986ab315851e52c4ccf.jpg" alt="os模块，os.walk()方法解释与使用"><br /> 代码如下：</p> <pre><code class="prism language-python"><span class="token keyword">import</span> os  path <span class="token operator">=</span> <span class="token string">'/cx/pyfolder/testfolder/'</span> file_loc <span class="token operator">=</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span>path<span class="token punctuation">)</span> <span class="token keyword">for</span> path<span class="token punctuation">,</span> <span class="token builtin">dir</span><span class="token punctuation">,</span> <span class="token builtin">file</span> <span class="token keyword">in</span> file_loc<span class="token punctuation">:</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"遍历一次：\n"</span><span class="token operator">+</span><span class="token string">"path是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"dir是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">dir</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"file是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span><span class="token punctuation">)</span> </code></pre> <p>运行之后，输出结果为：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/ea4f60db6c68e17f488285520175a534.jpg" alt="os模块，os.walk()方法解释与使用"><br /> 可以看到，第一次遍历的是传入的path路径，就是testfolder这个文件夹，并返回了testfolder路径、testfolder下的子文件夹列表、testfolder下的文件列表，第二次遍历的是“1”这个给文件夹，并返回了“1”下面的文件夹列表和文件列表，第第三遍遍历的是“2”这个文件夹，并返回了路径、子文件夹列表，因为没有所以返回为空，文件列表。</p> <p>下面把topdown这个参数传值为False:</p> <pre><code class="prism language-python"><span class="token keyword">import</span> os  path <span class="token operator">=</span> <span class="token string">'/cx/pyfolder/testfolder/'</span> file_loc <span class="token operator">=</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span>path<span class="token punctuation">,</span>topdown<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span> <span class="token keyword">for</span> path<span class="token punctuation">,</span> <span class="token builtin">dir</span><span class="token punctuation">,</span> <span class="token builtin">file</span> <span class="token keyword">in</span> file_loc<span class="token punctuation">:</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"遍历一次：\n"</span><span class="token operator">+</span><span class="token string">"path是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"dir是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">dir</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"file是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span><span class="token punctuation">)</span> </code></pre> <p>打印结果：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/ec68ca07c89019864f7143d0834e4c69.jpg" alt="os模块，os.walk()方法解释与使用"><br /> 可以发现，优先遍历的是“2”这个文件夹，最后才遍历“testfolder”这个文件夹。</p> <p>如果想获取各个文件夹下文件的路径，可以这样：</p> <pre><code class="prism language-python"><span class="token keyword">import</span> os  path <span class="token operator">=</span> <span class="token string">'/cx/pyfolder/testfolder/'</span> file_loc <span class="token operator">=</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span>path<span class="token punctuation">)</span> file_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">for</span> path<span class="token punctuation">,</span> <span class="token builtin">dir</span><span class="token punctuation">,</span> <span class="token builtin">file</span> <span class="token keyword">in</span> file_loc<span class="token punctuation">:</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"遍历一次：\n"</span><span class="token operator">+</span><span class="token string">"path是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"dir是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">dir</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"file是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     <span class="token keyword">for</span> f <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">:</span>         file_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path<span class="token punctuation">,</span> f<span class="token punctuation">)</span>  <span class="token comment">#  拼接路径和文件名称</span>          file_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>file_path<span class="token punctuation">)</span>  <span class="token keyword">print</span><span class="token punctuation">(</span>file_list<span class="token punctuation">)</span> </code></pre> <p>要获取指定后缀名的文件：</p> <pre><code class="prism language-python"><span class="token keyword">import</span> os  path <span class="token operator">=</span> <span class="token string">'/cx/pyfolder/testfolder/'</span> file_loc <span class="token operator">=</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span>path<span class="token punctuation">)</span> file_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">for</span> path<span class="token punctuation">,</span> <span class="token builtin">dir</span><span class="token punctuation">,</span> <span class="token builtin">file</span> <span class="token keyword">in</span> file_loc<span class="token punctuation">:</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"遍历一次：\n"</span><span class="token operator">+</span><span class="token string">"path是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"dir是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">dir</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"file是：{}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     <span class="token keyword">for</span> f <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">:</span>         <span class="token keyword">if</span> f<span class="token punctuation">.</span>endswith<span class="token punctuation">(</span><span class="token string">".txt"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 判断是否以.txt结尾</span>             file_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>f<span class="token punctuation">)</span>  <span class="token keyword">print</span><span class="token punctuation">(</span>file_list<span class="token punctuation">)</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-21627.htm">javaScript中内置对象Date基本操作入门_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-22090.htm">实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-20-latest-clash-verge-rev-node.htm" title="「9月20日」最高速度18.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月20日」最高速度18.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-20-node-share-links.htm" title="「10月20日」最高速度18.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月20日」最高速度18.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20714.htm" title="宠物粮食怎么销售赚钱 宠物粮食怎么销售赚钱呢">宠物粮食怎么销售赚钱 宠物粮食怎么销售赚钱呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-clash-verge-rev-windows.htm" title="「10月21日」最高速度18.5M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月21日」最高速度18.5M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19795.htm" title="动物疫苗在哪里***好呢视频（动物疫苗接种途径有哪些）">动物疫苗在哪里***好呢视频（动物疫苗接种途径有哪些）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-8-latest-clash-verge-rev-node.htm" title="「9月8日」最高速度20.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月8日」最高速度20.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-11-free-clash-verge-rev-node.htm" title="「10月11日」最高速度18.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月11日」最高速度18.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-free-subscribe-node.htm" title="「10月26日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月26日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-16-clash-verge-rev-nodes.htm" title="「8月16日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月16日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-21-free-high-speed-nodes.htm" title="「8月21日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月21日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

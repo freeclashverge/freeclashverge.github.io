@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-22090.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</title>
+        <meta name="description" content="消息丢失，消息重复消费，消息顺序消费等问题是我们使用 MQ 时不得不考虑的一个问题，下面我结合实际的业务来和你分享一下解决方案。  消息丢失问题 比如我们使用 Kakfa 时，以下场景都会发生消息丢失" />
+        <link rel="icon" href="__ADDON__/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                                        <a class="navbar-brand logo_h" href="/"><span>Free Clash Verge</span></a>
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				</h1> <blockquote> <p>消息丢失，消息重复消费，消息顺序消费等问题是我们使用 MQ 时不得不考虑的一个问题，下面我结合实际的业务来和你分享一下解决方案。</p> </blockquote> <h3 id="消息丢失问题">消息丢失问题</h3> <p>比如我们使用 Kakfa 时，以下场景都会发生消息丢失：</p> <ul> <li>producer -&gt; broker （生产者生产消息）</li> <li>broker -&gt; broker (集群环境，broker 同步给其他 broker)</li> <li>broker -&gt; consumer （消费者消费消息）</li> </ul> <p>解决方案也很简单，设置<strong>acks</strong>（消息确认机制）<strong>retries</strong>（重试机制）<strong>factor</strong>（设置 partition 数量）...</p> <p>一般来说，最常见的消息丢失场景就是：<strong>consumer 消费消息</strong>。</p> <p>要保证<strong>consumer</strong> 消费消息时不丢失消息，必须使用<strong>手动提交 ack</strong></p> <p>我们业务是这样实现的：</p> <ol> <li>从<strong>Kafka</strong> 拉取消息（一次批量拉取 100条）</li> <li>为每条消息分配一个<strong>msgId</strong>（递增）</li> <li>将<strong>msgId</strong> 存入内存队列（sortSet）</li> <li>使用<strong>Map</strong> 存储<strong>msgId</strong> 与<strong>msg</strong> （包含 offset）的<strong>映射关系</strong></li> <li>当业务处理完消息后，获取当前消息的<strong>msgId</strong>，然后从<strong>sortSet</strong> 中删除该<strong>msgId</strong>（表示该消息已经处理过了）</li> <li><strong>ack</strong> 时，如果当前 msgId &lt;= sortSet（msgId 在 sortSet 中是从小到大排列） ，就提交当前<strong>offset</strong></li> <li>就算<strong>consumer</strong> 在处理消息时挂了，下次重启时就会从<strong>sortSet</strong> 队首的消息开始拉取，实现至少处理一次语义。</li> <li>步骤 7 存在一个问题：当消息处理完后，还没从<strong>sortSet</strong> 中删除该<strong>msgId</strong>，系统就挂了，当系统重启时，又会<strong>重新处理</strong>一次刚刚已处理过的消息，这就引出<strong>消息重复消费</strong>的问题了。</li> </ol> <h3 id="消息重复消费">消息重复消费</h3> <p>要解决消息重复消费，也就是要实现<strong>幂等</strong>（幂等就是：多次请求，但结果保持不变，举一个例子你就明白了：<code>在 http 中，你发送同一个 get 请求，无论发送多少次，返回结果都是一样的</code>）</p> <p>回到我们的业务场景上，我以处理订单消息为例：</p> <ul> <li> <p><strong>幂等Key</strong> 由我们的<strong>订单Id</strong> +<strong>订单状态</strong>组成（一笔订单的状态只会处理一次）</p> </li> <li> <p>在处理之前，我们首先会去<strong>Redis</strong> 查询是否存在这个<strong>Key</strong></p> <p>如果存在，说明我们已经处理过了，直接丢掉；</p> <p>	  如果不存在，说明没处理过，继续往下处理；</p> </li> <li> <p>最终的逻辑是：将处理过的数据存到<strong>DB</strong>上，再把<strong>幂等Key</strong> 存到<strong>Redis</strong> 上</p> </li> </ul> <p>显然一般场景下 Redis 是无法保证幂等的</p> <p>所以<strong>Redis</strong>只是一个<strong>前置处理</strong>，最终的幂等性依赖<strong>DB</strong> 的<strong>唯一Key</strong>（订单Id+订单状态）</p> <p>总的来说就是：通过 Redis 做<strong>前置处理</strong>，DB 唯一索引做<strong>最终保证</strong>实现<strong>幂等性</strong></p> <h3 id="消息顺序消费">消息顺序消费</h3> <p>消息的顺序性很好理解，还是以订单处理为例</p> <p>订单的状态有：支付、确认收货、完成等等，而订单下还有计费、退款的消息报</p> <p>理论上来说：支付的消息肯定要比退款的消息先到。</p> <p>但是程序处理的过程就不一定了，所以我们处理消息顺序消费的流程如下：</p> <ul> <li>宽表：创建一张宽表，唯一索引是<strong>订单Id</strong>，将订单的<strong>每个状态</strong>拆分为一个列，当消息来了，只更新对应的字段就好，消息只会存在短暂的状态不一致问题，但是最终状态是一致的</li> <li>消息补偿机制</li> <li>把相同的<strong>userID/orderId</strong> 发送到相同的<strong>partition</strong>（因为一个 consumer 消费一个 partition）</li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-22087.htm">os模块，os.walk()方法解释与使用</a></p>
+                                        <p>下一个：<a href="/news/article-22545.htm">远程服务器连接（密钥验证，跳板机）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-18905.htm" title="美联众合动物医院房山（美联众合动物医院营业时间）">美联众合动物医院房山（美联众合动物医院营业时间）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-24-free-node-subscribe.htm" title="「9月24日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月24日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-18-today-clash-verge-rev-node.htm" title="「8月18日」最高速度19.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月18日」最高速度19.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-clash-verge-rev-windows.htm" title="「11月13日」最高速度21.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月13日」最高速度21.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-node-share-links.htm" title="「10月19日」最高速度21.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月19日」最高速度21.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-node-subscribe-links.htm" title="「10月18日」最高速度21.5M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月18日」最高速度21.5M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-node-share.htm" title="「10月4日」最高速度19.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月4日」最高速度19.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-27-node-share.htm" title="「9月27日」最高速度22.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月27日」最高速度22.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-7-free-clash-verge-rev-node.htm" title="「9月7日」最高速度21.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月7日」最高速度21.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-22-free-node-subscribe-links.htm" title="「8月22日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月22日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
