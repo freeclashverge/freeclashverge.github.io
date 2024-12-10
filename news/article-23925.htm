@@ -2,13 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://freeclashverge.github.io" />
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-23925.htm" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>2024-10归档 - FreeClashVerge免费节点官网</title>
-        <meta name="keywords" content="2024-10归档" />
-        <meta name="description" content="2024-10归档" />
+    <title>Tomcat 部署 Web项目以及更改项目名</title>
+        <meta name="description" content="Maven项目 选择父工程, 首先 clean 一下, 然后 package, 在当前文件夹的target 目录下就生成了一个war工程 . 我们把这个war工程 放到 tomcat的 webapps" />
         <link rel="icon" href="__ADDON__/img/freeclashverge/favicon.ico" type="image/x-icon"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
@@ -33,7 +32,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="category">
+<body data-page="detail">
         <!--================ Start Header Area =================-->
     <header class="header_area">
         <div class="main_menu">
@@ -67,10 +66,11 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content text-center">
-                    <h1>2024-10 归档</h1>
+                    <h1>Tomcat 部署 Web项目以及更改项目名</h1>
                     <div class="page_link">
                         <a href="/">首页</a>
-                        <span>2024-10 归档</span>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
                     </div>
                 </div>
             </div>
@@ -82,28 +82,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="xcblog-blog-list">
-                                                <div class="row item xcblog-blog-item" data-date="2024-10-01">
-                            <div class="col-md-3">
-                                <div class="about_img">
-                                    <a href="/free-nodes/2024-10-1-free-subscribe-node.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240813-1/4359918b4d5760229a8cc71c9746efdc.webp" alt="「10月1日」最高速度18M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接" style="width:100%;">
-                                    </a>
+                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> </h1> <ol> <li>Maven项目 选择父工程, 首先 clean 一下, 然后 package, 在当前文件夹的target 目录下就生成了一个war工程 .</li> <li>我们把这个war工程 放到 tomcat的 webapps 下, 然后通过 运行<code>startup.bat</code> tomcat会自动将war文件变成一个Web项目</li> <li>这时我们发现很烦的一个问题, 由于项目文件名的原因, 我们每次访问接口都得带上这家伙, 所以我们要甩掉项目名, 怎么做呢?</li> <li>在你的tomcat 所在文件夹的<code>conf\server.xml</code> 下修改一下</li> </ol> <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!-- 省略 --&gt;       &lt;Context docBase="F:\apache-tomcat-9.0.20\webapps\railway" path="/" reloadable="false" allowLinking="true" /&gt;     &lt;/Engine&gt;   &lt;/Service&gt; &lt;/Server&gt;</code></pre> <ol start="5"> <li>docBase = " " 配置项目的绝对路径 path= “/” 为空不用项目名, reloadable=“false” 如果这个属性设为true，tomcat服务器在运行状态下会监视在WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class文件被更新的，服务器会自动重新加载Web应用 allowLinking=“true” 打开tomcat对软连接的支持</li> </ol> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-23478.htm">给猫咪驱虫一般多少钱一只猫（给猫咪驱虫大概多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-23927.htm">猫三联三针间隔时间久了有影响吗（猫三联三针间隔时间久了有影响吗）</a></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="main_title text-left">
-                                    <a href="/free-nodes/2024-10-1-free-subscribe-node.htm" class="xcblog-blog-url">
-                                        <h3 class="xcblog-blog-title">「10月1日」最高速度18M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</h3>
-                                    </a>
-                                    <p>
-                                        这一次的节点更新覆盖了韩国、加拿大、美国、欧洲、日本、香港、新加坡等地区,最高速度可达18 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <ul class="pagination"><li><a href="/date/2024-10/page-3.htm">&laquo;</a></li> <li><a href="/date/2024-10/">1</a></li><li><a href="/date/2024-10/page-2.htm">2</a></li><li><a href="/date/2024-10/page-3.htm">3</a></li><li class="active"><span>4</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
-                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -111,16 +95,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-15-clash-verge-rev-nodes.htm" title="「10月15日」最高速度18.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月15日」最高速度18.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-today-clash-verge-rev-node.htm" title="「11月16日」最高速度20.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月16日」最高速度20.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-4-clash-verge-rev-node-share.htm" title="「9月4日」最高速度20.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月4日」最高速度20.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-22-free-node-subscribe-links.htm" title="「8月22日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月22日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-16-clash-verge-rev-nodes.htm" title="「8月16日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月16日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-1-free-clash-verge-rev-node.htm" title="「9月1日」最高速度22.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月1日」最高速度22.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19338.htm" title="动物疫苗法规最新 动物疫苗法规最新版">动物疫苗法规最新 动物疫苗法规最新版</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-clash-verge-rev-node-share.htm" title="「11月1日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月1日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-9-30-today-clash-verge-rev-node.htm" title="「9月30日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月30日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe.htm" title="「11月19日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月19日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-20-latest-clash-verge-rev-node.htm" title="「9月20日」最高速度18.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月20日」最高速度18.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-node-share.htm" title="「10月24日」最高速度19.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月24日」最高速度19.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-10-clash-verge-rev-github.htm" title="「9月10日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月10日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-clash-verge-rev-github.htm" title="「11月30日」最高速度20.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月30日」最高速度20.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-high-speed-nodes.htm" title="「11月11日」最高速度22M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月11日」最高速度22M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-clash-verge-rev-github.htm" title="「11月3日」最高速度18.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月3日」最高速度18.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23002.htm" title="我所在的城市有一家动物医院的英语（我所在的城市有一家动物医院的英语）">我所在的城市有一家动物医院的英语（我所在的城市有一家动物医院的英语）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-subscribe-node.htm" title="「11月14日」最高速度19.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月14日」最高速度19.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21627.htm" title="javaScript中内置对象Date基本操作入门_在线工具">javaScript中内置对象Date基本操作入门_在线工具</a></li>
                     </ul>
     </div>
 </div>
