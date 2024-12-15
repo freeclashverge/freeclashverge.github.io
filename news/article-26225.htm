@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-26225.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Docker常见问题详解</title>
+        <meta name="description" content="文章目录  一、Docker新增端口映射   1、简介 2、修改容器两种方式   2.1 新建容器 2.2 修改容器配置文件     二、Linux Dockerfile构建后不能正常启动   1、问" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                                        <a class="navbar-brand logo_h" href="/"><span>Free Clash Verge</span></a>
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>Docker常见问题详解</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#Docker_1" rel="nofollow">一、Docker新增端口映射</a></li> <li> <ul> <li><a href="#1_3" rel="nofollow">1、简介</a></li> <li><a href="#2_10" rel="nofollow">2、修改容器两种方式</a></li> <li> <ul> <li><a href="#21__12" rel="nofollow">2.1 新建容器</a></li> <li><a href="#22__21" rel="nofollow">2.2 修改容器配置文件</a></li> </ul> </li> </ul> </li> <li><a href="#Linux_Dockerfile_125" rel="nofollow">二、Linux Dockerfile构建后不能正常启动</a></li> <li> <ul> <li><a href="#1_127" rel="nofollow">1、问题描述</a></li> <li><a href="#2_154" rel="nofollow">2、原因介绍</a></li> <li><a href="#3_160" rel="nofollow">3、解决法法</a></li> </ul> </li> <li><a href="#Docker_167" rel="nofollow">三、Docker容器设置时区</a></li> <li> <ul> <li><a href="#1_169" rel="nofollow">1、问题描述</a></li> <li><a href="#2_173" rel="nofollow">2、配置过程</a></li> </ul> </li> </ul> </div> </h1> <h2><a id="1_3" rel="nofollow"></a>1、简介</h2> <p>在<code>docker run</code>创建并运行容器的时候，可以通过<code>-p</code>指定端口映射规则。但是容器一旦生成，就没有一个命令可以直接修改。一般情况下，有两种方式进行映射端口新增或者修改，这里环境是Ubuntu20.04</p> <ul> <li>新建容器</li> <li>修改容器配置文件</li> </ul> <h2><a id="2_10" rel="nofollow"></a>2、修改容器两种方式</h2> <h3><a id="21__12" rel="nofollow"></a>2.1 新建容器</h3> <p>这种方式最简单，将原有的容器删掉，重新新建一个，新建的时候确定好端口映射；</p> <p><strong>优缺点</strong></p> <ul> <li>优点是简单快捷，在测试环境使用较多</li> <li>缺点是每次都要重新配置，操作会比较麻烦</li> </ul> <h3><a id="22__21" rel="nofollow"></a>2.2 修改容器配置文件</h3> <ul> <li><strong>查看容器</strong></li> </ul> <p>其中的hashofthecontainer是docker镜像的hash值，<code>CONTAINER ID</code>就是取了前几位数的值</p> <pre><code class="prism language-bash"><span class="token comment">#查看docker正在运行的容器</span> docker<span class="token function">ps</span><span class="token comment">#查看某个容器详细信息</span> docker inspect containername</code></pre> <ul> <li><strong>关闭docker服务</strong></li> </ul> <p>若不关闭，可能会导致修改完的配置信息，重启后又变回原来的配置文件</p> <pre><code class="prism language-bash">systemctl stop docker.service</code></pre> <p>这里可能会报警报，原因是除了docker.service单元文件，还有一个docker.socket单元文件…docker.socket这是用于套接字激活。 该警告意味着：如果你试图连接到docker socket，而docker服务没有运行，系统将自动启动docker。一般不做理会</p> <blockquote> <p>Warning: Stopping docker.service, but it can still be activated by: docker.socket</p> </blockquote> <ul> <li><strong>修改文件</strong></li> </ul> <p>容器的配置文件路径<code>/var/lib/docker/containers/[hash_of_the_container]/hostconfig.json</code>，打开配置文件，找到<strong>PortBindings</strong>值，在这个json集合里边追加新端口。当然这两个配置文件还有很多其他信息可以修改，原理相同</p> <pre><code class="prism language-json"><span class="token string">"PortBindings"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token string">"8081/tcp"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span><span class="token string">"HostIp"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token string">"HostPort"</span><span class="token operator">:</span><span class="token string">"8081"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">"8085/tcp"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span><span class="token string">"HostIp"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token string">"HostPort"</span><span class="token operator">:</span><span class="token string">"8085"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre> <p>假如在<code>config.v2.json</code>文件里也记录了端口，也需要同时修改，修改值：<code>Config-&gt;ExposedPorts</code>和<code>NetworkSettings-&gt;Ports</code></p> <pre><code class="prism language-json"><span class="token string">"Config"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token string">"Hostname"</span><span class="token operator">:</span><span class="token string">"acf6f980b9d3"</span><span class="token punctuation">,</span><span class="token string">"Domainname"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token string">"User"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token string">"AttachStdin"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token string">"AttachStdout"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token string">"AttachStderr"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token string">"ExposedPorts"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token string">"8081/tcp"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">"8085/tcp"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">"8088/tcp"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">"NetworkSettings"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token string">"Ports"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token string">"8081/tcp"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span><span class="token string">"HostIp"</span><span class="token operator">:</span><span class="token string">"0.0.0.0"</span><span class="token punctuation">,</span><span class="token string">"HostPort"</span><span class="token operator">:</span><span class="token string">"8081"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token string">"HostIp"</span><span class="token operator">:</span><span class="token string">"::"</span><span class="token punctuation">,</span><span class="token string">"HostPort"</span><span class="token operator">:</span><span class="token string">"8081"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">"8085/tcp"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span><span class="token string">"HostIp"</span><span class="token operator">:</span><span class="token string">"0.0.0.0"</span><span class="token punctuation">,</span><span class="token string">"HostPort"</span><span class="token operator">:</span><span class="token string">"8085"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token string">"HostIp"</span><span class="token operator">:</span><span class="token string">"::"</span><span class="token punctuation">,</span><span class="token string">"HostPort"</span><span class="token operator">:</span><span class="token string">"8085"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <ul> <li>重启docker服务和容器</li> </ul> <pre><code class="prism language-bash">systemctl restart docker.service</code></pre> <p><strong>优缺点</strong></p> <ul> <li>优点是没有副作用，操作简单</li> <li>缺点是需要重启整个docker服务，如果在同一个宿主机上运行着多个容器服务的话，就会影响其他容器服务</li> </ul> </h1> <h2><a id="1_127" rel="nofollow"></a>1、问题描述</h2> <p>下面是我自己构建的一个基于Centos8的JDK8docker环境</p> <pre><code class="prism language-bash">FROM centos:8 MAINTAINER shawn<span class="token comment">#把java与tomcat添加到容器中，会自动解压</span> ADD jdk-8u161-linux-x64.tar.gz /usr/local/<span class="token comment">#设置工作访问时候的WORKDIR路径，登录落脚点</span> WORKDIR /<span class="token comment">#安装vim编辑器</span> RUN yum -y<span class="token function">install</span><span class="token function">vim</span><span class="token comment">#配置java与tomcat环境变量</span> ENV JAVA_HOME /usr/local/jdk1.8.0_161 ENV CLASSPATH<span class="token variable">$JAVA_HOME</span>/lib/dt.jar:<span class="token variable">$JAVA_HOME</span>/lib/tools.jar ENV<span class="token environment constant">PATH</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$JAVA_HOME</span>/bin  RUN<span class="token function">ln</span> -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime RUN<span class="token builtin class-name">echo</span><span class="token string">'Asia/Shanghai'</span><span class="token operator">&gt;</span>/etc/timezone EXPOSE<span class="token number">8081</span><span class="token number">8088</span> CMD ehco<span class="token string">"构建成功"</span> ENTRYPOINT /bin/bash</code></pre> <p>将所需<code>jdk-8u161-linux-x64.tar.gz</code>和<code>Dockerfile</code>文件上传到linux目录，进行构建<code>docker -t lamp:1.0 .</code>，构建完成后，运行容器<code>docker run -d -p 8081:8081 -p 8088:8088 -v /home/shawn/ZHD/dockerdata:/data --name lamp lamp:1.0</code> ，然后发现容器不能正常启动，centos 启动一个容器添加了-d 参数，但是docker ps 或者docker ps -a查看却已经退出了</p> <h2><a id="2_154" rel="nofollow"></a>2、原因介绍</h2> <ul> <li>docker容器运行必须有一个前台进程， 如果没有前台进程执行，容器认为空闲，就会自行退出</li> <li>容器运行的命令如果不是那些一直挂起的命令（ 运行top，tail、循环、tomcat等），就是会自动退出</li> <li>这个是 docker 的机制问题</li> </ul> <h2><a id="3_160" rel="nofollow"></a>3、解决法法</h2> <pre><code class="prism language-bash"><span class="token comment">#为docker run添加-it命令</span> docker run -itd -p<span class="token number">8081</span>:8081 -p<span class="token number">8088</span>:8088 -v /home/shawn/dockerdata:/data --name lamp lamp:1.0</code></pre> </h1> <h2><a id="1_169" rel="nofollow"></a>1、问题描述</h2> <p>Docker Hub 中的官方镜像，一般都默认设置为 UTC 时间。而我们位于东八区，在启动容器或构建自己的镜像时，往往需要对时区进行设置</p> <h2><a id="2_173" rel="nofollow"></a>2、配置过程</h2> <p>这里我的docker环境是Ubuntu，有两种方式进行更改</p> <pre><code class="prism language-bash"><span class="token comment">#进入运行的容器</span> docker<span class="token builtin class-name">exec</span> -it lamp /bin/bash<span class="token comment">#查看当前日期</span><span class="token function">date</span><span class="token comment">#显示结果</span> Tue Jan<span class="token number">11</span> 08:42:26 CST<span class="token number">2022</span></code></pre> <p><strong>第一种</strong>方式在宿主机运行，完成后重启docker容器</p> <ul> <li>将本地的localtime文件复制到容器中</li> </ul> <pre><code class="prism language-bash">docker<span class="token function">cp</span> /etc/localtime<span class="token punctuation">{<!-- --></span>容器id<span class="token punctuation">}</span>:/etc/localtime</code></pre> <ul> <li>将本地的<code>/usr/share/zoneinfo/Asia/Shanghai</code>文件复制到容器中</li> </ul> <pre><code class="prism language-bash">docker<span class="token function">cp</span>  /usr/share/zoneinfo/Asia/Shanghai<span class="token punctuation">{<!-- --></span>容器id<span class="token punctuation">}</span>:/etc/localtime</code></pre> <p><strong>第二种</strong>进入容器运行，无需重启容器，若容器内部文件不存在，则还需要使用第一种</p> <ul> <li>链接宿主机localtime</li> </ul> <pre><code class="prism language-bash"><span class="token function">ln</span> -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></pre> <p><strong>第三种</strong>在构建dockerfile的时候运行命令</p> <hr/> <p>参考</p> <p>https://blog.csdn.net/weixin_43885975/article/details/117809901</p> <p>https://blog.csdn.net/jameskaron/article/details/105540549</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-25783.htm">宠物医院武汉哪里好（宠物医院武汉哪家好点）</a></p>
+                                        <p>下一个：<a href="/news/article-26226.htm">猫三联打几针多少钱一针（猫三联打几针多少钱一针啊）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-5-latest-clash-verge-rev-node.htm" title="「9月5日」最高速度19.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月5日」最高速度19.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-20-clash-verge-rev-github.htm" title="「8月20日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月20日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25318.htm" title="中国动物疫苗市场分析图（中国动物疫苗公司排名）">中国动物疫苗市场分析图（中国动物疫苗公司排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-high-speed-nodes.htm" title="「11月11日」最高速度22M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月11日」最高速度22M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-today-clash-verge-rev-node.htm" title="「11月16日」最高速度20.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月16日」最高速度20.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-18904.htm" title="东北农业大学动物医院挂号（东北农业大学动物医学院官网）">东北农业大学动物医院挂号（东北农业大学动物医学院官网）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-16-clash-verge-rev-node-share.htm" title="「10月16日」最高速度22.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月16日」最高速度22.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22548.htm" title="动物疫苗生产厂家排名榜前十名有哪些品种（动物疫苗有哪些大厂家）">动物疫苗生产厂家排名榜前十名有哪些品种（动物疫苗有哪些大厂家）</a></li>
+                        <li class="py-2"><a href="/news/article-25783.htm" title="宠物医院武汉哪里好（宠物医院武汉哪家好点）">宠物医院武汉哪里好（宠物医院武汉哪家好点）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-31-free-node-subscribe.htm" title="「8月31日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月31日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
