@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>远程服务器连接（密钥验证，跳板机）</title>
         <meta name="description" content="天下大事 必作于细 rsa密钥配置 本地设备 利用git生成一对rsa公私密钥 keygen windows的话，默认生成目录在C:\Users\用户名.sshid_rsa为私钥文件id_rsa.pu" />
-        <link rel="icon" href="__ADDON__/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
     <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/linericon/style.css">
@@ -82,7 +82,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				</h1> <p><code>天下大事 必作于细</code></p> <h2 id="rsa密钥配置">rsa密钥配置</h2> <h3 id="本地设备">本地设备</h3> <p>利用git生成一对rsa公私密钥 keygen<br /> windows的话，默认生成目录在<strong>C:\Users\用户名.ssh</strong><br /><strong>id_rsa</strong>为私钥文件<br /><strong>id_rsa.pub</strong>为公钥文件<br /> 私钥文件为你的登录的身份证，登录时选择这个文件即可，具体见下文。<br /> 公钥文件需要放到服务器authorized_keys当中</p> <h3 id="远程服务器">远程服务器</h3> <ol> <li>进入相应用户的.ssh文件夹, cd ~/.ssh即可<br /> 里面应该有authorized_keys、id_rsa、id_rsa.pub、know_hosts等四个文件<br /> 我们只需要关心authorized_keys这个文件即可。</li> <li>打开authorized_keys文件，把刚刚本地生成的公钥文件的内容贴进来即可。</li> <li>确保服务器上允许RSA密钥登录，这里需要root权限</li> </ol> <pre><code class="language-bash">sudo vim /etc/ssh/sshd_config //查看文件中的这两项是否都是yes，第一项是允许RSA密钥登录，第二项是允许公钥认证 RSAAuthentication yes PubkeyAuthentication yes</code></pre> <p>这样，密钥配置就完成了。</p> <p>当然，有一个问题，就是你的服务器下面并不存在authorized_keys这个文件，甚至连.ssh文件夹都没有<br /> 那么，你自己建.ssh文件夹和authorized_keys文件然后再做一样操作即可，不过需要注意，文件夹和文件的权限是有要求的：</p> <pre><code class="language-bash">chmod 700 .ssh chmod 644 authorized_keys</code></pre> <hr/> <p>下面，根据平台不同分成mobaxterm和vscode对本地设置私钥以及跳板机进行说明</p> <h2 id="mobaxterm">mobaxterm</h2> <h3 id="远程连接">远程连接</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9c6afe9aca405f600acbdb3fd663093f.jpg" alt="远程服务器连接（密钥验证，跳板机）"></p> <h3 id="跳板机">跳板机</h3> <p>为什么需要跳板机，这是为了实现从外网网址跳到内网服务器的需求。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d1d5c64a6a558cf55f9c343261deeaa4.jpg" alt="远程服务器连接（密钥验证，跳板机）"></p> <h2 id="vscode">vscode</h2> <h3 id="远程连接-1">远程连接</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/58c423fe90670631c9e47bfc80baf6d5.jpg" alt="远程服务器连接（密钥验证，跳板机）"></p> <pre><code class="language-json">Host xxxxx     HostName xx.xx.xx.xx     User xxx     Port xx     IdentityFile 私钥路径</code></pre> <p>Host为服务器名称，可以随便起<br /> HostName是服务器ip地址<br /> User 用户名<br /> Port 端口号<br /> IdentityFile 指明私钥文件路径</p> <h3 id="跳板机-1">跳板机</h3> <p>为什么需要跳板机，这是为了实现从外网网址跳到内网服务器的需求。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7917567bddcdea4c490f7f1e4a5a875e.jpg" alt="远程服务器连接（密钥验证，跳板机）"></p> <pre><code class="language-json">Host public_net     HostName xx.xx.xx.xx     User xxx     Port xx     IdentityFile 私钥路径  Host inter_net     HostName xx.xx.xx.xx     User xxx     Port xx     IdentityFile 私钥路径     ProxyCommand ssh -W %h:%p public_net</code></pre> <p>ProxyCommand  能够指明通过另一个ip做跳板，其中ssh需要绝对运行路径，如<strong>C:\Windows\System32\OpenSSH\ssh.exe</strong></p> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <p><code>天下大事 必作于细</code></p> <h2 id="rsa密钥配置">rsa密钥配置</h2> <h3 id="本地设备">本地设备</h3> <p>利用git生成一对rsa公私密钥 keygen<br /> windows的话，默认生成目录在<strong>C:\Users\用户名.ssh</strong><br /><strong>id_rsa</strong>为私钥文件<br /><strong>id_rsa.pub</strong>为公钥文件<br /> 私钥文件为你的登录的身份证，登录时选择这个文件即可，具体见下文。<br /> 公钥文件需要放到服务器authorized_keys当中</p> <h3 id="远程服务器">远程服务器</h3> <ol> <li>进入相应用户的.ssh文件夹, cd ~/.ssh即可<br /> 里面应该有authorized_keys、id_rsa、id_rsa.pub、know_hosts等四个文件<br /> 我们只需要关心authorized_keys这个文件即可。</li> <li>打开authorized_keys文件，把刚刚本地生成的公钥文件的内容贴进来即可。</li> <li>确保服务器上允许RSA密钥登录，这里需要root权限</li> </ol> <pre><code class="language-bash">sudo vim /etc/ssh/sshd_config //查看文件中的这两项是否都是yes，第一项是允许RSA密钥登录，第二项是允许公钥认证 RSAAuthentication yes PubkeyAuthentication yes</code></pre> <p>这样，密钥配置就完成了。</p> <p>当然，有一个问题，就是你的服务器下面并不存在authorized_keys这个文件，甚至连.ssh文件夹都没有<br /> 那么，你自己建.ssh文件夹和authorized_keys文件然后再做一样操作即可，不过需要注意，文件夹和文件的权限是有要求的：</p> <pre><code class="language-bash">chmod 700 .ssh chmod 644 authorized_keys</code></pre> <hr/> <p>下面，根据平台不同分成mobaxterm和vscode对本地设置私钥以及跳板机进行说明</p> <h2 id="mobaxterm">mobaxterm</h2> <h3 id="远程连接">远程连接</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9c6afe9aca405f600acbdb3fd663093f.jpg" alt="远程服务器连接（密钥验证，跳板机）"></p> <h3 id="跳板机">跳板机</h3> <p>为什么需要跳板机，这是为了实现从外网网址跳到内网服务器的需求。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d1d5c64a6a558cf55f9c343261deeaa4.jpg" alt="远程服务器连接（密钥验证，跳板机）"></p> <h2 id="vscode">vscode</h2> <h3 id="远程连接-1">远程连接</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/58c423fe90670631c9e47bfc80baf6d5.jpg" alt="远程服务器连接（密钥验证，跳板机）"></p> <pre><code class="language-json">Host xxxxx     HostName xx.xx.xx.xx     User xxx     Port xx     IdentityFile 私钥路径</code></pre> <p>Host为服务器名称，可以随便起<br /> HostName是服务器ip地址<br /> User 用户名<br /> Port 端口号<br /> IdentityFile 指明私钥文件路径</p> <h3 id="跳板机-1">跳板机</h3> <p>为什么需要跳板机，这是为了实现从外网网址跳到内网服务器的需求。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7917567bddcdea4c490f7f1e4a5a875e.jpg" alt="远程服务器连接（密钥验证，跳板机）"></p> <pre><code class="language-json">Host public_net     HostName xx.xx.xx.xx     User xxx     Port xx     IdentityFile 私钥路径  Host inter_net     HostName xx.xx.xx.xx     User xxx     Port xx     IdentityFile 私钥路径     ProxyCommand ssh -W %h:%p public_net</code></pre> <p>ProxyCommand  能够指明通过另一个ip做跳板，其中ssh需要绝对运行路径，如<strong>C:\Windows\System32\OpenSSH\ssh.exe</strong></p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-22090.htm">实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</a></p>
                                         <p>下一个：<a href="/news/article-22548.htm">动物疫苗生产厂家排名榜前十名有哪些品种（动物疫苗有哪些大厂家）</a></p>
@@ -95,16 +96,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-23-clash-verge-rev-windows.htm" title="「9月23日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月23日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-24-free-node-subscribe.htm" title="「9月24日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月24日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-18-today-clash-verge-rev-node.htm" title="「8月18日」最高速度19.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月18日」最高速度19.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-1-free-clash-verge-rev-node.htm" title="「9月1日」最高速度22.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月1日」最高速度22.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-22090.htm" title="实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题">实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</a></li>
-                        <li class="py-2"><a href="/news/article-21625.htm" title="MKL库矩阵乘法(cblas_dgemm)">MKL库矩阵乘法(cblas_dgemm)</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-10-clash-verge-rev-github.htm" title="「9月10日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月10日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-28-free-node-subscribe-links.htm" title="「8月28日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月28日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-25-free-node-subscribe.htm" title="「9月25日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月25日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-20-today-clash-verge-rev-node.htm" title="「11月20日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月20日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-18905.htm" title="美联众合动物医院房山（美联众合动物医院营业时间）">美联众合动物医院房山（美联众合动物医院营业时间）</a></li>
+                        <li class="py-2"><a href="/news/article-24360.htm" title="全国动物疫苗生产厂家排名前十名 全国动物疫苗生产厂家排名前十名有哪些">全国动物疫苗生产厂家排名前十名 全国动物疫苗生产厂家排名前十名有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-28109.htm" title="宠物领养合同违约金3000（宠物领养合同违约金30000元合法吗）">宠物领养合同违约金3000（宠物领养合同违约金30000元合法吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-clash-verge-rev-node.htm" title="「10月28日」最高速度19.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月28日」最高速度19.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-clash-verge-rev-github.htm" title="「11月28日」最高速度18.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月28日」最高速度18.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-high-speed-nodes.htm" title="「10月7日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月7日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-clash-verge-rev-node-github.htm" title="「12月8日」最高速度18.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「12月8日」最高速度18.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-18-node-share.htm" title="「9月18日」最高速度20M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月18日」最高速度20M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-clash-verge-rev-node-share.htm" title="「12月1日」最高速度22.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「12月1日」最高速度22.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21627.htm" title="javaScript中内置对象Date基本操作入门_在线工具">javaScript中内置对象Date基本操作入门_在线工具</a></li>
                     </ul>
     </div>
 </div>
@@ -116,7 +117,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">56</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -144,6 +145,15 @@
         <div class="container">
             <div class="row footer_bottom justify-content-center">
                 <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                             FreeClashVerge免费节点官网 版权所有 Powered by WordPress
                 </p>
             </div>

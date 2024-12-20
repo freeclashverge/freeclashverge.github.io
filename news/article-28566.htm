@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-28566.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>面试之Java String 编码相关</title>
+        <meta name="description" content="另有一篇我的字符编码本质入门的文章见这里：https://www.cnblogs.com/uncleguo/p/16008551.html 　　实话说，作为一个多年Java老年程序员，直到近来，在没有" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                                        <a class="navbar-brand logo_h" href="/"><span>Free Clash Verge</span></a>
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>面试之Java String 编码相关</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p><span style="color: rgba(51, 102, 255, 1)">另有一篇我的字符编码本质入门的文章见这里：</span><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/uncleguo/p/16008551.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/uncleguo/p/16008551.html</a></p> <p>　　实话说，作为一个多年Java老年程序员，直到近来，在没有决心花时间搞清楚Java String的编码相关问题之前， 自己也都还是似懂非懂，一脸懵逼的。设想如果在面试中，有同学能够条理清晰的回答下面的问题，那必是非常了得之人，论<strong>智慧武功应该均在本人之上:-)。</strong></p> <p><strong>　　问：请预测下面程序的输出，并解释原因。printHexBinary方法为16进制打印Byte</strong></p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 128, 1)"> 1</span> String str = "中"<span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 128, 128, 1)"> 2</span><span style="color: rgba(0, 128, 128, 1)"> 3</span><span style="color: rgba(0, 0, 255, 1)">byte</span>[] bufferGBK =  str.getBytes(<span style="color: rgba(0, 128, 0, 1)">"GBK"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)"> 4</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"bufferGBK = "</span>+<span style="color: rgba(0, 0, 0, 1)">printHexBinary(bufferGBK)) ;</span><span style="color: rgba(0, 128, 128, 1)"> 5</span><span style="color: rgba(0, 128, 128, 1)"> 6</span> String gbkString =<span style="color: rgba(0, 0, 255, 1)">new</span> String(bufferGBK,<span style="color: rgba(0, 128, 0, 1)">"GBK"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)"> 7</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"gbkString = new String bufferGBK GBK : "</span>+<span style="color: rgba(0, 0, 0, 1)">gbkString);</span><span style="color: rgba(0, 128, 128, 1)"> 8</span><span style="color: rgba(0, 128, 128, 1)"> 9</span> String utf8String =<span style="color: rgba(0, 0, 255, 1)">new</span> String(bufferGBK,<span style="color: rgba(0, 128, 0, 1)">"utf-8"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">10</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"utf8String = new String bufferGBK utf8 : "</span>+<span style="color: rgba(0, 0, 0, 1)">utf8String);</span><span style="color: rgba(0, 128, 128, 1)">11</span><span style="color: rgba(0, 128, 128, 1)">12</span><span style="color: rgba(0, 0, 255, 1)">byte</span>[] utfFromStr = utf8String.getBytes(<span style="color: rgba(0, 128, 0, 1)">"utf-8"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">13</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"utf8String getBytes utf-8 : "</span>+<span style="color: rgba(0, 0, 0, 1)">printHexBinary(utfFromStr));</span><span style="color: rgba(0, 128, 128, 1)">14</span><span style="color: rgba(0, 128, 128, 1)">15</span><span style="color: rgba(0, 0, 255, 1)">byte</span>[] gbkFromStr = utf8String.getBytes(<span style="color: rgba(0, 128, 0, 1)">"GBK"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">16</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"utf8String getBytes GBK : "</span>+<span style="color: rgba(0, 0, 0, 1)">printHexBinary(gbkFromStr));</span><span style="color: rgba(0, 128, 128, 1)">17</span><span style="color: rgba(0, 128, 128, 1)">18</span><span style="color: rgba(0, 0, 255, 1)">byte</span>[] isoFromStr = utf8String.getBytes(<span style="color: rgba(0, 128, 0, 1)">"ISO-8859-1"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">19</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"utf8String getBytes ISO-8859-1 : "</span>+<span style="color: rgba(0, 0, 0, 1)">printHexBinary(isoFromStr));</span><span style="color: rgba(0, 128, 128, 1)">20</span><span style="color: rgba(0, 128, 128, 1)">21</span> String isoString =<span style="color: rgba(0, 0, 255, 1)">new</span> String(bufferGBK,<span style="color: rgba(0, 128, 0, 1)">"ISO-8859-1"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">22</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"isoString = new String bufferGBK ISO-8859-1 : "</span>+<span style="color: rgba(0, 0, 0, 1)">isoString);</span><span style="color: rgba(0, 128, 128, 1)">23</span><span style="color: rgba(0, 128, 128, 1)">24</span> utfFromStr = isoString.getBytes(<span style="color: rgba(0, 128, 0, 1)">"utf-8"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">25</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"isoString getBytes utf-8 : "</span>+<span style="color: rgba(0, 0, 0, 1)">printHexBinary(utfFromStr));</span><span style="color: rgba(0, 128, 128, 1)">26</span><span style="color: rgba(0, 128, 128, 1)">27</span> gbkFromStr = isoString.getBytes(<span style="color: rgba(0, 128, 0, 1)">"GBK"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">28</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"isoString getBytes GBK : "</span>+<span style="color: rgba(0, 0, 0, 1)">printHexBinary(gbkFromStr));</span><span style="color: rgba(0, 128, 128, 1)">29</span><span style="color: rgba(0, 128, 128, 1)">30</span> isoFromStr = isoString.getBytes(<span style="color: rgba(0, 128, 0, 1)">"ISO-8859-1"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">31</span> System.out.<strong>println</strong>(<span style="color: rgba(0, 128, 0, 1)">"isoString getBytes ISO-8859-1 : "</span>+printHexBinary(isoFromStr));</pre> </div> <p>　　按我之前的认识，先简单推理下。</p> <p>　　第4行的Print输出的应该是“中”的GBK编码（中的GBK编码是0xD6 0xD0）。</p> <p>　　第7行用[0xD6 0xD0]以GBK字符集new一个String，打印这个String，那应该是“中”</p> <p>　　第10行用[0xD6 0xD0]以UTF8字符集new一个String，打印这个String，这里可能会乱码，具体会显示什么字符，要看0xD6 0xD0对应的Utf8 字符。</p> <p><span style="color: rgba(255, 0, 0, 1)"><strong>×</strong></span> 第13行从上面new的String中按UTF8取得Byte数组，因为上面New 的是Utf8 String，这里取出的应该还是[0xD6 0xD0]</p> <p><strong><span style="color: rgba(255, 0, 0, 1)">×</span></strong>第16行从上面new的String中按GBK取得Byte数组， 这……不太确定，可能还是[0xD6 0xD0]？内存存储的编码应该是不变的？</p> <p><strong><span style="color: rgba(255, 0, 0, 1)">×</span></strong>第19行从上面new的String中按ISO8859取得Byte数组， 这……同上吧？ 但似乎有点儿问题，应该是不对，逻辑上如果getBytes都一样，那为啥要参数指定字符集呢？</p> <p>　　第22行用[0xD6 0xD0]以ISO8859字符集new一个String，打印这个String，这里可能会乱码， 要看[0xD6 0xD0]ISO8859中对应的字符。</p> <p><strong><span style="color: rgba(255, 0, 0, 1)">×</span></strong>第25，28行，这……</p> <p>　　第30行从上面new的String中按ISO8859取得Byte数组，这应该不会变，还是[0xD6 0xD0]</p> <p><strong>我只能回答成这样了，自我感觉比较风流倜傥，潇洒惆怅的可以先自己琢磨下， 实际的程序输出在这里↓</strong></p> <div class="cnblogs_code"><img decoding="async" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="面试之Java String 编码相关" id="code_img_closed_6e434d2c-8179-4b09-a0f9-0db368d8dd9b" class="code_img_closed"/><img decoding="async" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="面试之Java String 编码相关" id="code_img_opened_6e434d2c-8179-4b09-a0f9-0db368d8dd9b" class="code_img_opened" style="display: none"/></p> <div id="cnblogs_code_open_6e434d2c-8179-4b09-a0f9-0db368d8dd9b" class="cnblogs_code_hide"> <pre><span style="color: rgba(0, 128, 128, 1)"> 1</span> ========================================<span style="color: rgba(0, 128, 128, 1)"> 2</span> bufferGBK = 0xD6,0xD0<span style="color: rgba(0, 128, 128, 1)"> 3</span> gbkString =<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> String bufferGBK GBK : 中</span><span style="color: rgba(0, 128, 128, 1)"> 4</span> utf8String =<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> String bufferGBK utf8 : ��</span><span style="color: rgba(0, 128, 128, 1)"> 5</span> utf8String getBytes utf-8 : 0xEF,0xBF,0xBD,0xEF,0xBF,0xBD<span style="color: rgba(0, 128, 128, 1)"> 6</span> utf8String getBytes GBK : 0x3F,0x3F<span style="color: rgba(0, 128, 128, 1)"> 7</span> utf8String getBytes ISO-8859-1 : 0x3F,0x3F<span style="color: rgba(0, 128, 128, 1)"> 8</span> isoString =<span style="color: rgba(0, 0, 255, 1)">new</span> String bufferGBK ISO-8859-1<span style="color: rgba(0, 0, 0, 1)"> : ÖÐ</span><span style="color: rgba(0, 128, 128, 1)"> 9</span> isoString getBytes utf-8 : 0xC3,0x96,0xC3,0x90<span style="color: rgba(0, 128, 128, 1)">10</span> isoString getBytes GBK : 0x3F,0x3F<span style="color: rgba(0, 128, 128, 1)">11</span> isoString getBytes ISO-8859-1 : 0xD6,0xD0<span style="color: rgba(0, 128, 128, 1)">12</span> ========================================</pre> </div> <p><span class="cnblogs_code_collapse">答案点这里</span></div> <p>&nbsp;　　然后对着输出结果来理解下。</p> <p><strong>答案中</strong>的2，3行输出跟预期一样</p> <p><span style="color: rgba(128, 0, 0, 1)">　　第4行确实是“乱码”了，但为什么[0xD6 0xD0]会变成两个一样的字符��<br /></span></p> <p><span style="color: rgba(128, 0, 0, 1)">　　第5行，byte数组不是之前的2个，而是6个元素，与0xD6 0xD0完全不同，是何原因？</span></p> <p><span style="color: rgba(128, 0, 0, 1)">　　第6，7行，byte数组是[0x3F 0x3F]，为啥？</span></p> <p><span style="color: rgba(128, 0, 0, 1)">　　第8行，也是“乱码”了，ÖÐ, 但为什么又变成了两个不同的字符。。-_-||</span></p> <p><span style="color: rgba(128, 0, 0, 1)">　　第9行 byte数组4个元素，看起来不同。</span></p> <p><span style="color: rgba(128, 0, 0, 1)">　　第10行 byte数组[0x3f 0x3f]</span></p> <p><span style="color: rgba(128, 0, 0, 1)"><span style="color: rgba(0, 0, 0, 1)">第11行 确实还是[0xD6 0xD0]</span></span></p> <p><span style="color: rgba(128, 0, 0, 1)"><span style="color: rgba(0, 0, 0, 1)"><strong>实践检验真理，上面的实验表明，String在内存存储的实际内容与getBytes取得的内容，可能是存在转换关系的。某些字符集的情况下是不变的（ISO8859），而有些经过Byte 到 String 到 Byte 的转换后会发生变化，与创建时的byte数组不同。</strong></span></span></p> <p><span style="color: rgba(0, 0, 0, 1)">　　经过一番上下求索之后。下面是我认为比较合理的解释。</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　答案中的2，3行输出跟预期一样</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　第4行，乱码因为[0xD6 0xD0]不是两个有效的Utf8字符集字符， Java将其转换处理为两个�，即utf8String中的内容即为“��”</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　第5行此时取得Byte数组为对应Utf8 中两个�字符的字符编码，即在UTF8 字符集中� 的编码为[0xEF,0xBF,0xBD]</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　第6行取得的Byte数组为，字符�对应在GBK字符集中的字符编码，该字符应该未包含，被转换为 0x3F 即 ? 字符</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　第7行，同上</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　第8行，并不是乱码，Ö 和 Ð 确实是ISO8859字符集中包含的字符，对应的编码为[0xD6 0xD0]，在GBK中为字符 “中” ，在 ISO8859中为两个字符 “Ö” 和 “Ð”，isoString内容为“ÖÐ”</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　第9行，取得isoString在utf8 编码集中对应 Ö 和 Ð 字符的编码数组， 即 [0xC3,0x96] =Ö&nbsp; [0xC3,0x90] = Ð。</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　第10行，取得isoString在GBK编码其中对应的Ö 和 Ð 字符的编码数组，因为GBK未包含这两个字符，于是被转换为“？？”后取得编码 即 [0x3F 0x3F]</span></p> <p><span style="color: rgba(0, 0, 128, 1)">　　第10行，取得isoString在ISO8859中对应的Ö 和 Ð 字符的编码数组，即为[0xD6 0xD0]，因此不变。</span></p> <p><strong>总结及推论：</strong></p> <ul> <li>　　String实际存储的内容是不可见，也无需关心的，<strong>可以理解为它存储的是字符</strong>。你用Byte数组初始化一个字符串时，总会显示或者默认的指明数组的编码格式。String内部会据此将其对应的<strong>字符而非编码，以某种方法</strong>保存在其内部。如果你指定的字符集与提供的数组不一致，String会帮你映射为未知字符可能是“？”或“�”。</li> <li>　　String存储的不是初始化时提供的Byte数组，因此经过 Byte 到 String的转换后，可能会导致原始Byte数组的内容丢失，无法通过转换后的 String获得。所以乱码问题，要从源头解决，而不是在String上下功夫。</li> <li>　　ISO8859-1是一个0x00-0xFF的都有定义的单字符编码，因此该编码进行byte到String转换不会丢失信息，String可以以Iso8859取得Byte数组后，以其他字符集显示，因此很多地方仍然使用此种字符集。</li> </ul> <p><strong>另：</strong><strong>字符是抽象的，具体存储肯定要定义编码，Java规范定义的是“外部”的编码的表现和工作方式，内部存储可以自行实现，目前实际使用似乎是UTF16.</strong></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-28109.htm">宠物领养合同违约金3000（宠物领养合同违约金30000元合法吗）</a></p>
+                                        <p>下一个：<a href="/news/article-28570.htm">国内动物疫苗排名前十名 国内动物疫苗排名前十名有哪些</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-clash-verge-rev-node-share.htm" title="「12月1日」最高速度22.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「12月1日」最高速度22.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-clash-verge-rev-windows.htm" title="「10月22日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月22日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-high-speed-nodes.htm" title="「11月11日」最高速度22M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月11日」最高速度22M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-clash-verge-rev-github.htm" title="「11月28日」最高速度18.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月28日」最高速度18.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-29-latest-clash-verge-rev-node.htm" title="「10月29日」最高速度18.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月29日」最高速度18.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-2-free-subscribe-node.htm" title="「9月2日」最高速度19.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月2日」最高速度19.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27172.htm" title="动物疫苗打几次有效啊（动物疫苗一针多少钱）">动物疫苗打几次有效啊（动物疫苗一针多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-free-subscribe-node.htm" title="「12月17日」最高速度18.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「12月17日」最高速度18.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25318.htm" title="中国动物疫苗市场分析图（中国动物疫苗公司排名）">中国动物疫苗市场分析图（中国动物疫苗公司排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-11-free-clash-verge-rev-node.htm" title="「10月11日」最高速度18.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月11日」最高速度18.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">59</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

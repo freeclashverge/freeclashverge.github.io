@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</title>
         <meta name="description" content="消息丢失，消息重复消费，消息顺序消费等问题是我们使用 MQ 时不得不考虑的一个问题，下面我结合实际的业务来和你分享一下解决方案。  消息丢失问题 比如我们使用 Kakfa 时，以下场景都会发生消息丢失" />
-        <link rel="icon" href="__ADDON__/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
     <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/linericon/style.css">
@@ -82,7 +82,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				</h1> <blockquote> <p>消息丢失，消息重复消费，消息顺序消费等问题是我们使用 MQ 时不得不考虑的一个问题，下面我结合实际的业务来和你分享一下解决方案。</p> </blockquote> <h3 id="消息丢失问题">消息丢失问题</h3> <p>比如我们使用 Kakfa 时，以下场景都会发生消息丢失：</p> <ul> <li>producer -&gt; broker （生产者生产消息）</li> <li>broker -&gt; broker (集群环境，broker 同步给其他 broker)</li> <li>broker -&gt; consumer （消费者消费消息）</li> </ul> <p>解决方案也很简单，设置<strong>acks</strong>（消息确认机制）<strong>retries</strong>（重试机制）<strong>factor</strong>（设置 partition 数量）...</p> <p>一般来说，最常见的消息丢失场景就是：<strong>consumer 消费消息</strong>。</p> <p>要保证<strong>consumer</strong> 消费消息时不丢失消息，必须使用<strong>手动提交 ack</strong></p> <p>我们业务是这样实现的：</p> <ol> <li>从<strong>Kafka</strong> 拉取消息（一次批量拉取 100条）</li> <li>为每条消息分配一个<strong>msgId</strong>（递增）</li> <li>将<strong>msgId</strong> 存入内存队列（sortSet）</li> <li>使用<strong>Map</strong> 存储<strong>msgId</strong> 与<strong>msg</strong> （包含 offset）的<strong>映射关系</strong></li> <li>当业务处理完消息后，获取当前消息的<strong>msgId</strong>，然后从<strong>sortSet</strong> 中删除该<strong>msgId</strong>（表示该消息已经处理过了）</li> <li><strong>ack</strong> 时，如果当前 msgId &lt;= sortSet（msgId 在 sortSet 中是从小到大排列） ，就提交当前<strong>offset</strong></li> <li>就算<strong>consumer</strong> 在处理消息时挂了，下次重启时就会从<strong>sortSet</strong> 队首的消息开始拉取，实现至少处理一次语义。</li> <li>步骤 7 存在一个问题：当消息处理完后，还没从<strong>sortSet</strong> 中删除该<strong>msgId</strong>，系统就挂了，当系统重启时，又会<strong>重新处理</strong>一次刚刚已处理过的消息，这就引出<strong>消息重复消费</strong>的问题了。</li> </ol> <h3 id="消息重复消费">消息重复消费</h3> <p>要解决消息重复消费，也就是要实现<strong>幂等</strong>（幂等就是：多次请求，但结果保持不变，举一个例子你就明白了：<code>在 http 中，你发送同一个 get 请求，无论发送多少次，返回结果都是一样的</code>）</p> <p>回到我们的业务场景上，我以处理订单消息为例：</p> <ul> <li> <p><strong>幂等Key</strong> 由我们的<strong>订单Id</strong> +<strong>订单状态</strong>组成（一笔订单的状态只会处理一次）</p> </li> <li> <p>在处理之前，我们首先会去<strong>Redis</strong> 查询是否存在这个<strong>Key</strong></p> <p>如果存在，说明我们已经处理过了，直接丢掉；</p> <p>	  如果不存在，说明没处理过，继续往下处理；</p> </li> <li> <p>最终的逻辑是：将处理过的数据存到<strong>DB</strong>上，再把<strong>幂等Key</strong> 存到<strong>Redis</strong> 上</p> </li> </ul> <p>显然一般场景下 Redis 是无法保证幂等的</p> <p>所以<strong>Redis</strong>只是一个<strong>前置处理</strong>，最终的幂等性依赖<strong>DB</strong> 的<strong>唯一Key</strong>（订单Id+订单状态）</p> <p>总的来说就是：通过 Redis 做<strong>前置处理</strong>，DB 唯一索引做<strong>最终保证</strong>实现<strong>幂等性</strong></p> <h3 id="消息顺序消费">消息顺序消费</h3> <p>消息的顺序性很好理解，还是以订单处理为例</p> <p>订单的状态有：支付、确认收货、完成等等，而订单下还有计费、退款的消息报</p> <p>理论上来说：支付的消息肯定要比退款的消息先到。</p> <p>但是程序处理的过程就不一定了，所以我们处理消息顺序消费的流程如下：</p> <ul> <li>宽表：创建一张宽表，唯一索引是<strong>订单Id</strong>，将订单的<strong>每个状态</strong>拆分为一个列，当消息来了，只更新对应的字段就好，消息只会存在短暂的状态不一致问题，但是最终状态是一致的</li> <li>消息补偿机制</li> <li>把相同的<strong>userID/orderId</strong> 发送到相同的<strong>partition</strong>（因为一个 consumer 消费一个 partition）</li> </ul> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <blockquote> <p>消息丢失，消息重复消费，消息顺序消费等问题是我们使用 MQ 时不得不考虑的一个问题，下面我结合实际的业务来和你分享一下解决方案。</p> </blockquote> <h3 id="消息丢失问题">消息丢失问题</h3> <p>比如我们使用 Kakfa 时，以下场景都会发生消息丢失：</p> <ul> <li>producer -&gt; broker （生产者生产消息）</li> <li>broker -&gt; broker (集群环境，broker 同步给其他 broker)</li> <li>broker -&gt; consumer （消费者消费消息）</li> </ul> <p>解决方案也很简单，设置<strong>acks</strong>（消息确认机制）<strong>retries</strong>（重试机制）<strong>factor</strong>（设置 partition 数量）...</p> <p>一般来说，最常见的消息丢失场景就是：<strong>consumer 消费消息</strong>。</p> <p>要保证<strong>consumer</strong> 消费消息时不丢失消息，必须使用<strong>手动提交 ack</strong></p> <p>我们业务是这样实现的：</p> <ol> <li>从<strong>Kafka</strong> 拉取消息（一次批量拉取 100条）</li> <li>为每条消息分配一个<strong>msgId</strong>（递增）</li> <li>将<strong>msgId</strong> 存入内存队列（sortSet）</li> <li>使用<strong>Map</strong> 存储<strong>msgId</strong> 与<strong>msg</strong> （包含 offset）的<strong>映射关系</strong></li> <li>当业务处理完消息后，获取当前消息的<strong>msgId</strong>，然后从<strong>sortSet</strong> 中删除该<strong>msgId</strong>（表示该消息已经处理过了）</li> <li><strong>ack</strong> 时，如果当前 msgId &lt;= sortSet（msgId 在 sortSet 中是从小到大排列） ，就提交当前<strong>offset</strong></li> <li>就算<strong>consumer</strong> 在处理消息时挂了，下次重启时就会从<strong>sortSet</strong> 队首的消息开始拉取，实现至少处理一次语义。</li> <li>步骤 7 存在一个问题：当消息处理完后，还没从<strong>sortSet</strong> 中删除该<strong>msgId</strong>，系统就挂了，当系统重启时，又会<strong>重新处理</strong>一次刚刚已处理过的消息，这就引出<strong>消息重复消费</strong>的问题了。</li> </ol> <h3 id="消息重复消费">消息重复消费</h3> <p>要解决消息重复消费，也就是要实现<strong>幂等</strong>（幂等就是：多次请求，但结果保持不变，举一个例子你就明白了：<code>在 http 中，你发送同一个 get 请求，无论发送多少次，返回结果都是一样的</code>）</p> <p>回到我们的业务场景上，我以处理订单消息为例：</p> <ul> <li> <p><strong>幂等Key</strong> 由我们的<strong>订单Id</strong> +<strong>订单状态</strong>组成（一笔订单的状态只会处理一次）</p> </li> <li> <p>在处理之前，我们首先会去<strong>Redis</strong> 查询是否存在这个<strong>Key</strong></p> <p>如果存在，说明我们已经处理过了，直接丢掉；</p> <p>	  如果不存在，说明没处理过，继续往下处理；</p> </li> <li> <p>最终的逻辑是：将处理过的数据存到<strong>DB</strong>上，再把<strong>幂等Key</strong> 存到<strong>Redis</strong> 上</p> </li> </ul> <p>显然一般场景下 Redis 是无法保证幂等的</p> <p>所以<strong>Redis</strong>只是一个<strong>前置处理</strong>，最终的幂等性依赖<strong>DB</strong> 的<strong>唯一Key</strong>（订单Id+订单状态）</p> <p>总的来说就是：通过 Redis 做<strong>前置处理</strong>，DB 唯一索引做<strong>最终保证</strong>实现<strong>幂等性</strong></p> <h3 id="消息顺序消费">消息顺序消费</h3> <p>消息的顺序性很好理解，还是以订单处理为例</p> <p>订单的状态有：支付、确认收货、完成等等，而订单下还有计费、退款的消息报</p> <p>理论上来说：支付的消息肯定要比退款的消息先到。</p> <p>但是程序处理的过程就不一定了，所以我们处理消息顺序消费的流程如下：</p> <ul> <li>宽表：创建一张宽表，唯一索引是<strong>订单Id</strong>，将订单的<strong>每个状态</strong>拆分为一个列，当消息来了，只更新对应的字段就好，消息只会存在短暂的状态不一致问题，但是最终状态是一致的</li> <li>消息补偿机制</li> <li>把相同的<strong>userID/orderId</strong> 发送到相同的<strong>partition</strong>（因为一个 consumer 消费一个 partition）</li> </ul> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-22087.htm">os模块，os.walk()方法解释与使用</a></p>
                                         <p>下一个：<a href="/news/article-22545.htm">远程服务器连接（密钥验证，跳板机）</a></p>
@@ -95,16 +96,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-12-clash-verge-rev-github.htm" title="「11月12日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月12日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-18904.htm" title="东北农业大学动物医院挂号（东北农业大学动物医学院官网）">东北农业大学动物医院挂号（东北农业大学动物医学院官网）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-15-free-clash-verge-rev-node.htm" title="「8月15日」最高速度19.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月15日」最高速度19.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-13-latest-clash-verge-rev-node.htm" title="「9月13日」最高速度21.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月13日」最高速度21.1M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-high-speed-nodes.htm" title="「11月11日」最高速度22M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月11日」最高速度22M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-18-free-high-speed-nodes.htm" title="「11月18日」最高速度21.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月18日」最高速度21.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-23477.htm" title="如何使用TIME_FORMAT()函数在MySQL中卸载时间/日期值？">如何使用TIME_FORMAT()函数在MySQL中卸载时间/日期值？</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-15-clash-verge-rev-nodes.htm" title="「10月15日」最高速度18.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月15日」最高速度18.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-22-free-node-subscribe-links.htm" title="「8月22日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月22日」最高速度22.2M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-14-free-high-speed-nodes.htm" title="「8月14日」最高速度19.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月14日」最高速度19.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-node-share-links.htm" title="「11月2日」最高速度19.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月2日」最高速度19.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-29-free-node-subscribe-links.htm" title="「8月29日」最高速度23M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「8月29日」最高速度23M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-24-free-node-subscribe.htm" title="「9月24日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月24日」最高速度20.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-5-free-high-speed-nodes.htm" title="「10月5日」最高速度22.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月5日」最高速度22.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-latest-clash-verge-rev-node.htm" title="「11月4日」最高速度20.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月4日」最高速度20.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-1-free-clash-verge-rev-node.htm" title="「9月1日」最高速度22.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月1日」最高速度22.9M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26706.htm" title="重庆免费领养小猫的地方（重庆哪里有免费领养猫）">重庆免费领养小猫的地方（重庆哪里有免费领养猫）</a></li>
+                        <li class="py-2"><a href="/news/article-25318.htm" title="中国动物疫苗市场分析图（中国动物疫苗公司排名）">中国动物疫苗市场分析图（中国动物疫苗公司排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe.htm" title="「11月19日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月19日」最高速度21.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-2-free-subscribe-node.htm" title="「9月2日」最高速度19.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「9月2日」最高速度19.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -116,7 +117,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">56</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -144,6 +145,15 @@
         <div class="container">
             <div class="row footer_bottom justify-content-center">
                 <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                             FreeClashVerge免费节点官网 版权所有 Powered by WordPress
                 </p>
             </div>
