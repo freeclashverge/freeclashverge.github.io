@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-36111.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SSL及GMVPN握手协议详解</title>
+        <meta name="description" content="之前写过一篇文章搞懂密码学基础及SSL/TLS协议，主要介绍了加密学的基础，并从整体上对SSL协议做了介绍。由于篇幅原因，SSL握手的详细流程没有深入介绍。本文将拆解握手流程，在消息级别对握手进行详细" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                                        <a class="navbar-brand logo_h" href="/"><span>Free Clash Verge</span></a>
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>SSL及GMVPN握手协议详解</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>之前写过<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/logchen/p/15159382.html"  target="_blank" rel="nofollow">一篇文章搞懂密码学基础及SSL/TLS协议</a>，主要介绍了加密学的基础，并从整体上对SSL协议做了介绍。由于篇幅原因，SSL握手的详细流程没有深入介绍。本文将拆解握手流程，在消息级别对握手进行详细地介绍。还没有加密学基本概念的、或者不清楚SSL协议的基本情况的建议先看一下前面一篇的内容。另外，本文主要是针对TLSv1.2和GMVPN的情况，对于TLSv1.3暂不涉及。</p> <p>本博客已迁移至<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://catbro666.github.io"  target="_blank" rel="nofollow">CatBro's Blog</a>，那是我自己搭建的个人博客，欢迎关注。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://catbro666.github.io/posts/59c71edb/"  target="_blank" rel="nofollow">本文链接</a></p> <h2 id="概览">概览</h2> <p>本文将分如下几个部分展开，其中密钥交换和身份认证部分会着重进行讲解。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/24caa371951becd41c0bd98a0b58d6ca.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>我们都知道SSL协议最主要的作用就是用来协商通信双方的安全参数，然后基于协商的安全参数进行安全通信。所以首当其冲地，第一个要解决的问题就是如何进行密钥交换。考虑到对称密码和非对称密码的性能差异显著，在实际使用中往往使用对称密码对数据进行加密，而使用非对称密码来完成重要的密钥交换和身份认证。</p> <h3 id="基本握手流程">基本握手流程</h3> <p>下图是一个我们通常看到的SSL握手流程图，SSL协议分为两个阶段：握手阶段和应用阶段。握手阶段主要负责协商安全参数，应用阶段则基于前面协商的安全参数进行数据通信。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ab460b9e8bb7069cda61bc8f0c57f690.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>这里先不对每个消息进行详细的介绍，后面的内容中会陆续涉及到。其中带*号的表示可选消息或者根据前面消息的情况而定。ChangeCipherSpec作为单独的一类消息只是表明握手协议已经完成，后续使用协商的加密参数进行通信。Finished消息就是第一个加密的消息，用于验证握手已经顺利完成。这里稍微提一下ServerHelloDone这个消息，这个消息并没有什么实际的内容，它存在的主要原因就是因为前面的消息CertificateRequest是可选的，所以需要明确地告诉客户端服务端这边的消息发完了，否则客户端无从知道是否该等待CertificateRequest消息。</p> <h2 id="如何进行密钥交换">如何进行密钥交换</h2> <p>密钥交换的方法可以分成两大类：一类是基于加密、一类是基于DH。前者有RSA算法、GM的ECC算法；后者则有ECDHE、GM的ECDHE。</p> <p>虽然前面一篇已经讲过了，这里还是稍微带一下这两者的基本原理，以方便在后面实际的握手流程中进行对照。</p> <h3 id="密钥交换原理">密钥交换原理</h3> <p>公钥加密的基本原理如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/10b7b87325105612b7a8a920fe6d35b6.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>公钥密码有两个密钥，其中一个是公开密钥，公开密钥可以随意传播，另一个是私有密钥，需要自己严密保管。比如Bob要发消息给Alice，Bob用Alice的公钥对消息进行加密，然后发送给Alice，Alice则用自己的私钥进行解密。</p> <p>DH类算法的原理可以用下图来形象地解释：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/6e9d34410df26a798464fe6280ae1db4.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>首先双方协商一个相同的底色（算法参数），然后各自生成自己私有的颜色（相当于私钥），并通过混合得到对应的公有颜色（相当于公钥）。随后双方交换各自的公有颜色，并与自己的私钥颜色混合，最终协商出一个相同的颜色（即交换的密钥）。窃听者就算得到了双方交换的这些信息，也无法生成相同的密钥，<strong>求解离散对象问题的困难度</strong>保证了DH算法的安全性。</p> <h3 id="tls-rsa密钥交换">TLS RSA密钥交换</h3> <p>这种情况的典型算法套件是AES256-SHA。（相关的消息都已经标成蓝色了，连到消息块上的实线箭头表示该消息中带了相应的内容。）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7aa11ce6bbdb0173b6c3d3d60c2e3f4b.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>这种情况比较简单，首先客户端生成一个随机数在ClientHello消息中带过去，服务端同样也生成一个随机数在ServerHello消息中带过去。然后服务端在Certificate消息中将它的证书发送给客户端，证书中包含了它的公钥。客户端收到之后就用服务端的公钥加密一个随机生成的预主密钥，通过ClientKeyExchange消息发送给服务端，服务端则用自己的私钥进行解密得到预主密钥。这里就是应用了前面提到的公钥加密的原理。</p> <p>通过密钥交换之后，双方都得到了预主密钥，再加上前面交换的两个随机数，这3个材料一起进行密钥派生得到主密钥。主密钥再结合两个随机数派生出最终的会话密钥。</p> <p>这里先抛出几个问题供大家思考。为什么不直接用预主密钥，而是要跟两个随机数派生出主密钥？为什么不直接用主密钥，而是再跟两个随机数派生出会话密钥？我暂时不做解答，留到后面分解。</p> <h3 id="tls-ecdhe密钥交换">TLS ECDHE密钥交换</h3> <p>这个情况的典型算法套件如ECDHE-RSA-AES256-GCM-SHA384、ECDHE-ECDSA-AES256-GCM-SHA384。这里的EC表示椭圆曲线，DH表示基于DH算法，最后一个E则表示使用临时密钥进行密钥交换，而不是证书相关的非临时密钥。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/eb0a1769547e0af90431b837c9059fd9.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>我们来比较下跟前一种情况的区别，首先ClientHello和ServerHello消息是一样的，都带了一个随机数。区别在于服务端是通过ServerKeyExchange消息发送了一个临时DH参数给对方（也就是前面将DH原理时的公有颜色），类似地客户端也通过ClientKeyExchange消息把它的临时DH参数发送给服务端。这样双方就交换了彼此的临时DH公钥，然后他们各自利用自己的临时私钥和对方的临时公钥计算出预主密钥。与前一种情况的最大区别就在于此，前者是客户端加密预主密钥发送给服务端，后者是双方交换临时DH公钥，然后各自计算出预主密钥。</p> <p>得到预主密钥后，后续的流程就一样了。结合两个随机数派生出主密钥，然后再派生出会话密钥。</p> <h3 id="gm-ecc密钥交换">GM ECC密钥交换</h3> <p>接下来我们看GM ECC密钥交换的情况，这种情况的典型算法套件为ECC-SM4-SM3。GMVPN协议一个最大的区别就是它引入了双证书体系，每一方都有两个证书（对应地就有两个私钥），一个加密证书负责进行密钥交换，一个签名证书负责进行身份认证。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5e710a3cb7b323b3a3616d71361cef12.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>跟TLS RSA密钥交换的主要区别是，这种情况的证书消息中包含了双证书，客户端在加密预主密钥时是用服务端加密证书中的公钥。相应地，服务端在解密时则用自己的加密私钥。后续的密钥派生流程都是一样的，这里就不再赘述了。</p> <p>至于GM为什么要引入双证书，是因为这样你的加密私钥就在CA那里有留档，必要时它就可以解密你的消息。Big brother is watching you!</p> <h3 id="gm-ecdhe密钥交换">GM ECDHE密钥交换</h3> <p>这种情况的典型算法套件为ECDHE-SM4-SM3。同样是双证书，ServerKeyExchange消息中带了服务端的临时DH参数，客户端也将双证书以及它的临时DH参数发送给服务端。注意到在计算预主密钥时，有4个材料参与了运算，对方加密证书中的公钥以及临时公钥，自己的加密私钥以及临时私钥，由这4个材料一起计算出预主密钥。作为对比，普通TLS的ECDHE只有自己的临时私钥和对方的临时公钥参与计算。</p> <p>GM ECDHE最大的区别就在于此，所以GM ECDHE的算法套件必须是双向认证的，因为在密钥交换时也需要客户端的加密证书参与。从这里也可以看出GM协议在设计上的不严谨，哪有算法套件只允许双向认证的。而且GM ECDHE因为也有临时密钥参与计算预主密钥，所以就算CA有加密私钥也是无法解密的，这又与双证书的最初目的相悖。。。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b7567b5b808f2ab22d2949d7be5aa058.jpg" alt="SSL及GMVPN握手协议详解"></p> <h3 id="tls12-密钥派生流程">TLS1.2 密钥派生流程</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/0f6d559c63cd920ef45bfbda3e0bc50b.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>密钥派生的流程前面其实已经画出来了，基于加密或者DH双方交换得到预主密钥，预主密钥结合两个随机数派生得到主密钥，TLS1.2中派生是通过PRF进行的，其中secret就是预主密钥，label是一个特定的字符串，seed是前面的两个随机数。</p> <pre><code>master_secret = PRF(pre_master_secret, "master secret", &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ClientHello.random + ServerHello.random) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[0..47];</code></pre> <p>得到主密钥之后在结合两个随机数派生出会话密钥，同样使用PRF，不过此时secret是主密钥，label字符串不同，seed还是两个随机数。</p> <pre><code>key_block = PRF(SecurityParameters.master_secret, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"key expansion", &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;SecurityParameters.server_random + &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;SecurityParameters.client_random);</code></pre> <p>得到会话密钥之后，再按照需要切分成MAC key和对称加密的key。图中把IV画成了虚线，因为TLS1.2中一般不需要这个。因为自从TLS1.1改成显式IV之后（为了防止CBC明文选择攻击），iv都是在记录中显式带过去的，只有当使用AEAD算法，需要隐式nonce时还需需要这个。</p> <p>至于前面抛出的两个问题，为什么不直接用预主密钥？一方面是为了统一长度，因为基于加密的密钥交换预主密钥时48字节，而基于DH的密钥交换预主密钥长度取决于具体的算法。更重要的一点，双方的随机数加入计算，可以防重放攻击，还可以增加随机数的熵源，增加安全性。</p> <p>那么为什么不直接用主密钥，还要再次派生出会话密钥呢？这个主要是生命周期的考虑，两者有不同生命周期，主密钥的生命周期较长，会话密钥则较短，只在当前会话有效。后面在讲session重用时就可以看出其区别。</p> <h2 id="如何进行身份认证">如何进行身份认证</h2> <p>前面讨论了如何进行密钥交换，但是密钥交换只管协商出密钥，并不考虑对方是谁？你如何确认对方的身份，防止被中间人攻击呢？所以就引入了身份认证。</p> <p>身份认证需要解决两个问题：</p> <ul> <li>确认对方拥有公钥对应的私钥</li> <li>确认对方的身份</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/784bd94fba385663f0342269c858124a.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>第一个问题，使用单纯的数字签名就可以解决。通过验证对方的数字签名，可以确认对方拥有相应的私钥。</p> <p>而第二个问题，则需要引入数字证书和PKI了。数字证书，说白了就是将一个公钥跟身份信息进行绑定，然后由第三方可信机构（CA）给你做个证明（通过CA签名）。那么CA本身的身份又由谁来证明呢，再通过更上级的CA进行证明。最终的根CA只能通过其他手段进行认证，否则就无限循环了。</p> <h3 id="数字签名原理">数字签名原理</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3000feb8a28f0231ddbabe2854dca610.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>数字签名的基本原理也很简单，与前面的公钥加密相对，这里是使用私钥对数据进行签名，对方则用公钥对签名数据进行验签。</p> <h3 id="tls-rsa密钥交换时的rsa认证">TLS RSA密钥交换时的RSA认证</h3> <p>典型算法套件仍然是AES256-SHA。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d383de53d8da4602da816d033185964b.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>服务端的认证只涉及Certificate消息，服务端把证书和CA证书链发送给客户端，客户端只需要对证书和证书链进行验证。最终的Root CA需要是本机信任的，否则就存在安全风险，可能受到中间人攻击。</p> <p>如果需要双向认证，即服务端也需要认证客户端，还涉及图中橙色的3个消息。服务端会发送CertificateRequest消息，告诉客户端支持的证书类型、签名哈希算法、以及CA的DN项。客户端根据这些信息选择适合的客户端证书，然后在Certificate消息中将证书和CA证书链发送给服务端，另外还需要用自己的私钥做一个签名，以证明自己拥有证书对应的私钥。这里签名的内容是前面所有的握手消息（从ClientHello开始到当前消息之前的所有消息）。然后服务端对客户端的证书链以及签名进行验证。</p> <h3 id="tls-ecdhe密钥交换时的认证">TLS ECDHE密钥交换时的认证</h3> <p>典型算法套件如ECDHE-RSA-AES256-GCM-SHA384、ECDHE-ECDSA-AES256-GCM-SHA384。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/81589d12d20e1c17aff1968ca0ddee5a.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>跟前一种情况下比，服务端多了一个签名。因为这种情况密钥交换是通过临时DH参数完成的，并没有服务端证书对应的私钥参与，所以需要用证书对应的私钥额外做一个签名，以证明自己确实拥有证书对应私钥。这里签名的内容是两个hello随机数以及服务端的临时DH参数，其实就是参与计算预主密钥的三个材料。</p> <p>客户端除了验证证书链之外，还需要对这个签名进行验证。</p> <p>客户端认证的部分跟前一种情况完全一样，不再进行赘述。</p> <h3 id="gm-ecc密钥交换时的认证">GM ECC密钥交换时的认证</h3> <p>典型算法套件还是ECC-SM4-SM3。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/fd5ff0b7703e25a93d65d38eac305a2a.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>前面TLS RSA的情况，服务端不需要做一个额外的签名。因为密钥交换和身份认证都是通过同一个证书来进行的，服务端能够完成密钥交换（解密出预主密钥）就已经说明了它有对应的私钥。</p> <p>而GM ECC则则不然，因为双证书的关系，密钥交换和身份认证是通过不同证书进行的。所以服务端仍然需要做一个签名证明其私钥持有性。签名是通过签名私钥来进行的，签名的内容有所改变，是两个hello随机数和服务端的加密证书。客户端除了验证证书链，还需要用服务端的签名证书对签名进行验证。</p> <p>客户端认证的流程还是类似，只不过发送的也是双证书，然后在签名时也是用的签名私钥。服务端除了验证证书链，还需要用客户端的签名证书对签名进行验证。</p> <h3 id="gm-ecdhe密钥交换时的认证">GM ECDHE密钥交换时的认证</h3> <p>典型算法套件还是ECDHE-SM4-SM3。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/4d56711ddfaaae8f43e48a628e089819.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>跟前一种情况相比，主要是服务端的签名内容有一点区别，是两个hello随机数+服务端的临时DH参数。我们注意到前面几种情况，服务端签名的内容都是参与计算预主密钥的材料。从这个逻辑上来说，这边在协议设计上也有些问题，因为服务端的加密证书实际上也参与了密钥交换，按照协议设计一致性也应该包含到签名内容中。</p> <p>其他部分跟前一种情况完全一样，不再进行赘述。</p> <h2 id="如何协商协议算法">如何协商协议算法</h2> <p>前面讨论了几种不同的情况，可以看到不同的协议版本、不同的算法套件，它们在握手的处理流程上是不一样的，那么双方如何对此达成一致呢？</p> <p>于是就需要引入一次Hello交互了。这也是为什么完整的SSL握手需要两次交互的主要原因。通过这次Hello交互对使用的协议版本和算法套件达成一致。另外得益于SSL协议引入的扩展机制，不仅仅是协议版本算法套件，双方还可以协商除此之外的很多东西，甚至是用户自定义的扩展项。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/1fc2eeea6be852e7a24bc7b82a0775a5.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>不过最基本的还是协议版本、算法套件之类的。客户端发送它支持的版本、算法套件列表、如果是椭圆曲线还会指定支持的曲线列表、签名算法等，服务端基于客户端的信息，选择最终使用的协议版本、算法套件、EC点格式等。</p> <h2 id="如何提升性能">如何提升性能</h2> <p>完整的SSL握手需要两个RTT，而且还需要耗时的非对称运算。协议在设计上也考虑了如何提升性能的问题。在握手流程优化方面，主要就是通过会话重用来简化握手流程。（对于TLSv1.3则有PSK、1-RTT和0-RTT，不过本文将不涉及TLS1.3，）这里主要介绍下会话重用的情况。</p> <h3 id="会话重用基本流程">会话重用基本流程</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e508da6f27260e167f2e66059e5ec488.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>会话重用的基本流程如上所示。首先是一个完整的握手，然后客户端如果想重用前面的会话，在ClientHello进行相应的指示告诉服务端，服务端如果同意在ServerHello中进行答复，然后就直接进行简化的握手，不需要再进行密钥交换和身份认证。不但省了一次交互，也省去了费时的非对称运算。</p> <h3 id="session-id">Session ID</h3> <p>会话重用有两种方式，首先来看下Session ID的流程：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/c8bddef9c8369622cc4846966727db3d.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>前一次握手中，服务端在ServerHello消息中将Session ID告诉客户端，握手正常完成之后，服务端会将对应的Session保存，其中就包含了主密钥。</p> <p>后续客户端想要重用之前那个Session，可以在ClientHello中带上之前的Session ID，服务端收到之后会根据Session ID进行查找，如果找到了且未过期，那么进行会话重用，服务端将Session ID再原样发送给客户端，进入简化的握手流程；否则，服务端还是随机生成新的Session ID发送给客户端，回退到完整的握手流程。</p> <p>会话重用时，使用之前Session的主密钥来推导会话密钥。这里就可以看出其生命周期的不同了，会话重用时主密钥是用的同一个，但是会话密钥每次都是重新生成的。而且注意到，这时也是有两个随机数参与密钥派生的，同样也是出于防重放的考虑。</p> <h3 id="session-ticket">Session Ticket</h3> <p>前一种情况服务端需要保存 session cache，会消耗内存资源，如果是集群的话还会带来cache同步的问题。而session ticket的出现正是为了解决这些问题。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/57395f0def0ff139a55413173e46d849.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>我们来看下它的流程，首先客户端在ClientHello的扩展中带上session_ticket扩展表示它想使用session_ticket功能，服务端如果同意则在ServerHello中回复session_ticket扩展项。服务端不用保存session，而是加密之后通过NewSessionTicket消息发送给客户端。这里session ticket key实际上是个对称密钥，它只有服务端自己知道。</p> <p>后续客户端想要重用该Session，在ClientHello扩展中把之前那个session_ticket塞进去，服务端成功解密且验证通过之后就进行会话重用，否则回退到完整的握手。然后还是同样地根据主密钥重新派生出会话密钥。</p> <p>这样服务端没有了保存session的负担，但是天下没有免费的午餐，session ticket对前向安全性会带来一定的损害。因为session ticket只是单纯使用session ticket key进行加密的，如果session ticket key泄漏了，那么之前基于会话重用的握手就都可以被破解了。</p> <p>所以在实际使用时，session ticket key应该经常更换，减小前向安全性方面的风险。</p> <h2 id="如何保证安全性">如何保证安全性</h2> <p>简单回顾来握手中是如何保证安全性的。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/75a597f1498e11354d8096ce8144979b.jpg" alt="SSL及GMVPN握手协议详解"></p> <p>首先通过两个hello随机数来实现防重放。防止中间人攻击是通过对服务端的认证了完成的。防篡改是通过最后的Finished来完成的，Finished消息中包含了一个verify_data，它也是由PRF计算得到的，其中的seed是前面所有握手消息（ClientHello开始，到当前Finished消息前）的摘要值。</p> <pre><code>verify_data:  PRF(master_secret, finished_label,      Hash(handshake_messages))             [0..verify_data_length-1];</code></pre> <p>前向安全性也是需要特别注意的点，事实上TLS1.3中砍掉了所有没有前向安全性的算法套件，只留下了DHE或ECDHE的算法套件。另外前面也提到了session ticket也会对前向安全性有一定的损害。</p> <p>最后，要特别强调下随机数的重要性。一个好的加密算法，其安全性完全是基于密钥的安全性，如果随机数本身质量不过关，比如可以被预测，那么前面所有的一切都是白忙活。随机数可以说是所有这些的基石。</p> <p>最后的最后，安全领域其实也适用木桶理论，一个通信的安全性取决于其最薄弱的环节。无论是协议设计、代码实现还是在用户使用上，任何一处纰漏都可能导致巨大的安全问题。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36110.htm">CommonsCollection6反序列化链学习</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-34273.htm" title="2020年青浦二中最低录取分数线是多少（2020年青浦二中最低录取分数线是多少分）">2020年青浦二中最低录取分数线是多少（2020年青浦二中最低录取分数线是多少分）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-subscribe-node.htm" title="「10月9日」最高速度22.5M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月9日」最高速度22.5M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27174.htm" title="自己拿疫苗去宠物医院打可以吗多少钱（自己买疫苗去宠物店打）">自己拿疫苗去宠物医院打可以吗多少钱（自己买疫苗去宠物店打）</a></li>
+                        <li class="py-2"><a href="/news/article-24853.htm" title="定时器中 this 指向修改实现方法和原理讲解">定时器中 this 指向修改实现方法和原理讲解</a></li>
+                        <li class="py-2"><a href="/news/article-21627.htm" title="javaScript中内置对象Date基本操作入门_在线工具">javaScript中内置对象Date基本操作入门_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-31305.htm" title="socket.io在egg+vue中的使用">socket.io在egg+vue中的使用</a></li>
+                        <li class="py-2"><a href="/news/article-35066.htm" title="延吉动物医院在哪里预约体检（延吉市动物园门票多少）">延吉动物医院在哪里预约体检（延吉市动物园门票多少）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-high-speed-nodes.htm" title="「10月7日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月7日」最高速度22.8M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-18904.htm" title="东北农业大学动物医院挂号（东北农业大学动物医学院官网）">东北农业大学动物医院挂号（东北农业大学动物医学院官网）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-node-share.htm" title="「10月24日」最高速度19.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月24日」最高速度19.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
