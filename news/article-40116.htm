@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-40116.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CI框架源码解析十九之分页类文件Pagination.php</title>
+        <meta name="description" content="&nbsp; &nbsp; &nbsp; &nbsp; CodeIgniter 的分页类非常容易使用，而且它 100% 可定制，可以通过动态的参数，也可以通过保存在配置文件中的参数。如果你还不熟悉 "" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="__ADDON__/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                                        <a class="navbar-brand logo_h" href="/"><span>Free Clash Verge</span></a>
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>CI框架源码解析十九之分页类文件Pagination.php</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <blockquote style="margin:0 0 0 40px; border:none; padding:0px"> <p>&nbsp; &nbsp; &nbsp; &nbsp; CodeIgniter 的分页类非常容易使用，而且它 100% 可定制，可以通过动态的参数，也可以通过保存在配置文件中的参数。如果你还不熟悉 "分页" 这个词，它指的是用于你在页面之间进行导航的链接。像下面这样：</p> <div class="highlight"> <pre><span class="nx">«</span> <span class="nx">First&nbsp;&nbsp;</span><span class="o">&lt;</span><span class="nx">&nbsp;1&nbsp;2&nbsp;3&nbsp;4&nbsp;5&nbsp;</span><span class="o">&gt;</span><span class="nx">&nbsp;&nbsp;Last</span> <span class="nx">»</span></pre> </p></div> <p>举个例子说明如何在你的控制器方法中创建分页：</p> <p>Ⅰ 在构造函数中引入分页类：</p> <pre><code class="language-php">	public function __construct(){ 		parent::__construct(); 		$this-&gt;load-&gt;library('form_validation'); 		$this-&gt;load-&gt;model('goodstype_model'); 		$this-&gt;load-&gt;library('pagination');//引入分页类 	}</code></pre> <p>Ⅱ 设置配置参数，然后初始化调用输出：</p> <pre><code class="language-php">	public function index($offset = '') 	{ 		//配置分页信息 		$config['base_url'] = site_url('admin/goodstype/index'); 		//获取数据库总条数 		$config['total_rows'] = $this-&gt;goodstype_model-&gt;count_goodstype(); 		//每页显示条数 		$config['per_page'] = 2; 		//页码参数位置 		$config['uri_segment'] = 4;  		//自定义分页连接 		$config['first_link'] = '首页'; 		$config['last_link'] = '尾页'; 		$config['prev_link'] = '上一页'; 		$config['next_link'] = '下一页';  		//初始化分类页 		$this-&gt;pagination-&gt;initialize($config); 		//生成分页信息 		//可以输出查看结果是一串html字符串 		$data['pageinfo'] = $this-&gt;pagination-&gt;create_links(); 		$limit = $config['per_page']; 		$data['goodstypes'] = $this-&gt;goodstype_model-&gt;list_goodstype($limit,$offset); 		$this-&gt;load-&gt;view('goods_type_list.html',$data); 	}</code></pre> </blockquote> <p>&nbsp; &nbsp; &nbsp; &nbsp; CI框架的分页类非常的好用，可以让我们随心所欲的去修改定制。但是在这里要说的是，CI框架的分页功能仅仅只是提供一个显示功能，不存在任何和数据库进行交互的作用，它所显示的仅仅只是一个连接，其具体的数据查询功能，数据显示功能还是要我们自己在模型中进行编写，这是CI框架的分页类和其他框架所不同的地方。大家要注意。好了，本篇就说这么多，其实分页类的代码功能还是非常简单明了的，只要稍微的看一篇就能明白其具体的实现过程。</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;最后贴一下CI框架整个分页类Pagination.php文件的源代码（注释版）：</p> <pre><code class="language-php">    &lt;?php          /**      * =======================================      * Created by Pocket Knife Technology.      * User: ZhiHua_W      * Date: 2016/11/08 0041      * Time: 下午 4:14      * Project: CodeIgniter框架—源码分析      * Power: Analysis for Pagination.php      * =======================================      */          defined('BASEPATH') OR exit('No direct script access allowed');          /**      * 用于生成分页连接      */     class CI_Pagination     {         //每次访问的url地址         protected $base_url = '';         //给路径添加一个自定义前缀，前缀位于偏移段的前面         protected $prefix = '';         //给路径添加一个自定义后缀，后缀位于偏移段的后面。         protected $suffix = '';         //这个数字表示你需要做分页的数据的总行数。通常这个数值是你查询数据库得到的数据总量。         protected $total_rows = 0;         //放在你当前页码的前面和后面的“数字”链接的数量。         //比方说值为 2 就会在每一边放置两个数字链接，就像此页顶端的示例链接那样。         protected $num_links = 2;         //这个数字表示每个页面中希望展示的数量，在上面的那个例子中，每页显示 10 个项目。         public $per_page = 10;         //当前页         public $cur_page = 0;         //默认分页的 URL 中显示的是你当前正在从哪条记录开始分页，         //如果你希望显示实际的页数，将该参数设置为 TRUE 。         protected $use_page_numbers = FALSE;         //首页，左边第一个链接显示的文本，如果你不想显示该链接，将其设置为 FALSE 。         protected $first_link = '‹ First';         //下一页，下一页链接显示的文本，如果你不想显示该链接，将其设置为 FALSE 。         protected $next_link = FALSE;         //下一页，下一页链接显示的文本，如果你不想显示该链接，将其设置为 FALSE         protected $prev_link = FALSE;         //尾页，右边第一个链接显示的文本，如果你不想显示该链接，将其设置为 FALSE 。         protected $last_link = 'Last ›';         //分页方法自动检测你 URI 的哪一段包含页数，如果你的情况不一样，你可以明确指定它         protected $uri_segment = 4;         //起始标签放在所有结果的左侧。         //你可以在标签里面写任意的样式等等         //不过样式最好的还是采取分离的方式写最好，仅在这边添加不同的class就可以了         protected $full_tag_open = '&lt;ul class="pagination pagination-sm"&gt;';         //结束标签放在所有结果的右侧。         protected $full_tag_close = '&lt;/ul&gt;';         //第一个链接的起始标签。         protected $first_tag_open = '&lt;li&gt;';         //第一个链接的结束标签。         protected $first_tag_close = '&lt;/li&gt;';         //最后一个链接的起始标签。         protected $last_tag_open = '&lt;li&gt;';         //最后一个链接的结束标签。         protected $last_tag_close = '&lt;/li&gt;';         //首页url         protected $first_url = '';         //当前页链接的起始标签。         protected $cur_tag_open = '&lt;li class="active"&gt;&lt;a href="javascript:;"&gt;';         //当前页链接的结束标签。         protected $cur_tag_close = '&lt;/a&gt;&lt;/li&gt;';         //下一页链接的起始标签。         protected $next_tag_open = '&lt;li&gt;';         //下一页链接的结束标签。         protected $next_tag_close = '&lt;/li&gt;';         //上一页链接的起始标签。         protected $prev_tag_open = '&lt;li&gt;';         //上一页链接的结束标签。         protected $prev_tag_close = '&lt;/li&gt;';         //数字链接的起始标签。         protected $num_tag_open = '&lt;li&gt;';         //数字链接的结束标签。         protected $num_tag_close = '&lt;/li&gt;';         //默认情况下，分页类假设你使用 URI 段 ，并像这样构造你的链接:         //http://example.com/index.php/test/page/20         protected $page_query_string = FALSE;         protected $query_string_segment = 'per_page';         //如果你不想显示数字链接（例如你只想显示上一页和下一页链接），你可以通过下面的代码来阻止它显示         protected $display_pages = TRUE;         //如果你想为分页类生成的每个链接添加额外的属性         protected $_attributes = '';         //连接类型         protected $_link_types = array();         //默认情况下你的查询字符串参数会被忽略，将这个参数设置为 TRUE ，         //将会将查询字符串参数添加到 URI 分段的后面以及 URL 后缀的前面         protected $reuse_query_string = FALSE;         //当该参数设置为 TRUE 时，会使用 application/config/config.php         //配置文件中定义的 $config['url_suffix'] 参数 重写 $config['suffix'] 的值         protected $use_global_url_suffix = FALSE;         //给数字增加属性         protected $data_page_attr = 'data-ci-pagination-page';         //CI Singleton         protected $CI;              /**          * 构造函数-&gt;处理数据          * 在使用加载此类之后，设置一些数据例如：          * //配置分页信息          * $config['base_url'] = site_url('admin/goodstype/index');          * $config['total_rows'] = $this-&gt;goodstype_model-&gt;count_goodstype();          * $config['per_page'] = 2;          * $config['uri_segment'] = 4;          *          * //自定义分页连接          * $config['first_link'] = '首页';          * $config['last_link'] = '尾页';          * $config['prev_link'] = '上一页';          * $config['next_link'] = '下一页';          */         public function __construct($params = array())         {             $this-&gt;CI = &amp;get_instance();             $this-&gt;CI-&gt;load-&gt;language('pagination');             foreach (array('first_link', 'next_link', 'prev_link', 'last_link') as $key) {                 if (($val = $this-&gt;CI-&gt;lang-&gt;line('pagination_' . $key)) !== FALSE) {                     $this-&gt;$key = $val;                 }             }             $this-&gt;initialize($params);             log_message('info', 'Pagination Class Initialized');         }              /**          * 初始化          * 功能同样是处理参数          */         public function initialize(array $params = array())         {             isset($params['attributes']) OR $params['attributes'] = array();             if (is_array($params['attributes'])) {                 $this-&gt;_parse_attributes($params['attributes']);                 unset($params['attributes']);             }                  if (isset($params['anchor_class'])) {                 empty($params['anchor_class']) OR $attributes['class'] = $params['anchor_class'];                 unset($params['anchor_class']);             }                  foreach ($params as $key =&gt; $val) {                 if (property_exists($this, $key)) {                     $this-&gt;$key = $val;                 }             }                  if ($this-&gt;CI-&gt;config-&gt;item('enable_query_strings') === TRUE) {                 $this-&gt;page_query_string = TRUE;             }                  if ($this-&gt;use_global_url_suffix === TRUE) {                 $this-&gt;suffix = $this-&gt;CI-&gt;config-&gt;item('url_suffix');             }                  return $this;         }              /**          * 创建分页连接          * 这个就是我们需要条用到的了，这个函数最后会返回一串html代码，          * 而我们仅将这段html代码在前台显示即可。          * CI框架的分页类和TP框架的分页类有这明显的差别。          * CI仅是提供分页显示，并不提供其和数据库交互的功能。          * 这也就让我们可以对其进行100%的定制。          * 非常的小巧方便。          */         public function create_links()         {             //我们在初始化的时候必须要有数据总条数和每页显示条数             if ($this-&gt;total_rows == 0 OR $this-&gt;per_page == 0) {                 return '';             }             //计算页面总数             $num_pages = (int)ceil($this-&gt;total_rows / $this-&gt;per_page);             //如果只有一页，则直接然会空字符串             if ($num_pages === 1) {                 return '';             }             //检查用户定义的链接数             $this-&gt;num_links = (int)$this-&gt;num_links;             if ($this-&gt;num_links &lt; 0) {                 show_error('Your number of links must be a non-negative number.');             }                  //保留任何现有的查询字符串项目。             //注：与任何其他查询字符串选项无关。             if ($this-&gt;reuse_query_string === TRUE) {                 $get = $this-&gt;CI-&gt;input-&gt;get();                 unset($get['c'], $get['m'], $get[$this-&gt;query_string_segment]);             } else {                 $get = array();             }                  //处理我们的基础网址和第一个网址             $base_url = trim($this-&gt;base_url);             $first_url = $this-&gt;first_url;             $query_string = '';             $query_string_sep = (strpos($base_url, '?') === FALSE) ? '?' : '&amp;';             if ($this-&gt;page_query_string === TRUE) {                 //如果自定义first_url还没有被确定，我们会从base_url创建一个网页，但没有项目。                 if ($first_url === '') {                     $first_url = $base_url;                     if (!empty($get)) {                         $first_url .= $query_string_sep . http_build_query($get);                     }                 }                 $base_url .= $query_string_sep . http_build_query(array_merge($get, array($this-&gt;query_string_segment =&gt; '')));             } else {                 //生成我们保存的查询字符串，以在页面号以后追加。                 if (!empty($get)) {                     $query_string = $query_string_sep . http_build_query($get);                     $this-&gt;suffix .= $query_string;                 }                 if ($this-&gt;reuse_query_string === TRUE &amp;&amp; ($base_query_pos = strpos($base_url, '?')) !== FALSE) {                     $base_url = substr($base_url, 0, $base_query_pos);                 }                 if ($first_url === '') {                     $first_url = $base_url . $query_string;                 }                      $base_url = rtrim($base_url, '/') . '/';             }                  //确定当前页号。             $base_page = ($this-&gt;use_page_numbers) ? 1 : 0;             //判断我们是否使用查询字符串             if ($this-&gt;page_query_string === TRUE) {                 $this-&gt;cur_page = $this-&gt;CI-&gt;input-&gt;get($this-&gt;query_string_segment);             } elseif (empty($this-&gt;cur_page)) {                 //如果uri_segment一个没有被定义，默认的最后一个段的数字。                 if ($this-&gt;uri_segment === 0) {                     $this-&gt;uri_segment = count($this-&gt;CI-&gt;uri-&gt;segment_array());                 }                 $this-&gt;cur_page = $this-&gt;CI-&gt;uri-&gt;segment($this-&gt;uri_segment);                 //从该段中删除任何指定的前缀/后缀。                 if ($this-&gt;prefix !== '' OR $this-&gt;suffix !== '') {                     $this-&gt;cur_page = str_replace(array($this-&gt;prefix, $this-&gt;suffix), '', $this-&gt;cur_page);                 }             } else {                 $this-&gt;cur_page = (string)$this-&gt;cur_page;             }             if (!ctype_digit($this-&gt;cur_page) OR ($this-&gt;use_page_numbers &amp;&amp; (int)$this-&gt;cur_page === 0)) {                 $this-&gt;cur_page = $base_page;             } else {                 //确保我们使用的是比较后的整数。                 $this-&gt;cur_page = (int)$this-&gt;cur_page;             }             if ($this-&gt;use_page_numbers) {                 if ($this-&gt;cur_page &gt; $num_pages) {                     $this-&gt;cur_page = $num_pages;                 }             } elseif ($this-&gt;cur_page &gt; $this-&gt;total_rows) {                 $this-&gt;cur_page = ($num_pages - 1) * $this-&gt;per_page;             }                  $uri_page_number = $this-&gt;cur_page;             //如果我们使用的是偏移量而不是页面号，将它转换为一个页面号，             //这样我们就可以生成周围的数字链接了。             if (!$this-&gt;use_page_numbers) {                 $this-&gt;cur_page = (int)floor(($this-&gt;cur_page / $this-&gt;per_page) + 1);             }                  //计算开始和结束的数字。这些决定开始和结束数字链接的数量。             $start = (($this-&gt;cur_page - $this-&gt;num_links) &gt; 0) ? $this-&gt;cur_page - ($this-&gt;num_links - 1) : 1;             $end = (($this-&gt;cur_page + $this-&gt;num_links) &lt; $num_pages) ? $this-&gt;cur_page + $this-&gt;num_links : $num_pages;                  //这个变量就是最后返回的字符串             $output = '';                  //生成首页链接             if ($this-&gt;first_link !== FALSE &amp;&amp; $this-&gt;cur_page &gt; ($this-&gt;num_links + 1 + !$this-&gt;num_links)) {                 //为html代码添加设置的js属性                 $attributes = sprintf('%s %s="%d"', $this-&gt;_attributes, $this-&gt;data_page_attr, 1);                 $output .= $this-&gt;first_tag_open . '&lt;a href="' . $first_url . '"' . $attributes . $this-&gt;_attr_rel('start') . '&gt;' . $this-&gt;first_link . '&lt;/a&gt;' . $this-&gt;first_tag_close;             }                  // 生成上一页链接             //我个人感觉生成上一页的这个连接没用，我们本身已经有了和相邻的页面连接             //故而上一页和下一页在我看来没有用处，我一般都是将此段和下一页都注视掉             if ($this-&gt;prev_link !== FALSE &amp;&amp; $this-&gt;cur_page !== 1) {                 $i = ($this-&gt;use_page_numbers) ? $uri_page_number - 1 : $uri_page_number - $this-&gt;per_page;                 $attributes = sprintf('%s %s="%d"', $this-&gt;_attributes, $this-&gt;data_page_attr, ($this-&gt;cur_page - 1));                 if ($i === $base_page) {                     $output .= $this-&gt;prev_tag_open . '&lt;a href="' . $first_url . '"' . $attributes . $this-&gt;_attr_rel('prev') . '&gt;' . $this-&gt;prev_link . '&lt;/a&gt;' . $this-&gt;prev_tag_close;                 } else {                     $append = $this-&gt;prefix . $i . $this-&gt;suffix;                     $output .= $this-&gt;prev_tag_open . '&lt;a href="' . $base_url . $append . '"' . $attributes . $this-&gt;_attr_rel('prev') . '&gt;' . $this-&gt;prev_link . '&lt;/a&gt;' . $this-&gt;prev_tag_close;                 }             }             //渲染页面             //也就是将你设置的所需要添加的html标签代码，属性，都给加上             if ($this-&gt;display_pages !== FALSE) {                 for ($loop = $start - 1; $loop &lt;= $end; $loop++) {                     $i = ($this-&gt;use_page_numbers) ? $loop : ($loop * $this-&gt;per_page) - $this-&gt;per_page;                     $attributes = sprintf('%s %s="%d"', $this-&gt;_attributes, $this-&gt;data_page_attr, $loop);                     if ($i &gt;= $base_page) {                         if ($this-&gt;cur_page === $loop) {                             $output .= $this-&gt;cur_tag_open . $loop . $this-&gt;cur_tag_close;                         } elseif ($i === $base_page) {                             $output .= $this-&gt;num_tag_open . '&lt;a href="' . $first_url . '"' . $attributes . $this-&gt;_attr_rel('start') . '&gt;' . $loop . '&lt;/a&gt;' . $this-&gt;num_tag_close;                         } else {                             $append = $this-&gt;prefix . $i . $this-&gt;suffix;                             $output .= $this-&gt;num_tag_open . '&lt;a href="' . $base_url . $append . '"' . $attributes . '&gt;' . $loop . '&lt;/a&gt;' . $this-&gt;num_tag_close;                         }                     }                 }             }             //生成下一页连接             //不多说             if ($this-&gt;next_link !== FALSE &amp;&amp; $this-&gt;cur_page &lt; $num_pages) {                 $i = ($this-&gt;use_page_numbers) ? $this-&gt;cur_page + 1 : $this-&gt;cur_page * $this-&gt;per_page;                 $attributes = sprintf('%s %s="%d"', $this-&gt;_attributes, $this-&gt;data_page_attr, $this-&gt;cur_page + 1);                 $output .= $this-&gt;next_tag_open . '&lt;a href="' . $base_url . $this-&gt;prefix . $i . $this-&gt;suffix . '"' . $attributes . $this-&gt;_attr_rel('next') . '&gt;' . $this-&gt;next_link . '&lt;/a&gt;' . $this-&gt;next_tag_close;             }             //生成最后一页（尾页）连接             if ($this-&gt;last_link !== FALSE &amp;&amp; ($this-&gt;cur_page + $this-&gt;num_links + !$this-&gt;num_links) &lt; $num_pages) {                 $i = ($this-&gt;use_page_numbers) ? $num_pages : ($num_pages * $this-&gt;per_page) - $this-&gt;per_page;                 $attributes = sprintf('%s %s="%d"', $this-&gt;_attributes, $this-&gt;data_page_attr, $num_pages);                 $output .= $this-&gt;last_tag_open . '&lt;a href="' . $base_url . $this-&gt;prefix . $i . $this-&gt;suffix . '"' . $attributes . '&gt;' . $this-&gt;last_link . '&lt;/a&gt;' . $this-&gt;last_tag_close;             }             //将生成的结果html代码字符串进行处理             $output = preg_replace('#([^:"])//+#', '\\1/', $output);             //如果存在添加封装HTML             return $this-&gt;full_tag_open . $output . $this-&gt;full_tag_close;         }              /**          * 解析属性          */         protected function _parse_attributes($attributes)         {             isset($attributes['rel']) OR $attributes['rel'] = TRUE;             $this-&gt;_link_types = ($attributes['rel']) ? array('start' =&gt; 'start', 'prev' =&gt; 'prev', 'next' =&gt; 'next') : array();             unset($attributes['rel']);             $this-&gt;_attributes = '';             foreach ($attributes as $key =&gt; $value) {                 $this-&gt;_attributes .= ' ' . $key . '="' . $value . '"';             }         }              /**          * 添加“关系”属性          */         protected function _attr_rel($type)         {             if (isset($this-&gt;_link_types[$type])) {                 unset($this-&gt;_link_types[$type]);                 return ' ';             }             return '';         }          } </code></pre> <p>注：其中有部分代码标签是我自己添加的，其变量表示和源码有点不一样，大家看的时候要注意！后面再写这些博文，一般就没有什么规律的，一般都是用到那个酒吧那个写一遍。</p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39604.htm">C# 有关List&lt;T&gt;的Contains与Equals方法_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-40117.htm">netty依赖精简</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-21625.htm" title="MKL库矩阵乘法(cblas_dgemm)">MKL库矩阵乘法(cblas_dgemm)</a></li>
+                        <li class="py-2"><a href="/news/article-25317.htm" title="被家猫抓伤出血怎么办很小伤口（被家猫抓破出血有事吗）">被家猫抓伤出血怎么办很小伤口（被家猫抓破出血有事吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-11-free-clash-verge-rev-node.htm" title="「10月11日」最高速度18.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「10月11日」最高速度18.6M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26226.htm" title="猫三联打几针多少钱一针（猫三联打几针多少钱一针啊）">猫三联打几针多少钱一针（猫三联打几针多少钱一针啊）</a></li>
+                        <li class="py-2"><a href="/news/article-23478.htm" title="给猫咪驱虫一般多少钱一只猫（给猫咪驱虫大概多少钱）">给猫咪驱虫一般多少钱一只猫（给猫咪驱虫大概多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-23001.htm" title="宠物粮食加盟 宠物粮食加工厂加盟">宠物粮食加盟 宠物粮食加工厂加盟</a></li>
+                        <li class="py-2"><a href="/news/article-32373.htm" title="成都宠物批发市场在哪里（成都宠物市场在哪儿）">成都宠物批发市场在哪里（成都宠物市场在哪儿）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-clash-verge-rev-node.htm" title="「12月4日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「12月4日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-free-subscribe-node.htm" title="「11月24日」最高速度22.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「11月24日」最高速度22.3M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-29-free-clash-verge-rev-node.htm" title="「12月29日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「12月29日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
