@@ -1,0 +1,208 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-59354.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>创建型设计模式: 单例模式(Singleton Pattern)</title>
+        <meta name="description" content="CSDN专栏: 设计模式(UML/23种模式)  单例模式(Singleton Pattern)保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton模式属于创建型模式，创建型模式包" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="FreeClashVerge免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freeclashverge.github.io/news/article-59354.htm" />
+    <meta property="og:site_name" content="FreeClashVerge免费节点官网" />
+    <meta property="og:title" content="创建型设计模式: 单例模式(Singleton Pattern)" />
+    <meta property="og:image" content="https://freeclashverge.github.io/uploads/20240813-1/4d4bbfc892626023b197607e2e50af60.webp" />
+        <meta property="og:release_date" content="2025-02-19T06:37:29" />
+    <meta property="og:updated_time" content="2025-02-19T06:37:29" />
+        <meta property="og:description" content="CSDN专栏: 设计模式(UML/23种模式)  单例模式(Singleton Pattern)保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton模式属于创建型模式，创建型模式包" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="创建型设计模式: 单例模式(Singleton Pattern)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/">
+                                                <span>Free Clash Verge</span>
+                                            </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>创建型设计模式: 单例模式(Singleton Pattern)</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/column/details/27399.html"  rel="nofollow">CSDN专栏: 设计模式(UML/23种模式)</a></p> </blockquote> <p>单例模式(Singleton Pattern)保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton模式属于创建型模式，创建型模式包括FactoryMethod模式，AbstractFactory模式，Singleton模式，ProtoType模式和Builder模式。</p> <h2><a id="_6" rel="nofollow"></a>模式简介</h2> <p>单例模式(Singleton Pattern)是最简单的设计模式。Singleton模式的核心结构中只包含一个单例的特殊类。通过单例模式可以保证系统中有仅仅有唯一的示例。</p> <p>GOF的《设计模式》指出单例模式的意图是：<br /> 保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p> <p>Singleton模式适用于以下场景：</p> <ul> <li>当类只能有一个实例而且客户可以从一个众所周知的访问点访问它时。</li> <li>当这个唯一实例应该是通过子类化可扩展的，并且客户应该无需更改代码就能使用一个扩展的实例时。</li> </ul> <h2><a id="_18" rel="nofollow"></a>模式图解</h2> <p>单例模式保证一个类仅有一个实例，并提供一个访问它的全局访问点，是最简单的设计模式。单例模式的UML示例如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/613c03dda849c5fef0c3e3fa572939c5.jpg" alt="创建型设计模式: 单例模式(Singleton Pattern)"></p> <p>单例模式的工作过程如下：</p> <ul> <li>Singleton类中定义Instance操作，Instance操作允许客户访问它的唯一实例；</li> <li>Instance操作第一次被调用时，创建它自己的唯一实例；</li> <li>客户只能通过Instance操作访问Singleton实例；</li> </ul> <p>单例模式的有益效果如下：</p> <ul> <li>对唯一实例的受控访问 因为Singletion类封装它的唯一实例，Singleton限制了类的访问；</li> <li>Singletion模式是对全局变量的一种改进；</li> <li>扩展Singletion类的子类相对容易。</li> <li>允许可变数目的实例，实例数量可以控制</li> </ul> <h2><a id="_37" rel="nofollow"></a>模式实例</h2> <p>Android的系统服务大量使用了单例模式</p> <pre><code class="language-javascript"><code class="prism  language-javascript">libmedia<span class="token operator">/</span>AudioSystem<span class="token punctuation">.</span>cpp<span class="token punctuation">:</span><span class="token number">33</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span> client singleton<span class="token keyword">for</span> AudioFlinger binder<span class="token keyword">interface</span><span class="token class-name">libmedia</span><span class="token operator">/</span>AudioSystem<span class="token punctuation">.</span>cpp<span class="token punctuation">:</span><span class="token number">683</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span> client singleton<span class="token keyword">for</span> AudioPolicyService binder<span class="token keyword">interface</span><span class="token class-name">libmedia</span><span class="token operator">/</span>IMediaDeathNotifier<span class="token punctuation">.</span>cpp<span class="token punctuation">:</span><span class="token number">27</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span> client singleton<span class="token keyword">for</span> binder<span class="token keyword">interface</span><span class="token class-name">to</span> services libmedia<span class="token operator">/</span>mediametadataretriever<span class="token punctuation">.</span>cpp<span class="token punctuation">:</span><span class="token number">33</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span> client singleton<span class="token keyword">for</span> binder<span class="token keyword">interface</span><span class="token class-name">to</span> service</code></code></pre> <h2><a id="_47" rel="nofollow"></a>系列文章</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/column/details/27399.html"  rel="nofollow">CSDN专栏: 设计模式(UML/23种模式)</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/media-tm/MTDesignPattern"  rel="nofollow">Github专栏: 设计模式(UML/23种模式)</a></li> </ul> <h2><a id="_52" rel="nofollow"></a>参考文献</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://item.jd.com/10057319.html"  rel="nofollow">GOF的设计模式：可复用面向对象软件的基础</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://item.jd.com/11414555.html"  rel="nofollow">设计模式之禅</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/me115/design_patterns"  rel="nofollow">图说设计模式</a></li> </ul> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58807.htm">瑞鹏宠物中心医院招聘信息（瑞鹏宠物中心医院招聘信息电话）</a></p>
+                                        <p>下一个：<a href="/news/article-59355.htm">猫三联三针和两针的区别图片（猫三联三针一共多少钱）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-40603.htm" title="Win10 的 WPF 程序的 wisptis 服务是附加到进程的窗口">Win10 的 WPF 程序的 wisptis 服务是附加到进程的窗口</a></li>
+                        <li class="py-2"><a href="/news/article-37144.htm" title="宠物粮食市场营销调查问卷 宠物粮食市场营销调查问卷模板">宠物粮食市场营销调查问卷 宠物粮食市场营销调查问卷模板</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-clash-verge-rev-windows.htm" title="「1月9日」最高速度19.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「1月9日」最高速度19.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-42097.htm" title="宠物粮食生意怎么样啊好做吗赚钱吗（宠物粮食生意怎么样啊好做吗赚钱吗知乎）">宠物粮食生意怎么样啊好做吗赚钱吗（宠物粮食生意怎么样啊好做吗赚钱吗知乎）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe.htm" title="「12月16日」最高速度18.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「12月16日」最高速度18.4M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-59354.htm" title="创建型设计模式: 单例模式(Singleton Pattern)">创建型设计模式: 单例模式(Singleton Pattern)</a></li>
+                        <li class="py-2"><a href="/news/article-53221.htm" title="二手饲料粉碎机转让（饲料粉碎机型号大全）">二手饲料粉碎机转让（饲料粉碎机型号大全）</a></li>
+                        <li class="py-2"><a href="/news/article-45074.htm" title="宠物医院手续办理（宠物医院办证流程）">宠物医院手续办理（宠物医院办证流程）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-clash-verge-rev-node.htm" title="「12月4日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接">「12月4日」最高速度20.7M/S，2024年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-40604.htm" title="猫粮挣钱吗 猫粮赚钱吗">猫粮挣钱吗 猫粮赚钱吗</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
