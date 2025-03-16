@@ -1,0 +1,205 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-73718.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)</title>
+        <meta name="description" content="查找算法是用来检索序列数据（群体）中是否存在给定的数据（关键字），常用查找算法有：  线性查找：线性查找也称为顺序查找，用于在无序数列中查找。 二分查找：二分查找也称为折半查找，其算法用于有序数列。 " />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="FreeClashVerge免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freeclashverge.github.io/news/article-73718.htm" />
+    <meta property="og:site_name" content="FreeClashVerge免费节点官网" />
+    <meta property="og:title" content="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)" />
+    <meta property="og:image" content="https://freeclashverge.github.io/uploads/20240813-1/158371186e9b4bf856f1f5d32a3688ea.webp" />
+        <meta property="og:release_date" content="2025-03-14T07:06:32" />
+    <meta property="og:updated_time" content="2025-03-14T07:06:32" />
+        <meta property="og:description" content="查找算法是用来检索序列数据（群体）中是否存在给定的数据（关键字），常用查找算法有：  线性查找：线性查找也称为顺序查找，用于在无序数列中查找。 二分查找：二分查找也称为折半查找，其算法用于有序数列。 " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/">
+                                                <span>Free Clash Verge</span>
+                                            </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>查找算法是用来检索<code>序列数据（群体）</code>中是否存在给定的数据（<code>关键字</code>），常用查找算法有：</p> <ul> <li><strong>线性查找：</strong><code>线性查找</code>也称为顺序查找，用于在<code>无序数列</code>中查找。</li> <li><strong>二分查找：</strong><code>二分查找</code>也称为<code>折半查找</code>，其算法用于<code>有序数列</code>。</li> <li><strong>插值查找：</strong><code>插值查找</code>是对<code>二分查找</code>算法的改进。</li> <li><strong>分块查找：</strong> 又称为<code>索引顺序查找</code>，它是<code>线性查找</code>的改进版本。</li> <li><strong>树表查找：</strong><code>树表查找</code>又可分<code>二叉查找树</code>、<code>平衡二叉树</code>查找。</li> <li><strong>哈希查找：</strong><code>哈希查找</code>可以直接通过关键字查找到所需要数据。</li> </ul> <p>因<code>树表查找</code>、<code>哈希查找</code>的所需篇幅较多，就不在本文讲解。本文将详细介绍除<code>树表</code>、<code>哈希</code>之外的查找算法，并分析每一种算法的优点和缺点，并提出相应的优化方案。</p> <h2 id="1-线性查找">1. 线性查找</h2> <p><code>线性查找</code>也称为<code>顺序查找</code>，<code>线性查找</code>属于原始、穷举、暴力查找算法。容易理解、编码实现也简单。但是在数据量较多时，因其算法思想是朴素、穷举的，算法中没有太多优化设计，性能会很低下。</p> <p><strong>线性查找思想：</strong></p> <ul> <li>从头至尾逐一扫描原始列表中的每一个数据，并和给定的关键字进行比较。</li> <li>如果比较相等，则查找成功。</li> <li>当扫描结束后，仍然没有找到与给定关键字相等的数据，则宣布查找失败。</li> </ul> <p>根据<code>线性查找</code>算法的描述，很容易编码实现：</p> <pre><code class="language-python">''' 线性查找算法 参数：     nums: 序列     key:关键字 返回值：     关键字在序列中的位置     如果没有，则返回 -1 ''' def line_find(nums, key):     for i in range(len(nums)):         if nums[i] == key:             return i     return -1 ''' 测试线性算法 ''' if __name__ == "__main__":     nums = [4, 1, 8, 10, 3, 5]     key = int(input("请输入要查找的关键字："))     pos = line_find(nums, key)     print("关键字 {0} 在数列的第 {1} 位置".format(key, pos)) ''' 输出结果： 请输入要查找的关键字：3 关键字 3 在数列的 4 位置 '''</code></pre> <p><code>线性查找</code>算法的平均时间复杂度分析。</p> <ul> <li> <p>运气最好的情况：如果要查找的关键字恰好在数列的第<code>1</code> 个位置，则只需要查找 1 次就可以了。</p> <blockquote> <p>如在数列=<code>[4,1,8,10,3,5]</code>中查找关键字<code>4</code> 。</p> <p>只需要查找<code>1</code> 次。</p> </blockquote> </li> <li> <p>运气最不好的情况：一至扫描到数列最尾部时，才找到关键字。</p> <blockquote> <p>如在数列=<code>[4,1,8,10,3,5]</code>中查找是否存在关键字<code>5</code> 。</p> <p>则需要查找的次数等于数列的长度，此处即为<code>6</code> 次。</p> </blockquote> </li> <li> <p>运气不好不坏：如果要查找的关键字在数列的中间某个位置，则查找的概率是<code>1/n</code> 。</p> <blockquote> <p><code>n</code> 为数列长度。</p> </blockquote> </li> </ul> <p><code>线性查找</code>的平均查找次数应该=<code>(1+n)/2</code>。换成大<code>O</code> 表示法则为<code>O(n)</code> 。</p> <blockquote> <p>大<code>O</code> 表示法中忽视常量。</p> </blockquote> <p><code>线性查找</code>最糟糕情况是：扫描完整个数列后，没有所要查找的关键字。</p> <blockquote> <p>如在数列=<code>[4,1,8,10,3,5]</code>中查找是否存在关键字<code>12</code> 。</p> <p>扫描了<code>6</code> 次后，铩羽而归！！</p> </blockquote> <p><strong>改良线性查找算法</strong></p> <p>可以对<code>线性查找</code>算法进行相应的优化。如设置“前哨站”。所谓“前哨站”，就是把要查找的<strong>关键字</strong>在查找之前插入到数列的尾部。</p> <pre><code class="language-python">def line_find_(nums, key):     i = 0     while nums[i] != key:         i += 1     return -1 if i == len(nums)-1 else i  ''' 测试线性算法 ''' if __name__ == "__main__":     nums = [4, 1, 8, 10, 3, 5]     key = int(input("请输入要查找的关键字："))     # 查找之前，先把关键字存储到列到的尾部     nums.append(key)     pos = line_find_(nums, key)     print("关键字 {0} 在数列的第 {1} 位置".format(key, pos))</code></pre> <p>用"前哨站"优化后的线性查找算法的时间复杂度没有变化，O(n)。或者说从<code>2</code> 者代码上看，也没有太多变化。</p> <p>但从代码的实际运行角度而言，第<code>2</code> 种方案减少了<code>if</code> 指令的次数，同样减少了编译后的指令，也就减少了<code>CPU</code>执行指令的次数，这种优化属于微优化，不是算法本质上的优化。</p> <blockquote> <p>使用计算机编程语言所编写的代码为伪指令代码。</p> <p>经过编译后的指令代码叫<code>CPU</code> 指令集。</p> <p>有一种优化方案就是减少编译后的指令集。</p> </blockquote> <h2 id="2-二分查找">2. 二分查找</h2> <p><code>二分查找</code>属于<code>有序查找</code>，所谓<code>有序查找</code>，指被查找的数列必须是有序的。如在数列=<code>[4,1,8,10,3,5,12]</code>中查找是否存在关键字<code>4</code> ，因数列不是有序的，所以不能使用<code>二分查找</code>，如果要使用<code>二分查找</code>算法，则需要先对数列进行排序。</p> <p><code>二分查找</code>使用了<code>二分（折半）算法</code>思想，<code>二分查找</code>算法中有<code>2</code> 个关键信息需要随时获取：</p> <ul> <li>一个是数列的中间位置<code>mid_pos</code>。</li> <li>一个是数列的中间值<code>mid_val</code>。</li> </ul> <p>现在通过在数列<code>nums=[1,3,4,5,8,10,12]</code> 中查找关键字<code>8</code>来了解<code>二分查找</code>的算法流程。</p> <p>在进行<code>二分查找</code>之前，先定义<code>2</code> 个位置（指针）变量：</p> <ul> <li>左指针<code>l_idx</code> 初始指向数列的最左边数字。</li> <li>右指针<code>r_idx</code> 初始指向数列的最右边数字。</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/8fea32ab110843e80421e0dc75bc45e7.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <p><strong>第<code>1</code> 步：</strong>通过左、右指针的当前位置计算出数列的中间位置<code>mid_pos=3</code>，并根据<code>mid_pos</code> 的值找出数列中间位置所对应的值<code>mid_val=nums[mid_pos]</code> 是<code>5</code>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/01fbdc4e55d18e62a77b18cfeeb616fa.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <blockquote> <p><code>二分查找</code>算法的核心就是要找出数列中间位置的值。</p> </blockquote> <p><strong>第<code>2</code> 步：</strong>把数列中间位置的值和给定的关键字相比较。这里关键字是<code>8</code>，中间位置的值是<code>5</code>，显然<code>8</code> 是大于<code>5</code>，因为数列是有序的，自然会想到没有必要再与数列中<code>5</code> 之前的数字比较，而是专心和<code>5</code> 之后的数字比较。</p> <blockquote> <p>一次比较后再次查找的数列范围缩小了一半。这也是二分算法的由来。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/159777da85d9d5f88d14c2799fb1122b.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <p><strong>第<code>3</code> 步</strong>：根据比较结果，调整数列的大小，这里的大小调整不是物理结构上调整，而是逻辑上调整，调整后原数列没有变化。也就是通过修改左指针或右指针的位置，从逻辑上改变数列大小。调整后的数列如下图。</p> <blockquote> <p>二分查找算法中数列的范围由左指针到右指针的长度决定。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/7c510187473247aa480c91295a65ff33.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <p>第 4 步：重复上述步骤，至到找到或找不到为止。</p> <p><strong>编码实现二分查找算法</strong></p> <pre><code class="language-python">''' 二分查找算法 ''' def binary_find(nums, key):     # 初始左指针     l_idx = 0     # 初始在指针     r_ldx = len(nums) - 1     while l_idx &lt;= r_ldx:         # 计算出中间位置         mid_pos = (r_ldx + l_idx) // 2         # 计算中间位置的值         mid_val = nums[mid_pos]         # 与关键字比较         if mid_val == key:             # 出口一：比较相等，有此关键字，返回关键字所在位置             return mid_pos         elif mid_val &gt; key:             # 说明查找范围应该缩少在原数的左边             r_ldx = mid_pos - 1         else:             l_idx = mid_pos + 1     # 出口二：没有查找到给定关键字     return -1  ''' 测试二分查找 ''' if __name__ == "__main__":     nums = [1, 3, 4, 5, 8, 10, 12]     key = 3     pos = binary_find(nums, key)     print(pos)</code></pre> <p>通过前面对<code>二分算法</code>流程的分析，可知<code>二分查找</code>的<code>子问题</code>和<code>原始问题</code>是同一个逻辑，所以可以使用递归实现：</p> <pre><code class="language-python">''' 递归实现二分查找 ''' def binary_find_dg(nums, key, l_idx, r_ldx):     if l_idx &gt; r_ldx:         # 出口一：没有查找到给定关键字         return -1     # 计算出中间位置     mid_pos = (r_ldx + l_idx) // 2     # 计算中间位置的值     mid_val = nums[mid_pos]     # 与关键字比较     if mid_val == key:         # 出口二：比较相等，有此关键字，返回关键字所在位置         return mid_pos     elif mid_val &gt; key:         # 说明查找范围应该缩少在原数的左边         r_ldx = mid_pos - 1     else:         l_idx = mid_pos + 1     return binary_find_dg(nums, key, l_idx, r_ldx) ''' 测试二分查找 ''' if __name__ == "__main__":     nums = [1, 3, 4, 5, 8, 10, 12]     key = 8     pos = binary_find_dg(nums, key,0,len(nums)-1)     print(pos)</code></pre> <p><strong>二分查找性能分析：</strong></p> <p><code>二分查找</code>的过程用树形结构描述会更直观，当搜索完毕后，绘制出来树结构是一棵二叉树。</p> <ol> <li>如上述代码执行过程中，先找到数列中的中间数字<code>5</code>，然后以<code>5</code> 为根节点构建唯一结点树。</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a175604ad1c91d56466995223ad83c0b.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <ol start="2"> <li><code>5</code> 和关键字<code>8</code> 比较后，再在以数字<code>5</code> 为分界线的右边数列中找到中间数字<code>10</code>，树形结构会变成下图所示。</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/387c4fc40135aab9fbd88761efadd112.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <ol start="3"> <li><code>10</code> 和关键字<code>8</code>比较后，再在<code>10</code> 的左边查找。</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/21f3f9279efa6cb6be549aba3d5c3f69.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <p>查找到<code>8</code> 后，意味着二分查找已经找到结果，只需要<code>3</code> 次就能查找到最终结果。</p> <p><strong>从二叉树的结构上可以直观得到结论：二分查找关键字的次数由关键字在二叉树结构中的深度决定。</strong></p> <ol start="4"> <li>上述是查找给定的数字<code>8</code>，为了能查找到数列中的任意一个数字，最终完整的树结构应该如下图所示。</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/acf8f9cc33ae71812d0dbd2c6bce3175.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <p>很明显，树结构是标准的二叉树。从树结构上可以看出，无论查找任何数字，最小是<code>1</code> 次，如查找数字<code>5</code>，最多也只需要<code>3</code> 次，比线性查找要快很多。</p> <p>根据二叉树的特性，结点个数为<code>n</code> 的树的深度为 h=log<sub>2</sub>(n+1)，所以二分查找算法的大<code>O</code> 表示的时间复杂度为<code>O(logn)</code>，是对数级别的时间度。</p> <p>当对长度为<code>1000</code>的数列进行二分查找时，所需次数最多只要<code>10</code> 次，<code>二分查找</code>算法的效率显然是高效的。</p> <p>但是，<code>二分查找</code>需要对数列提前排序，前面的时间复杂度是没有考虑排序时间的。所以，二分查找一般适合数字变化稳定的有序数列。</p> <h2 id="3-插值查找">3. 插值查找</h2> <p><code>插值查找</code>本质是<code>二分查找</code>，<code>插值查找</code>对<code>二分查找</code>算法中查找中间位置的计算逻辑进行了改进。</p> <p>原生<code>二分查找</code>算法中计算中间位置的逻辑：中间位置等于左指针位置加上右指针位置然后除以<code>2</code>。</p> <pre><code class="language-python">    # 计算中间位置     mid_pos = (r_ldx + l_idx) // 2</code></pre> <p><code>插值算法</code>计算中间位置逻辑如下所示：</p> <blockquote> <p><code>key</code> 为要查找的关键字！！</p> </blockquote> <pre><code class="language-python"># 插值算法中计算中间位置 mid_pos = l_idx + (key - nums[l_idx]) // (nums[r_idx] - nums[l_idx]) * (r_idx - l_idx)</code></pre> <p>编码实现插值查找：</p> <pre><code class="language-python"># 插值查找基于二分法，只是mid计算方法不同 def binary_search(nums, key):     l_idx = 0     r_idx = len(nums) - 1     old_mid = -1     mid_pos = None     while l_idx &lt; r_idx and nums[0] &lt;= key and nums[r_idx] &gt;= key and old_mid != mid_pos:         # 中间位置计算         mid_pos = l_idx + (key - nums[l_idx]) // (nums[r_idx] - nums[l_idx]) * (r_idx - l_idx)         old_mid = mid_pos         if nums[mid_pos] == key:             return "index is {}, target value is {}".format(mid_pos, nums[mid_pos])             # 此时目标值在中间值右边，更新左边界位置         elif nums[mid_pos] &lt; key:             l_idx = mid_pos + 1         # 此时目标值在中间值左边，更新右边界位置         elif nums[mid_pos] &gt; key:             r_idx = mid_pos - 1     return "Not find"  li =[1, 3, 4, 5, 8, 10, 12] print(binary_search(li, 6))</code></pre> <p>插值算法的中间位置计算时，对中间位置的计算有可能多次计算的结果是一样的，此时可以认为查找失败。</p> <p>插值算法的性能介于线性查找和二分查找之间。</p> <p>当数列中数字较多且分布又比较均匀时，插值查找算法的平均性能比折半查找要好的多。如果数列中数据分布非常不均匀，此种情况下插值算法并不是最好的选择。</p> <h2 id="4-分块查找">4. 分块查找</h2> <p><code>分块查找</code>类似于数据库中的<code>索引</code>查询，所以<code>分块查找</code>也称为<code>索引查找</code>。其算法的核心还是线性查找。</p> <p>现有原始数列<code>nums=[5,1,9,11,23,16,12,18,24,32,29,25]</code>，需要查找关键字<code>11</code> 是否存在。</p> <p><strong>第<code>1</code> 步：</strong>使用<code>分块查找</code>之前，先要对原始数列按区域分成多个块。至于分成多少块，可根据实际情况自行定义。分块时有一个要求，前一个块中的<code>最大值</code>必须小于后一个块的<code>最小值</code>。</p> <blockquote> <p>块内部无序，但要保持整个数列<code>按块有序</code>。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f1b02199cfc26b301101e530b1e50fa5.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <blockquote> <p><code>分块查找</code>要求原始数列从整体上具有升序或降序趋势，如果数列的分布不具有趋向性，如果仍然想使用分块查找，则需要进行分块有序调整。</p> </blockquote> <p><strong>第<code>2</code> 步：</strong>根据分块信息，建立<code>索引表</code>。<code>索引表</code>至少应该有<code>2</code> 个字段，每一块中的<code>最大值数字</code>以及每一块的<code>起始地址</code>。显然<code>索引表</code>中的数字是有序的。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6595bc3af0368682ed34e92ed5630994.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <p><strong>第<code>3</code> 步：</strong>查找给定关键字时，先查找<code>索引表</code>，查询关键字应该在那个块中。如查询关键字<code>29</code>，可知应该在第三块中，然后根据<code>索引表</code>中所提供的第三块的地址信息，再进入第三块数列，按线性匹配算法查找<code>29</code> 具体位置。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/dc465842226d72f70c1db428689f7662.jpg" alt="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)"></p> <p><strong>编码实现分块查找：</strong></p> <p>先编码实现根据分块数量、创建索引表，这里使用<code>二维列表</code>保存储索引表中的信息。</p> <pre><code class="language-python">''' 分块：建立索引表 参数：     nums 原始数列     blocks 块大小 ''' def create_index_table(nums, blocks):     # 索引表使用列表保存     index_table = []     # 每一块的数量     n = len(nums) // blocks     for i in range(0, len(nums), n):         # 索引表中的每一行记录         tmp_lst = []         # 最大值         tmp_lst.append(max(nums[i:i + n-1]))         # 起始地址         tmp_lst.append(i)         # 终止地址         tmp_lst.append(i + n - 1)         # 添加到索引表中         index_table.append(tmp_lst)     return index_table ''' 测试分块 ''' nums = [5, 1, 9, 11, 23, 16, 12, 18, 24, 32, 29, 25] it = create_index_table(nums, 3) print(it) ''' 输出结果： [[11, 0, 3], [23, 4, 7], [32, 8, 11]] '''</code></pre> <p>代码执行后，输出结果和分析的结果一样。</p> <blockquote> <p>以上代码仅对整体趋势有序的数列进行分块。如果整体不是趋向有序，则需要提供相应块排序方案，有兴趣者自行完成。</p> <p>如上代码仅为说明分块查找算法。</p> </blockquote> <p><strong>分块查找的完整代码：</strong></p> <pre><code class="language-python">''' 分块：建立索引表 参数：     nums 原始数列     blocks 块大小 ''' def create_index_table(nums, blocks):     # 索引表使用列表保存     index_table = []     # 每一块的数量     n = len(nums) // blocks     for i in range(0, len(nums), n):         tmp_lst = []         tmp_lst.append(max(nums[i:i + n - 1]))         tmp_lst.append(i)         tmp_lst.append(i + n - 1)         index_table.append(tmp_lst)     return index_table  ''' 使用线性查找算法在对应的块中查找 ''' def lind_find(nums, start, end):     for i in range(start, end):         if key == nums[i]:             return i             break     return -1  ''' 测试分块 ''' nums = [5, 1, 9, 11, 23, 16, 12, 18, 24, 32, 29, 25] key = 16 # 索引表 it = create_index_table(nums, 3) # 索引表的记录编号 pos = -1 # 在索引表中查询 for n in range(len(it) - 1):     # 是不是在第一块中     if key &lt;= it[0][0]:         pos = 0     # 其它块中     if it[n][0] &lt; key &lt;= it[n + 1][0]:         pos = n + 1         break if pos == -1:     print("{0} 在 {1} 数列中不存在".format(key, nums)) else:     idx = lind_find(nums, it[pos][1], it[pos][2] + 1)     if idx != -1:         print("{0} 在 {1} 数列的 {2} 位置".format(key, nums, idx))     else:         print("{0} 在 {1} 数列中不存在".format(key, nums)) ''' 输出结果 16 在 [5, 1, 9, 11, 23, 16, 12, 18, 24, 32, 29, 25] 数列的第 5 位置 '''</code></pre> <p><code>分块查找</code>对于整体趋向有序的数列，其查找性能较好。但如果原始数列整体不是有序，则需要提供<code>块排序</code>算法，时间复杂度没有二分查找算法好。</p> <p><code>分块查找</code>需要建立<code>索引表</code>，这也需要额外的存储空间，其空间复杂度较高。其优于二分的地方在于只需要对原始数列进行部分排序。本质还是以线性查找为主。</p> <h2 id="5-总结">5. 总结</h2> <p>本文讲解了<code>线性</code>、<code>二分</code>、<code>插值</code>、<code>分块</code>查找算法。除此之外，还有其它如<code>树表查找</code>、<code>哈希查找</code>等算法。</p> <p><code>分块算法</code>可认为是对<code>线性查找</code>算法的优化。</p> <p><code>插值查找</code>可认为是在二分算法基础上的一个变化。</p> <p>算法没有固定模式，如果学会了<code>二分查找</code>算法，则认为是学会了一招，需要学会领悟，然后再在这一招上演变出更多变化。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-73057.htm">动物医院好评模板100字怎么写的呀（动物医院美团好评）</a></p>
+                                        <p>下一个：<a href="/news/article-73719.htm">重庆领养宠物在哪领养好一点（重庆哪里领养宠物）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-46543.htm" title="可以自己买疫苗去宠物店打吗现在多少钱（自己买的疫苗去宠物店代打）">可以自己买疫苗去宠物店打吗现在多少钱（自己买的疫苗去宠物店代打）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-clash-verge-rev-node-share.htm" title="「3月11日」最高速度21.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月11日」最高速度21.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-62277.htm" title="猫粮加工机器 猫粮加工机器设备厂家">猫粮加工机器 猫粮加工机器设备厂家</a></li>
+                        <li class="py-2"><a href="/news/article-63470.htm" title="动物诊疗许可证需要的材料和手续（动物诊疗许可证需要的材料和手续有哪些）">动物诊疗许可证需要的材料和手续（动物诊疗许可证需要的材料和手续有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-52155.htm" title="java面向对象是什么意思_java什么是面向对象">java面向对象是什么意思_java什么是面向对象</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-21-clash-verge-rev-node-github.htm" title="「2月21日」最高速度21.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「2月21日」最高速度21.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-42582.htm" title="宠颐生官网（宠颐生团购）">宠颐生官网（宠颐生团购）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-clash-verge-rev-node-share.htm" title="「3月10日」最高速度19.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月10日」最高速度19.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-10-latest-clash-verge-rev-node.htm" title="「2月10日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「2月10日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-44582.htm" title="广州宠物饲料批发市场哪里便宜又好（广州宠物饲料生产企业）">广州宠物饲料批发市场哪里便宜又好（广州宠物饲料生产企业）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
