@@ -97,22 +97,20 @@
 	            var url = $(this).data('url');
 	            var code = $(this).data('code');
 	            var type = $(this).data('type');
-	            url = G.Fun.check_invite_url(url, type);
-	            url += code;
+	            var new_url = G.Fun.check_invite_url(url, type);
+	            new_url += code;
 
 	            var domain = 'https://www.freeclashnode.com';
 	            $.post(
 	            	domain + '/index.php/api/xcblog/c',
 	            	{
 	            		url: location.href,
-	            		to_url: url,
+	            		to_url: new_url,
 	            		code: type
-	            	}, function(){
-	            		
 	            	}
 	            );
 
-	            window.open(url);
+	            window.open(new_url);
 	        })
     	},
     	BindDetailWebsite: function(){
@@ -123,9 +121,9 @@
 
 	    		if (name != '' && url != '')
 	    		{
-	    			$.each($('h2:contains("订阅链接")'), function(i){
-	    				var item = $('h2:contains("订阅链接")').eq(i);
-	    				if (item.text() == '订阅链接')
+	    			$.each($('h2:contains("订阅链接"), h2:contains("订阅文件链接")'), function(i){
+	    				var item = $('h2:contains("订阅链接"), h2:contains("订阅文件链接")').eq(i);
+	    				if (item.text() == '订阅链接' || item.text() == '订阅文件链接')
 	    				{
 	    					var div = $('<div style="background:#fcf8e3;border:1px solid #faf3cd;border-left: 0.5rem solid #faf3cd;padding: 0.5rem;line-height:2rem;margin-top: 1rem;color:#c09853;">以下订阅链接均来自 <b>'+name+'</b> 分享，更多免费机场订阅可 <a href="'+url+'">【跳转查看】</a></div>');
 	    					item.after(div);

@@ -1,0 +1,205 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-77118.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！</title>
+        <meta name="description" content="关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！ 一. MySQL92语法 *1. 内连接 没有关联关系的数据是不在查询范围之内的 * 1）等值连接  – 查询" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="FreeClashVerge免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freeclashverge.github.io/news/article-77118.htm" />
+    <meta property="og:site_name" content="FreeClashVerge免费节点官网" />
+    <meta property="og:title" content="关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！" />
+    <meta property="og:image" content="https://freeclashverge.github.io/uploads/20240813-1/b610622a0abf5a8fe4062ab1931003f6.webp" />
+        <meta property="og:release_date" content="2025-03-19T09:11:02" />
+    <meta property="og:updated_time" content="2025-03-19T09:11:02" />
+        <meta property="og:description" content="关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！ 一. MySQL92语法 *1. 内连接 没有关联关系的数据是不在查询范围之内的 * 1）等值连接  – 查询" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/">
+                                                <span>Free Clash Verge</span>
+                                            </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="MySQL9299__0" rel="nofollow"></a>关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！</h2> <p><strong>一. MySQL92语法</strong></p> <p>*<em><strong>1. 内连接 没有关联关系的数据是不在查询范围之内的</strong></em><br /> *<br /> 1）等值连接</p> <blockquote> <p>– 查询出101的班级信息（并带上该班级的所有学生信息）</p> </blockquote> <pre><code class="prism language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class<span class="token punctuation">,</span>student          <span class="token keyword">WHERE</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span>          <span class="token operator">AND</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'101'</span><span class="token punctuation">;</span> </code></pre> <blockquote> <p>– 查询出rose的所有信息（包括班级信息）</p> </blockquote> <pre><code class="prism language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class<span class="token punctuation">,</span>student          <span class="token keyword">WHERE</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'rose'</span><span class="token punctuation">;</span>   </code></pre> <p>2）三表查询(多对多)</p> <blockquote> <p>– 查询出rose的个人信息（包括其选修课程信息）</p> </blockquote> <pre><code class="prism language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> student<span class="token punctuation">,</span>course<span class="token punctuation">,</span>course_student          <span class="token keyword">WHERE</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>course_student<span class="token punctuation">.</span><span class="token punctuation">`</span>stu_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> course<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>course_student<span class="token punctuation">.</span><span class="token punctuation">`</span>cou_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'rose'</span><span class="token punctuation">;</span> </code></pre> <blockquote> <p>– 查询出java这门课的信息（包括选该门课的学生）</p> </blockquote> <pre><code class="prism language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> student<span class="token punctuation">,</span>course<span class="token punctuation">,</span>course_student         <span class="token keyword">WHERE</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>course_student<span class="token punctuation">.</span><span class="token punctuation">`</span>stu_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> course<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>course_student<span class="token punctuation">.</span><span class="token punctuation">`</span>cou_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> course<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'hadoop'</span><span class="token punctuation">;</span> </code></pre> <p>3）一对一</p> <blockquote> <p>– 查询出孙俪的个人信息（包括其丈夫的信息）</p> </blockquote> <pre><code class="prism language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> husband<span class="token punctuation">,</span>wife           <span class="token keyword">WHERE</span> wife<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_id<span class="token punctuation">`</span><span class="token operator">=</span>husband<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_id<span class="token punctuation">`</span>           <span class="token operator">AND</span> wife<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'孙俪'</span><span class="token punctuation">;</span> </code></pre> <blockquote> <p>– 查询出所有班级的信息（包括其学生的信息）</p> </blockquote> <pre><code class="prism language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class<span class="token punctuation">,</span>student           <span class="token keyword">WHERE</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token punctuation">;</span> </code></pre> <p>4）非等值连接</p> <blockquote> <p>– 查询出所有学生的信息（包括他的年龄级别）</p> </blockquote> <pre><code class="prism language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> student<span class="token punctuation">,</span>age_tb          <span class="token keyword">WHERE</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>age<span class="token punctuation">`</span><span class="token operator">&gt;=</span>age_tb<span class="token punctuation">.</span><span class="token punctuation">`</span>min<span class="token punctuation">`</span>         <span class="token operator">AND</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>age<span class="token punctuation">`</span><span class="token operator">&lt;</span>age_tb<span class="token punctuation">.</span><span class="token punctuation">`</span>max<span class="token punctuation">`</span><span class="token punctuation">;</span> </code></pre> <p>5）自连接</p> <blockquote> <p>– 查询出北京市的信息（包括其区的信息）</p> </blockquote> <pre><code class="prism language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> city c1<span class="token punctuation">,</span>city c2          <span class="token keyword">WHERE</span> c1<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token operator">=</span>c2<span class="token punctuation">.</span><span class="token punctuation">`</span>parent_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> c1<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'北京市'</span><span class="token punctuation">;</span>  </code></pre> <p><strong>2.外连接（不支持）</strong></p> <p><strong>二. MySQL99语法</strong></p> <p><strong>1.内连接</strong><br /> 1）等值连接（对比）</p> <pre><code class="prism language-sql"> <span class="token comment">-- 查询出101的班级信息（并带上该班级的所有学生信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class<span class="token punctuation">,</span>student          <span class="token keyword">WHERE</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span>          <span class="token operator">AND</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'101'</span><span class="token punctuation">;</span>          <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class I        NNER <span class="token keyword">JOIN</span> student         <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span>         <span class="token keyword">WHERE</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'101'</span>         <span class="token comment">-- 查询出rose的所有信息（包括班级信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class<span class="token punctuation">,</span>student          <span class="token keyword">WHERE</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'rose'</span><span class="token punctuation">;</span>           <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class          <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> student <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token keyword">WHERE</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'rose'</span> </code></pre> <p>2）非等值连接</p> <pre><code class="prism language-sql"><span class="token comment">-- 查询出所有学生的信息（包括他的年龄级别）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> student<span class="token punctuation">,</span>age_tb          <span class="token keyword">WHERE</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>age<span class="token punctuation">`</span><span class="token operator">&gt;=</span>age_tb<span class="token punctuation">.</span><span class="token punctuation">`</span>min<span class="token punctuation">`</span>         <span class="token operator">AND</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>age<span class="token punctuation">`</span><span class="token operator">&lt;</span>age_tb<span class="token punctuation">.</span><span class="token punctuation">`</span>max<span class="token punctuation">`</span><span class="token punctuation">;</span>          <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> student          <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> age_tb          <span class="token keyword">ON</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>age<span class="token punctuation">`</span><span class="token operator">&gt;=</span>age_tb<span class="token punctuation">.</span><span class="token punctuation">`</span>min<span class="token punctuation">`</span>         <span class="token operator">AND</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>age<span class="token punctuation">`</span><span class="token operator">&lt;</span>age_tb<span class="token punctuation">.</span><span class="token punctuation">`</span>max<span class="token punctuation">`</span><span class="token punctuation">;</span> </code></pre> <p>3)自连接</p> <pre><code class="prism language-sql"><span class="token comment">-- 查询出北京市的信息（包括其区的信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> city c1<span class="token punctuation">,</span>city c2          <span class="token keyword">WHERE</span> c1<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token operator">=</span>c2<span class="token punctuation">.</span><span class="token punctuation">`</span>parent_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> c1<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'北京市'</span><span class="token punctuation">;</span>          <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> city c1          <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> city c2          <span class="token keyword">ON</span>  c1<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token operator">=</span>c2<span class="token punctuation">.</span><span class="token punctuation">`</span>parent_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> c1<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'北京市'</span><span class="token punctuation">;</span> </code></pre> <p>4)三表连接</p> <pre><code class="prism language-sql"><span class="token comment">-- 查询出rose的个人信息（包括其选修课程信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> student<span class="token punctuation">,</span>course<span class="token punctuation">,</span>course_student          <span class="token keyword">WHERE</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>course_student<span class="token punctuation">.</span><span class="token punctuation">`</span>stu_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> course<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>course_student<span class="token punctuation">.</span><span class="token punctuation">`</span>cou_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'rose'</span><span class="token punctuation">;</span>          <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> student          <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> course          <span class="token keyword">JOIN</span> course_student         <span class="token keyword">ON</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>course_student<span class="token punctuation">.</span><span class="token punctuation">`</span>stu_id<span class="token punctuation">`</span>         <span class="token operator">AND</span> course<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>course_student<span class="token punctuation">.</span><span class="token punctuation">`</span>cou_id<span class="token punctuation">`</span>         <span class="token keyword">WHERE</span> student<span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'rose'</span> </code></pre> <p>5）一对一</p> <pre><code class="prism language-sql"><span class="token comment">-- 查询出孙俪的个人信息（包括其丈夫的信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> husband<span class="token punctuation">,</span>wife           <span class="token keyword">WHERE</span> wife<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_id<span class="token punctuation">`</span><span class="token operator">=</span>husband<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_id<span class="token punctuation">`</span>           <span class="token operator">AND</span> wife<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'孙俪'</span><span class="token punctuation">;</span>           <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> husband <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> wife         <span class="token keyword">ON</span> wife<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_id<span class="token punctuation">`</span><span class="token operator">=</span>husband<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_id<span class="token punctuation">`</span>          <span class="token keyword">WHERE</span> wife<span class="token punctuation">.</span><span class="token punctuation">`</span>wife_name<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'孙俪'</span> </code></pre> <pre><code class="prism language-sql"><span class="token comment">-- 查询出所有班级的信息（包括其学生的信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class<span class="token punctuation">,</span>student           <span class="token keyword">WHERE</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token punctuation">;</span>           <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class           <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> student           <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token punctuation">;</span>  </code></pre> <p><strong>2.外连接</strong><br /> 1）左外连接</p> <pre><code class="prism language-sql"><span class="token comment">-- 查询出所有班级的信息（包括其学生的信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class         <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> student          <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token punctuation">;</span>          <span class="token comment">-- 查询出所有学生的信息（包括其班级的信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> student          <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> class          <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token punctuation">;</span> </code></pre> <p>2）右外连接</p> <pre><code class="prism language-sql"><span class="token comment">-- 查询出所有学生的信息（包括其班级的信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class          <span class="token keyword">RIGHT</span> <span class="token keyword">JOIN</span> student          <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token punctuation">;</span> <span class="token comment">-- 查询出所有班级的信息（包括其学生的信息）</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> student          <span class="token keyword">RIGHT</span> <span class="token keyword">JOIN</span> class          <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token punctuation">;</span> </code></pre> <p>3）全外连接（sql不支持）<br /> 左外和右外拼接</p> <pre><code class="prism language-sql"><span class="token comment">-- 查询学生和班级的所有数据</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class          <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> student          <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span>  <span class="token comment">#(结尾处不要写分号)</span> <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span><span class="token keyword">FROM</span> class          <span class="token keyword">RIGHT</span> <span class="token keyword">JOIN</span> student          <span class="token keyword">ON</span> class<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>student<span class="token punctuation">.</span><span class="token punctuation">`</span>clazz_id<span class="token punctuation">`</span><span class="token punctuation">;</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-76438.htm">开宠物店需要去哪里学（开宠物店去哪里学技术）</a></p>
+                                        <p>下一个：<a href="/news/article-77120.htm">兽用疫苗瓶如何处理,由什么部门监管（兽用疫苗厂）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-clash-verge-rev-node.htm" title="「1月26日」最高速度22.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「1月26日」最高速度22.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-24-free-clash-verge-rev-node.htm" title="「2月24日」最高速度20.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「2月24日」最高速度20.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-58210.htm" title="动物打疫苗需要什么 动物打疫苗需要什么证件">动物打疫苗需要什么 动物打疫苗需要什么证件</a></li>
+                        <li class="py-2"><a href="/news/article-49530.htm" title="猫咪抓后多久才安全（猫咪用跳蚤药多久安全）">猫咪抓后多久才安全（猫咪用跳蚤药多久安全）</a></li>
+                        <li class="py-2"><a href="/news/article-43087.htm" title="广州宠物救助中心电话是多少号（广州宠物救助站电话）">广州宠物救助中心电话是多少号（广州宠物救助站电话）</a></li>
+                        <li class="py-2"><a href="/news/article-76438.htm" title="开宠物店需要去哪里学（开宠物店去哪里学技术）">开宠物店需要去哪里学（开宠物店去哪里学技术）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-latest-clash-verge-rev-node.htm" title="「1月6日」最高速度20.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「1月6日」最高速度20.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-54297.htm" title="Fork/Join分支合并框架">Fork/Join分支合并框架</a></li>
+                        <li class="py-2"><a href="/news/article-36658.htm" title="宠物粮食加工厂设备生产厂家有哪些品牌的 宠物粮食加工厂设备生产厂家有哪些品牌的">宠物粮食加工厂设备生产厂家有哪些品牌的 宠物粮食加工厂设备生产厂家有哪些品牌的</a></li>
+                        <li class="py-2"><a href="/news/article-49034.htm" title="vue&#8211;vuex 中 Modules 详解">vue&#8211;vuex 中 Modules 详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
