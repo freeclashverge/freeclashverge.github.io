@@ -1,0 +1,205 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-82629.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>[转]图解分布式一致性协议Paxos</title>
+        <meta name="description" content="[转] 图解分布式一致性协议Paxos 最初的原文已经访问不到了, 互联网没有记忆. 抢救性保存. Paxos协议/算法是分布式系统中比较重要的协议，它有多重要呢？&lt;分布式系统的事务处理&gt;" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="FreeClashVerge免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freeclashverge.github.io/news/article-82629.htm" />
+    <meta property="og:site_name" content="FreeClashVerge免费节点官网" />
+    <meta property="og:title" content="[转]图解分布式一致性协议Paxos" />
+    <meta property="og:image" content="https://freeclashverge.github.io/uploads/20240813-1/4d4bbfc892626023b197607e2e50af60.webp" />
+        <meta property="og:release_date" content="2025-03-27T08:15:25" />
+    <meta property="og:updated_time" content="2025-03-27T08:15:25" />
+        <meta property="og:description" content="[转] 图解分布式一致性协议Paxos 最初的原文已经访问不到了, 互联网没有记忆. 抢救性保存. Paxos协议/算法是分布式系统中比较重要的协议，它有多重要呢？&lt;分布式系统的事务处理&gt;" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="[转]图解分布式一致性协议Paxos">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/">
+                                                <span>Free Clash Verge</span>
+                                            </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>[转]图解分布式一致性协议Paxos</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>[转] 图解分布式一致性协议Paxos 最初的原文已经访问不到了, 互联网没有记忆. 抢救性保存.</p> <p>Paxos协议/算法是分布式系统中比较重要的协议，它有多重要呢？<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://coolshell.cn/articles/10910.html"  title="<分布式系统的事务处理>" rel="nofollow">&lt;分布式系统的事务处理&gt;</a>：</p> <blockquote> <p>Google Chubby的作者Mike Burrows说过这个世界上只有一种一致性算法，那就是Paxos，其它的算法都是残次品。</p> </blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://book.douban.com/subject/25723658/"  title="<大规模分布式存储系统>" rel="nofollow">&lt;大规模分布式存储系统&gt;</a>：</p> <blockquote> <p>理解了这两个分布式协议之后(Paxos/2PC)，学习其他分布式协议会变得相当容易。</p> </blockquote> <p>学习Paxos算法有两部分：a) 算法的原理/证明；b) 算法的理解/运作。</p> <p>理解这个算法的运作过程其实基本就可以用于工程实践。而且理解这个过程相对来说也容易得多。</p> <p>网上我觉得讲Paxos讲的好的属于这篇：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://coderxy.com/?p=34"  title="paxos图解" rel="nofollow">paxos图解</a>及<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://coderxy.com/?p=36"  title="Paxos算法详解" rel="nofollow">Paxos算法详解</a>，我这里就结合<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://zh.wikipedia.org/zh-cn/Paxos%E7%AE%97%E6%B3%95#.E5.AE.9E.E4.BE.8B"  title="wiki上的实例" rel="nofollow">wiki上的实例</a>进一步阐述。一些paxos基础通过这里提到的两篇文章，以及wiki上的内容基本可以理解。</p> <p>算法内容</p> <p>Paxos在原作者的《Paxos Made Simple》中内容是比较精简的：</p> <blockquote> <p>Phase 1</p> <p>(a) A proposer selects a proposal number n and sends a prepare request with number n to a majority of acceptors.</p> <p>(b) If an acceptor receives a prepare request with number n greater than that of any prepare request to which it has already responded, then it responds to the request with a promise not to accept any more proposals numbered less than n and with the highest-numbered pro-posal (if any) that it has accepted.</p> <p>Phase 2</p> <p>(a) If the proposer receives a response to its prepare requests (numbered n) from a majority of acceptors, then it sends an accept request to each of those acceptors for a proposal numbered n with a value v , where v is the value of the highest-numbered proposal among the responses, or is any value if the responses reported no proposals.</p> <p>(b) If an acceptor receives an accept request for a proposal numbered n, it accepts the proposal unless it has already responded to a prepare request having a number greater than n.</p> </blockquote> <p>借用<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://coderxy.com/?p=34"  title="paxos图解" rel="nofollow">paxos图解</a>文中的流程图可概括为：maxN是回应过的序号, acceptN是接受的N</p> <p><img fetchpriority="high" decoding="async" alt="" height="1200" src="http://img.555519.xyz/uploads3/20220821/46ac5477701dbb36b9fc08535cd366fc.jpg"></p> <p>实例及详解</p> <p>Paxos中有三类角色<code>Proposer</code>、<code>Acceptor</code>及<code>Learner</code>，主要交互过程在<code>Proposer</code>和<code>Acceptor</code>之间。</p> <p><code>Proposer</code>与<code>Acceptor</code>之间的交互主要有4类消息通信，如下图：</p> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/488ba3dace558f14b4729e7b70431890.jpg"></p> <p>这4类消息对应于paxos算法的两个阶段4个过程：</p> <ul> <li>phase 1 <ul> <li>a) proposer向网络内超过半数的acceptor发送prepare消息</li> <li>b) acceptor正常情况下回复promise消息</li> </ul> </li> <li>phase 2 <ul> <li>a) 在有足够多acceptor回复promise消息时，proposer发送accept消息</li> <li>b) 正常情况下acceptor回复accepted消息</li> </ul> </li> </ul> <p>因为在整个过程中可能有其他proposer针对同一件事情发出以上请求，所以在每个过程中都会有些特殊情况处理，这也是为了达成一致性所做的事情。如果在整个过程中没有其他proposer来竞争，那么这个操作的结果就是确定无异议的。但是如果有其他proposer的话，情况就不一样了。</p> <p>以<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://zh.wikipedia.org/zh-cn/Paxos%E7%AE%97%E6%B3%95#.E5.AE.9E.E4.BE.8B"  title="paxos中文wiki上的例子" rel="nofollow">paxos中文wiki上的例子</a>为例。简单来说该例子以若干个议员提议税收，确定最终通过的法案税收比例。</p> <p>以下图中基本只画出proposer与一个acceptor的交互。时间标志T2总是在T1后面。propose number简称N。</p> <p>情况之一如下图：</p> <div><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/ffa19b49a3435d56a0fee196cb5d5be4.jpg"></div> <p>A3在T1发出accepted给A1，然后在T2收到A5的prepare，在T3的时候A1才通知A5最终结果(税率10%)。这里会有两种情况：</p> <ul> <li>A5发来的N5小于A1发出去的N1，那么A3直接拒绝(reject)A5</li> <li>A5发来的N5大于A1发出去的N1，那么A3回复promise，但带上A1的(N1, 10%)</li> </ul> <p>这里可以与paxos流程图对应起来，更好理解。<strong>acceptor会记录(MaxN, AcceptN, AcceptV)</strong>。</p> <p>A5在收到promise后，后续的流程可以顺利进行。但是发出accept时，因为收到了(AcceptN, AcceptV)，所以会取最大的AcceptN对应的AcceptV，例子中也就是A1的10%作为AcceptV。如果在收到promise时没有发现有其他已记录的AcceptV，则其值可以由自己决定。</p> <p>针对以上A1和A5冲突的情况，最终A1和A5都会广播接受的值为10%。</p> <p>其实4个过程中对于acceptor而言，在回复promise和accepted时由于都可能因为其他proposer的介入而导致特殊处理。所以基本上看在这两个时间点收到其他proposer的请求时就可以了解整个算法了。例如在回复promise时则可能因为proposer发来的N不够大而reject：</p> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/175e2a11026cc4dc3e8f5a9580978cb5.jpg"></p> <p>如果在发accepted消息时，对其他更大N的proposer发出过promise，那么也会reject该proposer发出的accept，如图：</p> <div><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/a602d2f83c19455454fab404844adfc5.jpg"></div> <p>这个对应于Phase 2 b)：</p> <blockquote> <p>it accepts the proposal unless it has already responded to a prepare request having a number greater than n.</p> </blockquote> <p>总结</p> <p>Leslie Lamport没有用数学描述Paxos，但是他用英文阐述得很清晰。将Paxos的两个Phase的内容理解清楚，整个算法过程还是不复杂的。</p> <p>至于Paxos中一直提到的一个全局唯一且递增的proposer number，其如何实现，引用如下：</p> <blockquote> <p>如何产生唯一的编号呢？在《Paxos made simple》中提到的是让所有的Proposer都从不相交的数据集合中进行选择，例如系统有5个Proposer，则可为每一个Proposer分配一个标识j(0~4)，则每一个proposer每次提出决议的编号可以为5*i + j(i可以用来表示提出议案的次数)</p> </blockquote> <p>参考文档</p> <ul> <li>paxos图解,<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://coderxy.com/?p=34"  title="http://coderxy.com/?p=36" rel="nofollow">http://coderxy.com/?p=36</a></li> <li>Paxos算法详解,<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://coderxy.com/?p=36"  title="http://coderxy.com/p=36" rel="nofollow">http://coderxy.com/p=36</a></li> <li>Paxos算法 wiki,<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://zh.wikipedia.org/zh-cn/Paxos%E7%AE%97%E6%B3%95#.E5.AE.9E.E4.BE.8B"  title="http://zh.wikipedia.org/zh-cn/Paxos%E7%AE%97%E6%B3%95#.E5.AE.9E.E4.BE.8B" rel="nofollow">http://zh.wikipedia.org/zh-cn/Paxos%E7%AE%97%E6%B3%95#.E5.AE.9E.E4.BE.8B</a></li> </ul> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-81903.htm">克隆Gitee代码报错Unable to connect to gitee.com: gitee.com[0: 180.97.125.228]: errno=Unknown error</a></p>
+                                        <p>下一个：<a href="/news/article-82630.htm">动物注射疫苗注意事项有哪些呢图片（动物疫苗注射方法）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41593.htm" title="三国杀武将台词搞笑搭配（三国杀武将台词合集）">三国杀武将台词搞笑搭配（三国杀武将台词合集）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-node-subscribe-links.htm" title="「1月4日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「1月4日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-42582.htm" title="宠颐生官网（宠颐生团购）">宠颐生官网（宠颐生团购）</a></li>
+                        <li class="py-2"><a href="/news/article-54859.htm" title="正则表达式-匹配ip及rtsp">正则表达式-匹配ip及rtsp</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-clash-verge-rev-node-share.htm" title="「3月11日」最高速度21.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月11日」最高速度21.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-73056.htm" title="宠物用品品牌简介（宠物用品品牌介绍）">宠物用品品牌简介（宠物用品品牌介绍）</a></li>
+                        <li class="py-2"><a href="/news/article-50045.htm" title="宠物粮品牌排行前十有哪些 宠物粮品牌排行前十有哪些牌子">宠物粮品牌排行前十有哪些 宠物粮品牌排行前十有哪些牌子</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-subscribe-node.htm" title="「1月21日」最高速度21.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「1月21日」最高速度21.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-20-clash-verge-rev-nodes.htm" title="「1月20日」最高速度21M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「1月20日」最高速度21M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-46071.htm" title="关于Android10 暗黑模式的简述">关于Android10 暗黑模式的简述</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
