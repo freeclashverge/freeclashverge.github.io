@@ -1,0 +1,202 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-86221.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MySQL数据类型——时间/日期类型（DATE、TIME、DATETIME、TIMESTAMP、YEAR）</title>
+        <meta name="description" content="上图显示的是MySQL的时态类型，其中CC、YY、MM、DD、hh、mm和ss分别代表世纪、年、月、日、时、分、秒。 对于时态值，MySQL提供的类型有：日期和时间（合并或分开表示）、时间戳（一种专门" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="FreeClashVerge免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freeclashverge.github.io/news/article-86221.htm" />
+    <meta property="og:site_name" content="FreeClashVerge免费节点官网" />
+    <meta property="og:title" content="MySQL数据类型——时间/日期类型（DATE、TIME、DATETIME、TIMESTAMP、YEAR）" />
+    <meta property="og:image" content="https://freeclashverge.github.io/uploads/20240813-1/9af021a1368565bad3accbd18dc8d6d2.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:49:25" />
+    <meta property="og:updated_time" content="2025-04-01T09:49:25" />
+        <meta property="og:description" content="上图显示的是MySQL的时态类型，其中CC、YY、MM、DD、hh、mm和ss分别代表世纪、年、月、日、时、分、秒。 对于时态值，MySQL提供的类型有：日期和时间（合并或分开表示）、时间戳（一种专门" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL数据类型——时间/日期类型（DATE、TIME、DATETIME、TIMESTAMP、YEAR）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/">
+                                                <span>Free Clash Verge</span>
+                                            </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>MySQL数据类型——时间/日期类型（DATE、TIME、DATETIME、TIMESTAMP、YEAR）</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p><img fetchpriority="high" decoding="async" alt="" height="157" src="http://img.555519.xyz/uploads3/20220602/5abcd89c5c7dc2b6264fb25ac724150b.jpg"></p> <ul> <li>上图显示的是MySQL的<span style="color:#3399ea;"><strong>时态类型</strong></span>，其中CC、YY、MM、DD、hh、mm和ss分别代表世纪、年、月、日、时、分、秒。</li> <li>对于时态值，MySQL提供的<span style="color:#3399ea;"><strong>类型有：</strong></span>日期和时间（合并或分开表示）、时间戳（一种专门用来记载某个行最近一次修改时间的类型）。</li> <li>此外，在不需要完整日期时，还可以使用专用于<strong><span style="color:#3399ea;">表示年的类型</span></strong>。</li> </ul> </h1> <ul> <li>MySQL提供了多种存储时态 (与时间相关的)值的类型。在MySQL 5.6版本里，对这些类型进行了<span style="color:#3399ea;"><strong>多项重要的改进：</strong></span> <ul> <li>对于数据类型TIME、DATETIME和TIMESTAMP，MySQL 5.6.4增加了对<span style="color:#e579b6;"><strong>小数秒的支持</strong></span>。 这 些类型现在允许的可选小数部分多达6位(微秒)精度。</li> <li>MySQL 5.6.5引入了扩展支持：<strong><span style="color:#e579b6;">自动把当前时间戳作为初始值并进行更新</span></strong>。在以前的版本里，这些属性只能用于表里的大部分单个TIMESTAMP列。现在，它们可以用于任何 TIMESTAMP列，并且也可用于DATETIME列。</li> <li>MySQL 5.6.6丢弃了对<span style="color:#e579b6;"><strong>YEAR(2)</strong></span>的支持，取而代之的是允许创建像YEAR(4)那样的列。</li> </ul> </li> <li>下图列出了这些时态<strong><span style="color:#3399ea;">数据类型，以及每种类型的合法取值范围</span></strong>。这些范围同时也反映出了在MySQL 5.6.4里对小数秒的额外支持。(对于5.6.4之前的版本，可以将小数秒部分忽略掉。)</li> </ul> <p><img decoding="async" alt="" height="129" src="http://img.555519.xyz/uploads3/20220602/1b2ede6b1ddecdd7e4f081615069e093.jpg"></p> <ul> <li> <p>如果要声明包含<span style="color:#3399ea;"><strong>小数秒部分</strong></span>的时态类型列，则需要把定义写成type_name(fsp)，其中，type_name为TIME、DATETIME或TIMESTAMP，fsp为小数秒精度。例如，下面的TIME列允许 的小数位数分别为3位和6位：</p> </li> </ul> <pre><code class="language-sql">t1 TIME(3) t2 TIME(6)</code></pre> <ul> <li>fsp值的<span style="color:#3399ea;"><strong>取值范围必须为0~6</strong></span>。如果未给定，则默认为0。更多相关信息在下面会介绍。</li> <li>下图展示的是每一种时态数据类型的<strong><span style="color:#3399ea;">存储空间要求：</span></strong></li> </ul> <p><img decoding="async" alt="" height="139" src="http://img.555519.xyz/uploads3/20220602/d8b4fafb9306071554dda604f3cc397a.jpg"></p> <ul> <li>下图展示的是那些声明中<span style="color:#3399ea;"><strong>带有小数秒部分</strong></span>的类型所具有的额外存储空间要求：</li> </ul> <p><img loading="lazy" decoding="async" alt="" height="143" src="http://img.555519.xyz/uploads3/20220602/6baf45682f9db0a208ed6934a80ae659.jpg"></p> <blockquote> <h3><strong><span style="color:#3399ea;">“零”值</span></strong></h3> <ul> <li>当为某种日期/时间类型插入<span style="color:#e579b6;"><strong>非法值时</strong></span>，该类型会把它存储为一个<span style="color:#e579b6;"><strong>“零”值</strong></span>。</li> <li>下图列出了各种日期/时 间类型的零值情况：</li> </ul> <p><img loading="lazy" decoding="async" alt="" height="143" src="http://img.555519.xyz/uploads3/20220602/b294998d9f6daf31fe5ae320778a7ee3.jpg"></p> <ul> <li>如果想要把非法值处理为错误，并拒绝接受，则需要设置相应的SQL模式，更多相关信息请 参考后面"处理无效值"相关文章&nbsp;。</li> <li>“零”值也是那些声明时带有<strong><span style="color:#e579b6;">NOT NULL属性</span></strong>的日期/时间类型列的默认值。</li> </ul> </blockquote> <ul> <li>遵照标准SQL和ISO 8601规范的要求，MySQL的日期表示顺序为<strong><span style="color:#3399ea;">“年-月-日”</span></strong>。例如，2015年12月3日将被表示为'2015-12-03'。为满足检索显示要求，可以使用<span style="color:#3399ea;"><strong>DATE_FORMAT()函数和TIME_FORMAT()函数</strong></span>来显示各种格式的日期和时间 。</li> <li>在输入日期方面，MySQL的处理方式则<span style="color:#3399ea;"><strong>比较灵活</strong></span>。例如，它可以把两位数的年份转换为四位数的年份 ，并且对于小于10的月和日，不用提供前导数字0。不过 ，这些值的<strong><span style="color:#3399ea;">顺序必须为“年 -月-日”</span></strong>。对于平时已习惯性的一些格式，如'12-3-99'或'3-12-99’，解释情况有可能与你想象的样子有所不同。此时 ，可以借助于<span style="color:#3399ea;"><strong>STR_TO_DATE()函数</strong></span>，把非ISO格式的字符串转换为ISO格式的日期值 。例如，mytbl表拥有一个日期列date_col，你可以像下面那样插入各个值：</li> </ul> <pre><code class="language-sql">INSERT INTO mytbl(date_col) VALUES(STR_TODATE('12-3-99','%m-%d-%Y')); SELECT * FROM mytbl;</code></pre> <p><img loading="lazy" decoding="async" alt="" height="100" src="http://img.555519.xyz/uploads3/20220602/74834fe4ef6d91dad3f33b8fc39c097e.jpg"></p> <ul> <li>在下面，会进一步讨论MySQL所使用的<span style="color:#3399ea;"><strong>日期解释规则</strong></span>。</li> </ul> </h1> <ul> <li>DATE、TIME类型分别用于保存<strong><span style="color:#3399ea;">日期值和时间值</span></strong>，而DATETIME类型则用于保存日期和时间的<strong><span style="color:#3399ea;">组合值</span></strong>。</li> <li>这3种类型值的<span style="color:#3399ea;"><strong>格式分别是</strong></span>'CCYY-MM-DD'、'hh:mm:ss[.uuuuuu]'和'CCYY-MM-DD hh:mm:ss[.uuuuuu]'，其中的CC、YY、MM、DD、hh、mm、ss和uuuuuu<strong><span style="color:#3399ea;">分别代表</span></strong>世纪、年、月、日、时、分、秒和微妙。</li> <li>对于MySQL 5.6.4<span style="color:#3399ea;"><strong>之前</strong></span>的版本，TIME和DATETIME值也有<strong><span style="color:#3399ea;">小数秒</span></strong>部分，只是在存储时它们会<strong><span style="color:#3399ea;">被丢弃掉</span></strong></li> <li>自MySQL 5.6.5起，DATETIME列会自动把<span style="color:#3399ea;"><strong>当前时间戳</strong></span>作为初始值，并进行更新。更多相关信息在下面会介绍。</li> </ul> <blockquote> <h3><span style="color:#3399ea;">类型转换</span></h3> <ul> <li>如果把DATE值<span style="color:#e579b6;"><strong>赋值给</strong></span>DATETIME列，那么MySQL会自动把时间部分补足为<strong><span style="color:#e579b6;">'00:00:00'</span></strong>。反方向的转换也同样有效。</li> <li>如果把DATETIME值<span style="color:#e579b6;"><strong>赋值给</strong></span>DATE或TIME列，那么MySQL会把<strong><span style="color:#e579b6;">不相干的部分去掉。</span></strong></li> <li><span style="color:#e579b6;"><strong>例如：</strong></span></li> </ul> <pre><code class="language-sql">CREATE TABLE t(dt DATETIME, d DATE, t TIME); INSERT INTO t(dt,d,t) VALUES(NOW(),NOW(),NOW()); SELECT * FROM t;</code></pre> <ul> <li> <p>TIME到DATETIME的<span style="color:#e579b6;"><strong>转换</strong></span>，<strong><span style="color:#e579b6;">依赖于具体的MySQL版本</span></strong>：自MySQL 5.6.4起，当前日期会添加上时间。对于以前的版本，这个转换并不一定会产生有意义的结果。</p> </li> </ul> </blockquote> <blockquote> <h3><span style="color:#3399ea;">DATETIME和TIME的时间值区别</span></h3> <ul> <li>在MySQL里，DATATIME类型里的<span style="color:#e579b6;"><strong>时间值</strong></span>与TIME值略有不同。 <ul> <li>对于DATATIME类型，时间部分表示的是一天里的时间，且必须是在'23:59:59'的范围内。</li> <li>但是，TIME值表示的则是一段逝去的时间。</li> </ul> </li> <li>这也正是文章开头图片里所示的TIME列的取值范围为何可以<strong><span style="color:#e579b6;">包含负值</span></strong>，以及为何可以<span style="color:#e579b6;"><strong>大于</strong></span>’23:59:59'的具体原因。</li> </ul> <p><img decoding="async" alt="" height="139" src="http://img.555519.xyz/uploads3/20220602/d8b4fafb9306071554dda604f3cc397a.jpg"></p> </blockquote> <ul> <li>当往表里插入<span style="color:#3399ea;"><strong>“短”(不完整)</strong></span>的TIME值时，一定要小心。它们可能不会被解释成你所期望的样子。例如，把<span style="color:#3399ea;"><strong>'30'和'12:30'</strong></span>插到某个TIME列，那么最终的存储值为'00:00:30'和'12:30:00'。如果想把<span style="color:#3399ea;"><strong>'12:30'当作“12分30秒”</strong></span>，那么需要以完整的形式(如'00:12:30')来提供它。</li> </ul> </h1> <ul> <li>TIMESTAMP是一种<span style="color:#3399ea;"><strong>时态数据类型</strong></span>，用于储存日期和时间的组合值。(单词timastamp的中文意思是“时 间戳 ”，它的字面意思很容易让人误以为该类型只与时间有关，其实不然)。timestamp数据类型有一些特殊的属性，在下面会介绍。</li> </ul> <blockquote> <h3><span style="color:#3399ea;">取值范围</span></h3> <ul> <li>TIMESTAMP类型列的<span style="color:#e579b6;"><strong>取值范围</strong></span>是'1970-01-01 00:00:00[.000000]'~'2038-01-19 03:14:07[.999999]'。</li> <li>与DATETIME一样，在MySQL 5.6.4<span style="color:#e579b6;"><strong>之前</strong></span>，TIMESTAMP值也允许有<span style="color:#e579b6;"><strong>小数秒</strong></span>部分，但在存储时会被<span style="color:#e579b6;"><strong>丟弃</strong></span>。</li> <li>它的取值范围与Unix时间密切相关，其中规定1970年的第一天为<span style="color:#e579b6;"><strong>“零日”</strong></span>，也称作<strong><span style="color:#e579b6;">“纪元”</span></strong>。</li> <li>对于每一个TIMESTAMP值，MySQL会用<span style="color:#e579b6;"><strong>4个字节</strong></span>来把它存储为自纪元以来总共逝去的秒数。1970年的起始确定了TIMESTAMP类型的<strong><span style="color:#e579b6;">取值范围下限值</span></strong>。(不过请注意，TIMESTAMP的取值范围并非起始于'1970-01-0100:00:00'。你可能会想当然地认为它就是纪元以来的那个0秒，但0表示的时间戳是'0000-00-00 00:00:00')。取值范围上限值则与4个字节所能表示的最大Unix时间相对应。</li> </ul> </blockquote> <blockquote> <h3><span style="color:#3399ea;">时区</span></h3> <ul> <li>MySQL会按<span style="color:#e579b6;"><strong>世界标准时间</strong></span>(Universal Coordinated Time，UTC) 来存储TIMESTAMP值。</li> <li>当保存这样 的值时，服务器会把它从<span style="color:#e579b6;"><strong>会话时区转换为UTC</strong></span>。当以后检索该值时，服务器又会把它从UTC转换回会话时区，从而让你看到与你存储结果一样的时间值。</li> <li>不过，如果另一个客户端使用了<span style="color:#e579b6;"><strong>另一个时区</strong></span>去连接服务器，并检索该值，那么它所看到的值则是调整为<span style="color:#e579b6;"><strong>其所设置时区的</strong></span>那个值 。</li> <li>事实上，只要更改一下会话时区设置，就可以在一个会话里看到这样的效果。例如：</li> </ul> <pre><code class="language-sql">CREATE TABLE t(ts TIMESTAMP); SET time_zone = '+00:00'  # 将时区设置为UTC INSERT INTO t VALUES('2000-01-01 00:00:00'); SELECT ts FROM t;</code></pre> <p><img loading="lazy" decoding="async" alt="" height="362" src="http://img.555519.xyz/uploads3/20220602/3c2274fa6fa80aed945bb2fa0850514a.jpg"></p> <pre><code class="language-sql">SET time_zone = '+03:00' # 将时区前调3个小时 SELECT ts FROM t;</code></pre> <p><img loading="lazy" decoding="async" alt="" height="274" src="http://img.555519.xyz/uploads3/20220602/79c33f0591b3029babf0e2efeab168ed.jpg"></p> <ul> <li> <p>在上面示例里，指定时区所采用的方式为：相对于UTC的小时和分钟的<strong><span style="color:#e579b6;">有符号偏移置</span></strong>。在后面"全球化问题"相关文章中我们还会介绍如何像类似于使用'Europe/Zurich'这样的时区名来更改时区设置。</p> </li> </ul> </blockquote> <ul> <li>TIMESTAMP列会自动把<span style="color:#3399ea;"><strong>当前时间戳作为初始值</strong></span>，并进行更新。此外，如果在定义TIMESTAMP列时 为了允许存放NULL值而带有NULL属性，那么当把<span style="color:#3399ea;"><strong>NULL存储到该列</strong></span>时，该列值会被<strong><span style="color:#3399ea;">设置为当前时间</span></strong>戳。更多相关信息在下面会介绍。</li> </ul> </h1> <ul> <li>YEAR是<span style="color:#3399ea;"><strong>单字节数据类型</strong></span>，其用意在于提高年值的表示效率。</li> <li>在声明YEAR列时，可以指定一个<span style="color:#3399ea;"><strong>显示宽度M</strong></span>，M值只能为4或2。如果在YEAR列的定义里忽略掉M，那么其<span style="color:#3399ea;"><strong>默认值将为4</strong></span>。</li> <li>YEAR类型的<span style="color:#3399ea;"><strong>取值范围</strong></span>是1901~2155年。如果只会用到日期里的年份，如出生年份、政府选举年份等，那么使用YEAR就足够了。如果不需要完整的日期值 ，那么用YEAR会比用其他日期类型更省存储空间 。</li> </ul> <blockquote> <h3><span style="color:#3399ea;">YEAR(2)已被废弃</span></h3> <ul> <li>YEAR(2)只显示<span style="color:#e579b6;"><strong>最后两位数</strong></span>，并且这种类型实际只能存储从1970年到2069年之间的值。</li> <li>如果使用YEAR(2)来存储该范围之外的值，那么最终的显示值将不确定。例如，YEAR(2)列里存储的1970和 2070都会显示为70。</li> <li>避免这类问题的最简单方法是<span style="color:#e579b6;"><strong>避免使用</strong></span>YEAR(2)，用 YEA(4)来代替。</li> <li>由于这样的存储问题，自MySQL 5.6.6起，就<span style="color:#e579b6;"><strong>废弃了YEAR(2)</strong></span>：在已有表里，YEAR(2)列会继续保持不变；但对于新表，这样的列会被创建为YEAR(4)。</li> </ul> </blockquote> <ul> <li>MySQL会使用其<span style="color:#3399ea;"><strong>年值判断规则</strong></span>，将输入的2位YEAR值<strong><span style="color:#3399ea;">转换成</span></strong>4位值 (在下面"解释模糊年份值"会介绍)。 例如，97和14会变成1997和2014。不过请注意，当把<strong><span style="color:#3399ea;">数值00插到4位的YEAR列</span></strong>时 ，最终存储 的值将会是0000，而不是2000。如果想要把值00转换为2000，那么需要以'0'如或'00'的字符串来指定它。</li> <li><span style="color:#3399ea;"><strong>TINYINT类型</strong></span>的存储空间占用量与YEAR类型 (只有1个字节)的一样，但<strong><span style="color:#3399ea;">取值范围不一样</span></strong>。如果想要用一个整数类型来覆盖YEAR类型所能表示的年份范围 ，那么需要<strong><span style="color:#3399ea;">使用SMALLINT</span></strong>(它将占用两倍的空间 )。如果需要表示的年份包含在YEAR类型所能表示的年份范围内，那么与使用SMALLINT相比，使用<span style="color:#3399ea;"><strong>YEAR更节省空间</strong></span>。</li> </ul> </h1> <blockquote> <h3><span style="color:#3399ea;">NULL</span></h3> <ul> <li>时态列的定义可以包含通用属性<span style="color:#e579b6;"><strong>NULL或NOT NULL</strong></span>。</li> <li>如果都不指定，则默认为NULL。TIMESTAMP类型除外，其默认值为NOT NULL。</li> </ul> </blockquote> <blockquote> <h3><span style="color:#3399ea;"><strong>DEFAULT</strong></span></h3> <ul> <li>也可以用<span style="color:#e579b6;"><strong>DEFAULT子句</strong></span>来设定默认值。在另一篇文章中我们介绍了数据类型的默认值。</li> <li>大部分情况下，这些<span style="color:#e579b6;"><strong>默认值都必须为常量</strong></span>。</li> <li>除了TIMESTAMP(自MySQL 5.6.5起)和DATETIME以外，你都<strong><span style="color:#e579b6;">不能使用</span></strong>像CURRENT_TIMESTAMP这样的函数来将DATETIME列的<strong><span style="color:#e579b6;">默认值设置为“当前日期和时间”</span></strong>。TIMESTAMP和DATETIME列<span style="color:#e579b6;"><strong>之所以比较特殊</strong></span>，是因为它们的默认值可以为<span style="color:#e579b6;"><strong>当前日期和时间</strong></span>。(更多与掌控这些类型默认值的规则相关的信息在下面"时态类型的自动特性"中会介绍)。如果其他类型想要得到这种结果，那么可以在<span style="color:#e579b6;"><strong>每次创建新行时</strong></span>，显式地将该列的值<span style="color:#e579b6;"><strong>设置为CURRENT_TIMESTAMP</strong></span>。 另外，也可以使用TIMESTAMP列或DATETIME列来代替，或者设置一个触发器，让它将该列初始化为适当的值（触发器参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://dongshao.blog.csdn.net/article/details/90486999"  rel="nofollow">https://dongshao.blog.csdn.net/article/details/90486999</a>）。</li> </ul> </blockquote> </h1> <ul> <li>下面描述MySQL如何处理时间值里的<span style="color:#3399ea;"><strong>小数秒</strong></span>。它主要适用于MySQL 5.6.4及<strong><span style="color:#3399ea;">以上的版本</span></strong>。</li> </ul> <blockquote> <ul> <li>在TIME、DATETIME和 TIMESTAMP类型的声明语法中，允许设置一个可选的<strong><span style="color:#3399ea;">小数秒精度(fsp)</span></strong>，精度值最高可达<span style="color:#3399ea;"><strong>6位数字</strong></span>。</li> <li>值必须是0〜6，0表示没有小数部分，而6则表示精度为微秒。如果没有指定fsp，则默认值为0。</li> <li>例如，TIME和TIME(0)是<span style="color:#3399ea;"><strong>等价的</strong></span>，都没有小数部分。DATETIME(1)允许日期和时间值精确到<span style="color:#3399ea;"><strong>十分之一秒</strong></span>。TIMESTAMP(6)允许时间戳的精确值达到<span style="color:#3399ea;"><strong>微秒级</strong></span>。</li> </ul> </blockquote> <ul> <li>对于带时态参数的<span style="color:#3399ea;"><strong>函数</strong></span>，其接受或返回的时态值中都带有<span style="color:#3399ea;"><strong>小数秒部分</strong></span>。在某些情况下，MySQL 5.6.4之前的版本有些不带参数的函数，现在也<span style="color:#3399ea;"><strong>开始接受参数</strong></span>，以方便对可能有的返回值进行小数秒位数的控制。例如，CURTIME()返回的是不带小数秒部分的当前时间，而CURTIME(3)返回的时间则包括了一个精度高达千分之一秒的小数秒部分：</li> </ul> <pre><code class="language-sql">SELECT CURTIME(), CURTIME(3);</code></pre> <p><img loading="lazy" decoding="async" alt="" height="179" src="http://img.555519.xyz/uploads3/20220602/13aa2fb011135c92c0cef24c561c6142.jpg"></p> <ul> <li>关于各个函数的描述表明了什么时候允许使用fsp参数，请参阅<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://dongshao.blog.csdn.net/article/details/88046679"  rel="nofollow">https://dongshao.blog.csdn.net/article/details/88046679</a></li> <li>MySQL 5.6.4<span style="color:#3399ea;"><strong>之前的版本</strong></span>，只提供了对<span style="color:#3399ea;"><strong>微秒值</strong></span>的有限支持。有一些时间函数，如DATE_ADD()，使用了这些值，但是如果你想要在某个时间列里存储包含微秒部分的值，那么MySQL会将那个微秒<span style="color:#3399ea;"><strong>部分丢弃</strong></span>。</li> </ul> </h1> <ul> <li>TIMESTAMP和DATETIME列可以有<strong><span style="color:#3399ea;">自动初始化属性和自动更新特性</span></strong>。 <ul> <li>“自动初始化”即意味着，对于<span style="color:#e579b6;"><strong>新行</strong></span>，如果在INSERT语句里省略了这两种类型的列，那么列<span style="color:#e579b6;"><strong>会被设置为当前时间戳</strong></span>。</li> <li>“自动更新”即意味着，对于<span style="color:#e579b6;"><strong>已有的行</strong></span>，当把任何其他列更改为不同值时，这两种类型的列都会<span style="color:#e579b6;"><strong>被更新为当前时间戳</strong></span>。 (将列设置成它的当前值不算自动更新；这种做法实际上是在防止自动更新)。</li> </ul> </li> <li>对于MySQL 5.6.5<span style="color:#3399ea;"><strong>之前的版本</strong></span>，可以为表里任何单个的TIMESTAMP列指定<span style="color:#3399ea;"><strong>两种特性中的一种或全部</strong></span>。不能出现一个TIMESTAMP列拥有自动初始化特性，而另一个列拥有自动更新特性的情况 。也不能让多个列拥有自动初始化特性，或者让多个列拥有自动更新特性。</li> <li>MySQL 5.6.5扩展并<span style="color:#3399ea;"><strong>推广了对自动特性的支持：</strong></span>任何TIMESTAMP列都可以有这两种特性中的一种或全部，和DATETIME列一样。</li> <li>还有一个<span style="color:#3399ea;"><strong>只适用于TIMESTAMP列</strong></span>的<span style="color:#3399ea;"><strong>特殊特性：</strong></span>如果将列设置为NULL，那么它的值会被设置为当前时 间戳。要想允许TIMESTAMP列存储 NULL值，在定义它时需要带有NULL属性。</li> </ul> <blockquote> <h3><span style="color:#3399ea;">语法格式</span></h3> <ul> <li>例如，下面是TIMESTAMP的语法格式（DATETIME也是一样的）：</li> </ul> <pre><code class="language-sql">col_name TIMESTAMP [DEFAULT default_value] [ON UPDATE CURRENT_TIMESTAMP]</code></pre> <ul> <li>如果<span style="color:#e579b6;"><strong>同时指定</strong></span>DEFAULT和ON UPDATE属性，它们的顺序无关紧要。</li> <li><span style="color:#e579b6;"><strong>DEFAULT默认值可以是：</strong></span> <ul> <li>CURRENT_TIMESTAMP。</li> <li>像0那样的常量值，或者是格式'CCYY-MM-DD hh:mm:ss'的值。</li> <li>也可以使用CURRENT_TIMESTAMP的同义词，如NOW()。</li> </ul> </li> <li>自MySQL 5.6.5起，<span style="color:#e579b6;"><strong>DATETIME列便开始允许</strong></span>这些与DEFAULT和ON UPDATE一样的属性。在5.6.5版本之前，对于DEFAULT属性，DATETIME只允许常量，并且不支持ON UPDATE。</li> <li>如果想让表里的<span style="color:#e579b6;"><strong>第一个TIMESTAMP列具有一个或两个自动特性</strong></span>，那么可以组合使用DEFAULT属性和ON UPDATE属性来定义它： <ul> <li>如果使用DEFAULT CURRENT_TIMESTAMP，那么列将拥有<strong>自动初始化特性</strong>。如果指定ON UPDATE CURRENTJTIMESTAMP，那么它还会拥有<strong>自动更新特性</strong>。</li> <li>如果<strong>两种属性都没有指定</strong>，那么MySQL会将列定义为具有DEFAULT CURRENT_TIMESTAMP和ON UPDATE CURRENT_TIMESTAMP两种属性。</li> <li>如果使用<strong>指定了常量值的</strong>DEFAULT constant_value属性，那么列将<strong>不具有</strong>自动初始化特性。如果指定ON UPDATE CURRENT_TIMESTAMP，那么它会有自动更新特性。</li> <li>如果没有DEFAULT，但有ON UPDATE CURRENT_TIMESTAMP，那么<strong>具体的默认 值为0，并且列有自动更新特性</strong>。</li> </ul> </li> </ul> </blockquote> <ul> <li><span style="color:#3399ea;"><strong>对于MySQL 5.6.5之前的版本</strong></span>，如果要让某个TIMESTAMP列 (而非第一列)使用自动初始化或自动更新特性，那么必须使用DEFAULT constant_value属性显式地定义第一列，同时不带CURRENT_TIMESTAMP属性。然后，对于任何其他的单个TIMESTAMP列，可以使用DEFAULT CURRENT_TIMESTAMP或ON UPDATE CURRENT_TIMESTAMP(或者同时使用这两者)。</li> <li><span style="color:#3399ea;"><strong>自MySQL 5.6.5起，</strong></span>对于<span style="color:#3399ea;"><strong>任何</strong></span>TIMESTAMP列，可以<span style="color:#3399ea;"><strong>自由地使用这两个属性</strong></span>当中的一个，也可以两个都用。此外，DATETIME列也可以有这些属性。</li> <li>如果<span style="color:#3399ea;"><strong>不想让拥有</strong></span>自动初始化特性或自动更新特性的TIMESTAMP或DATETIME列 ，受到这些特性的影响 ，那么在<span style="color:#3399ea;"><strong>执行插入或更新操作时</strong></span>，可以<span style="color:#3399ea;"><strong>显式地</strong></span>把列设置成所期望的值。例如，为防止在更改列时自动更新，可以将列设置成它的当前值。</li> </ul> <blockquote> <h3><span style="color:#3399ea;">NULL</span></h3> <ul> <li>TIMESTAMP和DATETIME列的定义也<span style="color:#e579b6;"><strong>可以包含</strong></span>NULL或NOT NULL属性。</li> <li>TIMESTAMP的默认<span style="color:#e579b6;"><strong>属性是NOT NULL</strong></span>。 <ul> <li>这会产生一种特殊效果，即当你把列显式地设置成NULL时，MySQL会将它<strong>设置成当前时间戳</strong>。(对于插入和更新操作，都是如此)。</li> <li><strong>如果在列的定义里指定NULL</strong>，那么将该列设置为NULL时，存储的将是NULL，而不是当前时间戳。</li> </ul> </li> <li>DATETIME的<span style="color:#e579b6;"><strong>默认属性是NULL</strong></span>，并且在把DATETIME列设置为NULL时，没有产生特殊效果。</li> </ul> </blockquote> <blockquote> <h3><span style="color:#3399ea;">演示案例</span></h3> <ul> <li><span style="color:#e579b6;"><strong>有如下一张表，</strong></span>包含TIMESTAMP列。在新增行时，列会被设置成<span style="color:#e579b6;"><strong>当前时间戳</strong></span>，并且之后不会 被自动更新：</li> </ul> <pre><code class="language-sql">CREATE TABLE t1(ts_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP);</code></pre> <p><img loading="lazy" decoding="async" alt="" height="40" src="http://img.555519.xyz/uploads3/20220602/1bda25fa16476960034b13d8101637ac.jpg"></p> <ul> <li>如果要插入新行，可以通过如下几种方式将新行中的ts_create字段<span style="color:#e579b6;"><strong>设置为当前时间戳：</strong></span> <ul> <li>将列设置为NULL</li> <li>在INSERT语句中省略ts_create字段</li> </ul> </li> <li><span style="color:#e579b6;"><strong>下面来看另外一张表</strong></span>：其中包含两个TIMESTAMP类型的列，这两个列分别用于存储创建时间和最周修改时间。</li> </ul> <pre><code class="language-sql">CREATE TABLE t2(  ts_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  ts_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP );  INSERT INTO t2;</code></pre> <p><img loading="lazy" decoding="async" alt="" height="103" src="http://img.555519.xyz/uploads3/20220602/687651ebe5836ddad304e2aa5572470b.jpg"></p> <ul> <li>插入一行进行测试：</li> </ul> <pre><code class="language-sql">INSERT INTO t2 VALUES(); SELECT * FROM t2;</code></pre> <p><img loading="lazy" decoding="async" alt="" height="229" src="http://img.555519.xyz/uploads3/20220602/2a90825dc966a7f37a9a756d17a4df03.jpg"></p> </blockquote> </h1> <ul> <li>MySQL可以正确解释<span style="color:#3399ea;"><strong>各种格式</strong></span>的日期和时间列的输入值，其中包括<strong><span style="color:#3399ea;">字符串形式和数值形式</span></strong>。 此外，自MySQL5.6.4起，TIME、DATETIME和TIMESTAMP数据类型，还可以带有一个可选的精度高达<span style="color:#3399ea;"><strong>6位数字(微秒)</strong></span>的小数秒部分。例如，DATETIME和TIMESTAMP值支持的格式有：</li> </ul> <pre><code>'CCYY-MM-DD hh:mm:ss[.uuuuuu[' 'YY-MM-DD hh:mm:ss[.uuuuuu]' 'CCYYMMDDhhmmss[.uuuuuu]' 'YYMMDDhhmmss[.uuuuuu]' CCYYMMDDhhmmss[.uuuuuu] YYMMDDhhmmss[.uuuuuu]</code></pre> <ul> <li>对于DATE、TIME和YEAR类型值，也有类似的表示。</li> <li>MySQL也可以解释那些<span style="color:#3399ea;"><strong>没有世纪部分(即CC)</strong></span>的日期和时间格式，所用规则参考上面。</li> </ul> <blockquote> <h3><span style="color:#3399ea;">分隔符处理</span></h3> <ul> <li>对于<span style="color:#e579b6;"><strong>带分隔符的字符串</strong></span>格式，日期里可以不用"-"，时间里可以不用":"。</li> <li>任何一种标点符号都可以用作分隔符。对这些值的解释，依据的是其上下文，而非分隔符。例如，虽然人们习惯于把“:”当作时间值的分隔符，但是在期望是日期值的场合，MySQL也不会把一个包含“:”的值解释为具体的时间。</li> <li>此外，对于包含有分隔符的字符串格式，当月、日、时，分或秒的值<span style="color:#e579b6;"><strong>小于10时，可以不用指定2位数字</strong></span>。例如，下面这些值都是等价的。</li> </ul> <pre><code>'2012-02-03 05:04:09' '2012-02-03 05:04:9' '2012-02-03 05:4:9' '2012-02-03 5:4:9' '2012-02-3 5:4:9' '2012-2-3 5:4:9'</code></pre> </blockquote> <blockquote> <h3><span style="color:#3399ea;"><strong>前导零</strong></span></h3> <ul> <li>对于<span style="color:#e579b6;"><strong>带有前导零</strong></span>的日期和时间值，MySQL有多种不同的解释方式，具体取决于这些值是以<span style="color:#e579b6;"><strong>字符串形式</strong></span>指定的，还是以<span style="color:#e579b6;"><strong>数字形式</strong></span>指定的。</li> <li>例如，<span style="color:#e579b6;"><strong>字符串'001231'</strong></span>会被看作是一个有6位数字的值： <ul> <li>如果将其当作<strong>DATE类型</strong>，那么它会被解释成'2000-12-31'。</li> <li>而如果将其当作<strong>DATETIME类型</strong>，那么它会被解释成'2000-12-31 00:00:00'。</li> </ul> </li> <li>另外，在解析器将其处理成数字之后，数字001231会被看作1231，于是，对它的解释就会变得不确定。此时，最好是提供一个字符串值'001231'。</li> <li>如果<span style="color:#e579b6;"><strong>的确需要使用数字</strong></span>，则需要使用完整形式(对于DATE类型，即为20001231；而对于DATETIME类型，即为200012310000)。</li> </ul> </blockquote> <ul> <li>一般情况下，可以在DATE、DATETIME和TIMESTAMP类型之间<strong><span style="color:#3399ea;">随意地相互赋值</span></strong>，但也请记 住，存在以下这样<span style="color:#3399ea;"><strong>几条限制：</strong></span> <ul> <li>如果把DATETIME或TIMESTAMP<span style="color:#e579b6;"><strong>值赋给</strong></span>DATE列，则其中的时间部分会<span style="color:#e579b6;"><strong>被丢失</strong></span>。</li> <li>如果把DATE值<span style="color:#e579b6;"><strong>赋值给</strong></span>DATETIME或TIMESTAMP列，则结果值的时间部分将会<strong><span style="color:#e579b6;">被设置为零</span></strong> (即'00:00:00')。</li> <li><span style="color:#e579b6;"><strong>各个类型的取值范围有所不同</strong></span>。尤其是TIMESTAMP类型，其取值范围仅限于1970~2038。因此，不能把一个早于1970年的DATETIME值赋给TIMESTAMP列。如果强 行那样做，最终的结果也不会是你所期望的那样。同样 ，也不能把遥远未来的值赋给 TIMESTAMP列。</li> </ul> </li> <li>MySQL提供了很多用于处理日期和时间值的函数。更多相关信息请参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_41453285/article/details/88046679"  rel="nofollow">https://blog.csdn.net/qq_41453285/article/details/88046679</a>。</li> </ul> </h1> <ul> <li>对于所有那些<span style="color:#3399ea;"><strong>带有年份值</strong></span>的日期和时间类型(包括DATE、DATETIME、TIMESTAMP和 YEAR)，MySQL在处理那些包含2位数字的年份值时，会把它们<strong><span style="color:#3399ea;">转换成4位数字</span></strong>。 <ul> <li>年份在00~69之间的值，会被转换为2000〜2069。</li> <li>年份在70〜99之间的值，会被转换为1970~1999。</li> </ul> </li> <li>把各种不同的2位数字值存储到YEAR(4)列，然后再把它们检索出来，便可以看到这些转换规 则的实际效果：</li> </ul> <pre><code class="language-sql">CREATE TABLE y_table (y YEAR(4)); INSERT INTO y_table VALUES(68),(69),(99),(00),('00'); SELECT * FROM y_table;</code></pre> <p><img loading="lazy" decoding="async" alt="" height="283" src="http://img.555519.xyz/uploads3/20220602/da3d60bf56a587b77f8f1377be0054fd.jpg"></p> <ul> <li>前面的示例也展示了某些应该引起注意的地方：00会被转换为 0000，而不是2000。如果把数 字0插到YEAR(4)列，得到的也将是0000。如果要利用某个<span style="color:#3399ea;"><strong>没有包含世纪部分的值</strong></span>得到2000年的表示结果，那么<span style="color:#3399ea;"><strong>必须使用字符串</strong></span>'0'或'00'。如果想确保MySQL看到的<strong><span style="color:#3399ea;">是字符串，而非数字</span></strong>，则可以使用<span style="color:#3399ea;"><strong>CAST</strong></span>(value AS CHAR)函数来插入YEAR值，不管value是字符串，还是数字，其结果都一律是字符串。</li> <li>需要注意的是，把2位数字年份值转换为4位数字年份值的转换规则，只是提供了一种比较合理的猜测。当未指定世纪部分时，MySQL并不知道你的2位数字年份具体指的是哪 一年。 MySQL的年份转换规则适用于很多情形，但如果它们产生的结果与你预期的不一致，那就必须得提供一个无歧义的4位数字年份值。例如，想把自18世纪以来的美国总统的出生日期和去世日期都录到president表里，那么必须使用4位数字的年份值 。这两个列的值跨越了好几个世纪，因此让MySQL根据2位数的年份值去猜测它们属于哪个世纪，绝非明智之举。</li> </ul> </h1> <ul> <li><span style="color:#3399ea;"><strong>日期等函数参见文章：</strong></span><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_41453285/article/details/88046679"  rel="nofollow">https://blog.csdn.net/qq_41453285/article/details/88046679</a></li> </ul> <blockquote> <h3><span style="color:#3399ea;">演示案例</span></h3> <ul> <li>查询2005年9月的<strong><span style="color:#e579b6;">所有订单</span></strong></li> </ul> <p><img loading="lazy" decoding="async" alt="" class="has" height="186" src="http://img.555519.xyz/uploads3/20220602/ce65efd4fad8fe6135627caa345f8af2.jpg"></p> <ul> <li>当然，我们还可以<strong><span style="color:#e579b6;">进行简化</span></strong></li> </ul> <p><img loading="lazy" decoding="async" alt="" class="has" height="217" src="http://img.555519.xyz/uploads3/20220602/06d75e959f92b98baa0b157920250a27.jpg"></p> </blockquote> <blockquote> <h3><span style="color:#3399ea;">演示案例</span></h3> <ul> <li>我们有下面这个查询语句。如果order_date的类型是datetime类型（例如：2005-09-01 11:30:05），那么order_date中还会<strong><span style="color:#e579b6;">包含时分秒</span></strong>，下面的查询就会失败</li> </ul> <p><img loading="lazy" decoding="async" alt="" class="has" height="48" src="http://img.555519.xyz/uploads3/20220602/640e3cb92486331196e78ea02918f773.jpg"></p> <ul> <li>因此，我们可以<span style="color:#e579b6;"><strong>借助date()函数</strong></span>来解决上面那种错误</li> </ul> <p><img loading="lazy" decoding="async" alt="" class="has" height="168" src="http://img.555519.xyz/uploads3/20220602/b32d441c65c39c6331f5a9c99df2aab5.jpg"></p> <ul> <li>因此，如果<span style="color:#e579b6;"><strong>查询要的是日期</strong></span>，那么就建议使用date()函数</li> <li>类似的，<span style="color:#e579b6;"><strong>time()函数等原理都如同上面</strong></span></li> </ul> </blockquote> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85491.htm">动物疫苗价格排行榜最新图片高清大图 动物疫苗价格排行榜最新图片高清大图大全</a></p>
+                                        <p>下一个：<a href="/news/article-86222.htm">流浪猫养多久才认主人呢图片（流浪猫养多久才认主人呢图片搞笑）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-74386.htm" title="淘货铺是不是要跑路了（淘货怎么样）">淘货铺是不是要跑路了（淘货怎么样）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-node-subscribe-links.htm" title="「3月6日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月6日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-73057.htm" title="动物医院好评模板100字怎么写的呀（动物医院美团好评）">动物医院好评模板100字怎么写的呀（动物医院美团好评）</a></li>
+                        <li class="py-2"><a href="/news/article-80536.htm" title="详解Alibaba Java诊断工具Arthas查看Dubbo动态代理类_java">详解Alibaba Java诊断工具Arthas查看Dubbo动态代理类_java</a></li>
+                        <li class="py-2"><a href="/news/article-67172.htm" title="领养宠物赚钱软件是哪个 领养宠物赚钱软件是哪个软件">领养宠物赚钱软件是哪个 领养宠物赚钱软件是哪个软件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-27-clash-verge-rev-node.htm" title="「3月27日」最高速度19.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月27日」最高速度19.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-high-speed-nodes.htm" title="「3月8日」最高速度21.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月8日」最高速度21.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-75077.htm" title="宠物店猫粮多少钱一斤 宠物店猫粮多少钱一斤啊">宠物店猫粮多少钱一斤 宠物店猫粮多少钱一斤啊</a></li>
+                        <li class="py-2"><a href="/news/article-84064.htm" title="人用针剂跟畜用针剂一样吗（兽用针和人用针的针同的吗?）">人用针剂跟畜用针剂一样吗（兽用针和人用针的针同的吗?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-25-free-clash-verge-rev-node.htm" title="「3月25日」最高速度18.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月25日」最高速度18.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                            FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
