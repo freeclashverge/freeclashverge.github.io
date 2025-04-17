@@ -1,0 +1,204 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-97249.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>springboot实现token登录</title>
+        <meta name="description" content="一、Controller层login接口进行账密验证，验证成功返回token 配置文件： 最主要是第一个依赖，后面不属于jsonwebtoken的依赖 controller： @PostMapping" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="FreeClashVerge免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freeclashverge.github.io/news/article-97249.htm" />
+    <meta property="og:site_name" content="FreeClashVerge免费节点官网" />
+    <meta property="og:title" content="springboot实现token登录" />
+    <meta property="og:image" content="https://freeclashverge.github.io/uploads/20240813-1/1088762e6ccd5c6174ef6b9ec9493677.webp" />
+        <meta property="og:release_date" content="2025-04-16T08:40:44" />
+    <meta property="og:updated_time" content="2025-04-16T08:40:44" />
+        <meta property="og:description" content="一、Controller层login接口进行账密验证，验证成功返回token 配置文件： 最主要是第一个依赖，后面不属于jsonwebtoken的依赖 controller： @PostMapping" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="springboot实现token登录">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/">
+                                                <span>Free Clash Verge</span>
+                                            </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>springboot实现token登录</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2><a id="Controllerlogintoken_0" rel="nofollow"></a>一、Controller层login接口进行账密验证，验证成功返回token</h2> <p>配置文件：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220817/36466bfd856bc71c9c4e486398be6606.jpg" alt="springboot实现token登录"><br /> 最主要是第一个依赖，后面不属于jsonwebtoken的依赖<br /> controller：</p> <pre><code>@PostMapping("/login")     public Result&lt;TokenStatus&gt; login(@RequestBody LoginVO loginVO, HttpServletRequest request) {         Result&lt;TokenStatus&gt; result = new Result&lt;&gt;();         UserDO userDO = null;         try {             userDO = userService.getUser(loginVO, request);         } catch (NirException e) {             result.setCode(e.getCode());             result.setMsg(e.getMessage());             return result;         } catch (Exception e) {             result.setCode(NirExceptionEnum.GENERAL_EXCEPTION.getCode());             result.setMsg(e.getMessage());             return result;         }         TokenStatus tokenStatus = JwtUtil.createJwt(userDO.getId().toString(),userDO.getUsername());         result.setData(tokenStatus);         result.setCode(ResultEnum.SUCCESS.getCode());         result.setMsg(ResultEnum.SUCCESS.getMsg());         return result;     }</code></pre> <p>JwtUtil类</p> <pre><code> public class JwtUtil {     public static final String KEY = "userlogin";     public static final Long FAILURE_TIME = 3600000L;      public static TokenStatus createJwt(String id, String username){         TokenStatus tokenStatus = new TokenStatus();         long now = System.currentTimeMillis();         long exp = now + FAILURE_TIME;         Date date = new Date(exp);         JwtBuilder jwtBuilder = Jwts.builder().setId(id).setSubject(username)                 .setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256,KEY);         jwtBuilder.setExpiration(date);         String token = jwtBuilder.compact();         tokenStatus.setToken(token);         tokenStatus.setExp(date);         return tokenStatus;     }      public static Claims parseJwt(String token){         Claims claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();         return claims;     }  }</code></pre> <h2><a id="logintokencookie_58" rel="nofollow"></a>二、前端login接口返回token，存进cookie</h2> <pre><code>let param = {         username: values.username,         password: values.password,       };       API.login(param)         .then((res) =&gt; {           const { code, msg, data} = res;           if (code !== "200") {             Message.error("登录失败，用户名或密码错误！");           } else {             Message.success("登录成功！");             if(data.token&amp;&amp;data.exp){               document.cookie = "token="+ data.token+";expires="+new Date(data.exp).toGMTString();             }             this.props.history.push('/home');           }         })         .catch((err) =&gt; {           Message.error(err + "登录失败！请重试！");         });</code></pre> <p>退出登录清除cookie中的token，跳转到登录页面</p> <pre><code>logout = () =&gt; {     deleteCookie("token");     this.props.history.replace("/login");   }; export const deleteCookie = (name) =&gt; {   var exp = new Date();   exp.setTime(exp.getTime()-1);   var val = getCookie(name);   if(val!=null){     document.cookie= name + "="+val+";expires="+exp.toGMTString();   } }  export const getCookie = (name) =&gt; {   var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");   if(arr=document.cookie.match(reg))     return unescape(arr[2]);   else     return null; }</code></pre> <p>给每个请求添加请求头Authorization，加上token</p> <pre><code>headers: {         "Content-Type": "application/json",         'Authorization': getCookie("token") ,         "withCredentials": true,       },</code></pre> <h2><a id="cookietoken_115" rel="nofollow"></a>三、前端对路由模块进行封装，对cookie里不存在token的页面不允许访问，跳转到登录页面</h2> <pre><code>import  React from 'React'; import { Route, Redirect } from 'react-router-dom'; import { Message } from 'antd'; import { getCookie } from "../pages/home/Home";  const PrivateRoute = ({component: Component, ...props}) =&gt; {     // 解构赋值 将 props 里面的 component 赋值给 Component     return &lt;Route {...props} render={(p) =&gt; {         const token = getCookie("token");         if (token){ // 如果登录了, 返回正确的路由             if(props.path==='/login'){                 return &lt;Redirect to='/home'/&gt;             }else{                 return &lt;Component /&gt;             }         } else { // 没有登录就重定向至登录页面             Message.error("你还未登录，请先登录")             return &lt;Redirect to='/login'/&gt;         }     }}/&gt; } export default PrivateRoute</code></pre> <p>使用方法：</p> <pre><code>&lt;Route path="/login" component={Login}&gt;&lt;/Route&gt; &lt;Route path="/register" component={Register}&gt;&lt;/Route&gt;  &lt;PrivateRoute path="/admin" component={Admin}&gt;&lt;/PrivateRoute&gt;  &lt;PrivateRoute path="/home" component={Home}&gt;&lt;/PrivateRoute&gt;</code></pre> <h2><a id="tokentoken_151" rel="nofollow"></a>四、后端添加过滤器，对没带token的请求和token不符合要求的请求进行过滤处理，返回未登录提示</h2> <p>此处的过滤器采用javax.servlet.Filter的接口实现</p> <pre><code>@WebFilter(urlPatterns = {"/user/getUser","/record/*","/patient/*","/disease/*"}) public class TokenFilter implements Filter {     @Autowired     private UserDOMapper userMapper;      @Override     public void init(FilterConfig filterConfig) throws ServletException {      }      @Override     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;         String token = httpServletRequest.getHeader("Authorization");         try{             if(token==null || token.equals("null")){                 throw new NirException(NirExceptionEnum.USER_UNLOGIN);             }else{                 UserDOExample example = new UserDOExample();                 String username = JwtUtil.parseJwt(token).getSubject();                 example.createCriteria().andUsernameEqualTo(username);                 List&lt;UserDO&gt; users = userMapper.selectByExample(example);                 if (CollectionUtils.isEmpty(users)) {                     throw new NirException(NirExceptionEnum.USER_UNLOGIN);                 }else{                     filterChain.doFilter(servletRequest,servletResponse);                 }             }         }catch(NirException e){             Result&lt;Void&gt; result = new Result&lt;&gt;();             result.setCode(e.getCode());             result.setMsg(e.getMessage());             httpServletResponse.setHeader("content-type", "application/json;charset=utf-8");             httpServletResponse.setHeader("Access-Control-Allow-Origin","*");             httpServletResponse.setHeader("Access-Control-Allow-Methods","POST,OPTIONS");             httpServletResponse.setHeader("Access-Control-Allow-Credentials","true");             httpServletResponse.setHeader("Access-Control-Allow-Headers","Content-Type,WithCredentials,Authorization");             PrintWriter out = httpServletResponse.getWriter();             out.println(JSON.toJSONString(result));         }     }      @Override     public void destroy() {      } }</code></pre> <p>这样就实现了一个系统的的token登录功能。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-97248.htm">JavaScript找到两个数组之间的差异方法详解</a></p>
+                                        <p>下一个：<a href="/news/article-98024.htm">nginx进程管理</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-71734.htm" title="厦门同安动物救助站（厦门动物救助电话）">厦门同安动物救助站（厦门动物救助电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-node-subscribe.htm" title="「3月13日」最高速度20.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月13日」最高速度20.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-70401.htm" title="GET_FORMAT()函数如何与DATE_FORMAT()和STR_TO_DATE()函数结合使用？">GET_FORMAT()函数如何与DATE_FORMAT()和STR_TO_DATE()函数结合使用？</a></li>
+                        <li class="py-2"><a href="/news/article-75741.htm" title="猫不打疫苗没事吧（猫不打疫苗一定会生病吗）">猫不打疫苗没事吧（猫不打疫苗一定会生病吗）</a></li>
+                        <li class="py-2"><a href="/news/article-81271.htm" title="动物疫苗上市企业名单查询 动物疫苗上市企业名单查询官网">动物疫苗上市企业名单查询 动物疫苗上市企业名单查询官网</a></li>
+                        <li class="py-2"><a href="/news/article-74382.htm" title="ASP.NET和ASP.NETCore多环境配置对比">ASP.NET和ASP.NETCore多环境配置对比</a></li>
+                        <li class="py-2"><a href="/news/article-98024.htm" title="nginx进程管理">nginx进程管理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-30-latest-clash-verge-rev-node.htm" title="「3月30日」最高速度22.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月30日」最高速度22.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-free-clash-verge-rev-node.htm" title="「4月1日」最高速度22.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月1日」最高速度22.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-2-clash-verge-rev-windows.htm" title="「4月2日」最高速度20.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月2日」最高速度20.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
