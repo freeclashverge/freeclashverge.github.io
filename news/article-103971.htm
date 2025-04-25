@@ -1,0 +1,207 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freeclashverge.github.io/news/article-103971.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>kafka开机自启动配置</title>
+        <meta name="description" content="Centos7 部署kafka kafka开机自启动配置 把zookeeper和kafka配置成开机自启动，主要是配置服务文件（里边有服务的描述、启动顺序、服务类型、启动指令、停止指令等等），系统服务" />
+        <link rel="icon" href="/assets/website/img/freeclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="FreeClashVerge免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freeclashverge.github.io/news/article-103971.htm" />
+    <meta property="og:site_name" content="FreeClashVerge免费节点官网" />
+    <meta property="og:title" content="kafka开机自启动配置" />
+    <meta property="og:image" content="https://freeclashverge.github.io/uploads/20240813-1/1088762e6ccd5c6174ef6b9ec9493677.webp" />
+        <meta property="og:release_date" content="2025-04-25T07:08:54" />
+    <meta property="og:updated_time" content="2025-04-25T07:08:54" />
+        <meta property="og:description" content="Centos7 部署kafka kafka开机自启动配置 把zookeeper和kafka配置成开机自启动，主要是配置服务文件（里边有服务的描述、启动顺序、服务类型、启动指令、停止指令等等），系统服务" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="kafka开机自启动配置">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/bootstrap.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/linericon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/js/frontend/freeclashverge/nice-select/css/nice-select.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/assets/website/css/freeclashverge/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZVJP9BVQB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZVJP9BVQB');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/">
+                                                <span>Free Clash Verge</span>
+                                            </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                                                        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>kafka开机自启动配置</h1>
+                    <div class="page_link">
+                        <a href="/">首页</a>
+                        <a href="/news/">新闻资讯</a>
+                        <span>正文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    <!--================ Start About Us Area =================-->
+    <section class="about_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail">
+                      				  				  				<div id="content_views" class="htmledit_views"> <h2>Centos7 部署kafka</h2> <h2>kafka开机自启动配置</h2> <p>把zookeeper和kafka配置成开机自启动，主要是配置服务文件（里边有服务的描述、启动顺序、服务类型、启动指令、停止指令等等），系统服务的配置文件在“/usr/lib/systemd/system/”目录里边：</p> <p>添加zookeeper服务的配置文件，配置内容如下</p> <pre><code>vim /usr/lib/systemd/system/zookeeper.service</code></pre> <p><img fetchpriority="high" decoding="async" alt="" height="291" src="http://img.555519.xyz/uploads3/20220823/04fdd2d5a67e81d9e83aef69d53a6ad9.jpg"></p> <p>&nbsp;添加kafka服务的配置文件，配置内容如下（也可以偷个懒，复制zookeeper的配置文件，简单修改几个地方就行）</p> <pre><code>vim /usr/lib/systemd/system/kafka.service</code></pre> <p><img decoding="async" alt="" height="288" src="http://img.555519.xyz/uploads3/20220823/91c25d97c4593df62d1c1709f971b03a.jpg"></p> <p><strong>注意环境变量中java路径（此处是本机的java的安装目录），然后kafka在keeper后启动</strong></p> <p>刷新配置文件</p> <pre><code>systemctl daemon-reload</code></pre> <p>zookeeper启动，并配置开机启动</p> <pre><code>#启动服务 systemctl start zookeeper #设置开机启动 sysetmctl enable zookeeper</code></pre> <p>查看zookeeper的运行状态</p> <pre><code>systemctl status zookeeper</code></pre> <p><img decoding="async" alt="" height="304" src="http://img.555519.xyz/uploads3/20220823/b153ba07ca94b66d0ccdfc06f3a0392a.jpg"></p> <p>kafka启动，配置开机启动</p> <pre><code>#启动kafka服务 systemctl start kafka #设置kafka开机自启动 systemctl enable kafka</code></pre> <p>查看kafka的运行状态</p> <pre><code>systemctl status kafka</code></pre> <p><img loading="lazy" decoding="async" alt="" height="305" src="http://img.555519.xyz/uploads3/20220823/4c354002317fcde7412bddc31ea34c6b.jpg"></p> <p>使用jps指令查看zookeeper和kafka的进程状态</p> <p><img loading="lazy" decoding="async" alt="" height="68" src="http://img.555519.xyz/uploads3/20220823/49fa39aa623e9c0f24a76f7de060c673.jpg"></p> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-103261.htm">免费送小狗 求好心人领养句子 赠送小狗狗求好心人收养</a></p>
+                                        <p>下一个：<a href="/news/article-103972.htm">宠物医院猫咪疫苗多少钱一针（宠物医院猫咪疫苗价格）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-84771.htm" title="JavaScript如何查找不同的元素">JavaScript如何查找不同的元素</a></li>
+                        <li class="py-2"><a href="/news/article-73718.htm" title="Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)">Python 查找算法_众里寻他千百度，蓦然回首那人却在灯火阑珊处（线性、二分，分块、插值查找算法)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-3-free-high-speed-nodes.htm" title="「4月3日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月3日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-89831.htm" title="动物疫苗批号查询系统官方网站（兽医疫苗批号）">动物疫苗批号查询系统官方网站（兽医疫苗批号）</a></li>
+                        <li class="py-2"><a href="/news/article-81271.htm" title="动物疫苗上市企业名单查询 动物疫苗上市企业名单查询官网">动物疫苗上市企业名单查询 动物疫苗上市企业名单查询官网</a></li>
+                        <li class="py-2"><a href="/news/article-95080.htm" title="钟汉良谢霆锋同框（干货分享）钟汉良老婆谢，复婚电视剧，别无选择 电视剧，">钟汉良谢霆锋同框（干货分享）钟汉良老婆谢，复婚电视剧，别无选择 电视剧，</a></li>
+                        <li class="py-2"><a href="/news/article-84064.htm" title="人用针剂跟畜用针剂一样吗（兽用针和人用针的针同的吗?）">人用针剂跟畜用针剂一样吗（兽用针和人用针的针同的吗?）</a></li>
+                        <li class="py-2"><a href="/news/article-101650.htm" title="包含宠物领养平台的意义是什么意思啊的词条">包含宠物领养平台的意义是什么意思啊的词条</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-9-node-share-links.htm" title="「3月9日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月9日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-103259.htm" title="Python向hdfs写入文件与hadoop命令向hdfs写入文件">Python向hdfs写入文件与hadoop命令向hdfs写入文件</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">74</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End About Us Area =================-->
+        <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    FreeClashVerge免费节点官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/assets/website/js/frontend/freeclashverge/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/popper.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/stellar.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/isotope/isotope-min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/gmaps.min.js"></script>
+    <script src="/assets/website/js/frontend/freeclashverge/theme.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
