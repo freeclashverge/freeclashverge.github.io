@@ -289,9 +289,9 @@ A：推荐使用 <code data-start="2842" data-end="2857">speedtest.net</code>、
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Mihomo 节点分类管理有什么作用？</h5></div>
+    <div class="panel-heading"><h5>PassWall2 策略组如何自动优化网络访问？</h5></div>
     <div class="panel-body">
-        节点分类可按地区、延迟或用途分组，结合策略组实现自动分流。方便管理大量节点，快速选择最优节点，提高访问速度和连接稳定性，优化网络管理效率。<hr />    </div>
+        PassWall2 结合策略组和延迟检测功能，自动选择最佳节点处理网页、视频和游戏流量。无需手动切换，保证访问速度和稳定性，提升整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何配置 Sing-box 使用 DoH 加密 DNS？</h5></div>
@@ -299,9 +299,9 @@ A：推荐使用 <code data-start="2842" data-end="2857">speedtest.net</code>、
         在 dns 模块中添加类型为 doh 的上游，如 `https://1.1.1.1/dns-query`，并指定 bootstrap 地址。启用加密 DNS 可防止 DNS 泄露并加快国际解析速度，提高整体隐私保护。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 可以定时更新订阅节点吗？</h5></div>
+    <div class="panel-heading"><h5>Mihomo 节点分类管理有什么作用？</h5></div>
     <div class="panel-body">
-        支持。用户可设置定时更新频率，例如每天或每小时，程序会自动下载订阅节点并替换旧节点，确保节点始终可用并保持最新线路信息。<hr />    </div>
+        节点分类可按地区、延迟或用途分组，结合策略组实现自动分流。方便管理大量节点，快速选择最优节点，提高访问速度和连接稳定性，优化网络管理效率。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Trojan 服务器如何防止被扫描到真实 IP？</h5></div>
@@ -309,14 +309,9 @@ A：推荐使用 <code data-start="2842" data-end="2857">speedtest.net</code>、
         可以把 Trojan 部署在反向代理或 CDN 后端，使用 CDN 的中转与域名伪装；同时避免在服务器上暴露其他与域名不匹配的服务，关闭 FTP/SSH 直连并设置防火墙白名单。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 的延迟测试准确吗？</h5></div>
+    <div class="panel-heading"><h5>Nekobox 可以定时更新订阅节点吗？</h5></div>
     <div class="panel-body">
-        Matsuri 的延迟测试使用 ICMP 与 TCP 双重检测方式，可较准确反映节点实际响应时间。不过受网络波动影响，建议多次测试并结合速度测试结果综合判断。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 节点延迟排序如何优化网络流量？</h5></div>
-    <div class="panel-body">
-        Matsuri 会定期测速节点延迟，并结合策略组自动选择延迟最低节点。无需手动切换，确保网页、视频和游戏流量通过最优节点，提高访问速度和网络稳定性。<hr />    </div>
+        支持。用户可设置定时更新频率，例如每天或每小时，程序会自动下载订阅节点并替换旧节点，确保节点始终可用并保持最新线路信息。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Shadowrocket 如何实现节点自动切换？</h5></div>
@@ -324,19 +319,24 @@ A：推荐使用 <code data-start="2842" data-end="2857">speedtest.net</code>、
         Shadowrocket 可结合延迟测速和策略组自动选择低延迟、稳定节点处理不同流量。提高网页、视频和游戏访问速度，减少掉线和卡顿，优化整体上网体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 策略组如何自动优化网络访问？</h5></div>
-    <div class="panel-body">
-        PassWall2 结合策略组和延迟检测功能，自动选择最佳节点处理网页、视频和游戏流量。无需手动切换，保证访问速度和稳定性，提升整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 的 TUN 模式与系统代理有何区别？</h5></div>
     <div class="panel-body">
         TUN 模式直接拦截 IP 层流量，实现全局代理，而系统代理通常仅影响支持代理的应用。TUN 更适合游戏、视频或全局科学上网场景，确保所有流量经过代理节点。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 节点延迟排序如何优化网络流量？</h5></div>
+    <div class="panel-body">
+        Matsuri 会定期测速节点延迟，并结合策略组自动选择延迟最低节点。无需手动切换，确保网页、视频和游戏流量通过最优节点，提高访问速度和网络稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash.Meta 与原版 Clash 有何不同？</h5></div>
     <div class="panel-body">
-        Clash.Meta 是社区优化版本，支持更多传输协议，如 Hysteria、TUIC、Reality 等。它还增强了 DNS 处理逻辑和脚本分流能力，适合追求极致速度和灵活规则配置的高级用户。    </div>
+        Clash.Meta 是社区优化版本，支持更多传输协议，如 Hysteria、TUIC、Reality 等。它还增强了 DNS 处理逻辑和脚本分流能力，适合追求极致速度和灵活规则配置的高级用户。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 的延迟测试准确吗？</h5></div>
+    <div class="panel-body">
+        Matsuri 的延迟测试使用 ICMP 与 TCP 双重检测方式，可较准确反映节点实际响应时间。不过受网络波动影响，建议多次测试并结合速度测试结果综合判断。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -365,16 +365,16 @@ A：推荐使用 <code data-start="2842" data-end="2857">speedtest.net</code>、
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-3-13-clash-verge-rev-windows.htm" title="「3月13日」最高速度18.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月13日」最高速度18.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-20-clash-verge-rev-nodes.htm" title="「4月20日」最高速度18.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月20日」最高速度18.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-13-today-clash-verge-rev-node.htm" title="「4月13日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月13日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-18-node-share.htm" title="「4月18日」最高速度19.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月18日」最高速度19.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-28-clash-verge-rev-node-github.htm" title="「4月28日」最高速度18.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月28日」最高速度18.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-18-today-clash-verge-rev-node.htm" title="「3月18日」最高速度20.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月18日」最高速度20.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-21-free-clash-verge-rev-node.htm" title="「3月21日」最高速度21.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月21日」最高速度21.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-12-clash-verge-rev-windows.htm" title="「4月12日」最高速度22M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月12日」最高速度22M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-26-clash-verge-rev-github.htm" title="「4月26日」最高速度22.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月26日」最高速度22.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-3-free-node-subscribe.htm" title="「5月3日」最高速度18.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「5月3日」最高速度18.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-22-node-share.htm" title="「4月22日」最高速度21.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月22日」最高速度21.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-30-free-high-speed-nodes.htm" title="「3月30日」最高速度18.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「3月30日」最高速度18.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-20-clash-verge-rev-nodes.htm" title="「4月20日」最高速度18.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月20日」最高速度18.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-25-latest-clash-verge-rev-node.htm" title="「4月25日」最高速度18.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月25日」最高速度18.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-26-clash-verge-rev-github.htm" title="「4月26日」最高速度22.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月26日」最高速度22.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-15-clash-verge-rev-node-share.htm" title="「4月15日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月15日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-4-clash-verge-rev-node-share.htm" title="「5月4日」最高速度22.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「5月4日」最高速度22.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-27-clash-verge-rev-node-share.htm" title="「4月27日」最高速度19.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「4月27日」最高速度19.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -386,10 +386,10 @@ A：推荐使用 <code data-start="2842" data-end="2857">speedtest.net</code>、
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
