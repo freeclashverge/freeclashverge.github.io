@@ -1,4 +1,4 @@
-# 「5月19日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接  更新时间 2026-05-19 10:51:40
+# 「5月26日」最高速度18.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接  更新时间 2026-05-26 10:13:01
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://freeclashverge.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### 免费Clash节点订阅链接
 
-- https://freeclashverge.github.io/uploads/2026/05/0-20260519.yaml
-- https://freeclashverge.github.io/uploads/2026/05/1-20260519.yaml
-- https://freeclashverge.github.io/uploads/2026/05/2-20260519.yaml
-- https://freeclashverge.github.io/uploads/2026/05/3-20260519.yaml
-- https://freeclashverge.github.io/uploads/2026/05/4-20260519.yaml
+- https://freeclashverge.github.io/uploads/2026/05/0-20260526.yaml
+- https://freeclashverge.github.io/uploads/2026/05/1-20260526.yaml
+- https://freeclashverge.github.io/uploads/2026/05/2-20260526.yaml
+- https://freeclashverge.github.io/uploads/2026/05/3-20260526.yaml
+- https://freeclashverge.github.io/uploads/2026/05/4-20260526.yaml
 
 ### 免费V2ray节点订阅链接
 
-- https://freeclashverge.github.io/uploads/2026/05/0-20260519.txt
-- https://freeclashverge.github.io/uploads/2026/05/1-20260519.txt
-- https://freeclashverge.github.io/uploads/2026/05/2-20260519.txt
-- https://freeclashverge.github.io/uploads/2026/05/3-20260519.txt
-- https://freeclashverge.github.io/uploads/2026/05/4-20260519.txt
+- https://freeclashverge.github.io/uploads/2026/05/0-20260526.txt
+- https://freeclashverge.github.io/uploads/2026/05/1-20260526.txt
+- https://freeclashverge.github.io/uploads/2026/05/2-20260526.txt
+- https://freeclashverge.github.io/uploads/2026/05/3-20260526.txt
+- https://freeclashverge.github.io/uploads/2026/05/4-20260526.txt
 
 ### 免费Sing-box节点订阅链接
 
-- https://freeclashverge.github.io/uploads/2026/05/20260519.json
+- https://freeclashverge.github.io/uploads/2026/05/20260526.json
 
 ## 更多Clash节点订阅 ：
 
