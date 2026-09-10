@@ -175,34 +175,9 @@ opkg <span class="token function">install</span> luci-app-clash</pre></div><h2>�
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 QUIC 传输模式有哪些优势？</h5></div>
-    <div class="panel-body">
-        QUIC 传输减少握手次数，支持多路复用和 UDP 基础，降低延迟并提高吞吐量。在不稳定或高丢包环境下，QUIC 可保证视频、游戏或即时通讯的稳定性和流畅体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些好处？</h5></div>
-    <div class="panel-body">
-        多路复用允许多个短连接共享同一 QUIC 通道，减少握手延迟和资源消耗。在高并发或频繁短连接场景下，能显著提升吞吐量和稳定性，尤其适合游戏或即时通讯应用。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的 gRPC 模式适合哪些场景？</h5></div>
     <div class="panel-body">
         gRPC 支持多路复用和长连接，适合高并发访问和移动网络场景。相比 TCP 或 WebSocket，它可以减少握手次数，降低延迟，同时提高连接稳定性和吞吐量，特别适合游戏或即时通讯。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的混淆和协议组合如何选择？</h5></div>
-    <div class="panel-body">
-        根据网络封锁情况选择适合的混淆和协议组合，例如 tls1.2_ticket_auth 模拟 HTTPS 流量。不同组合对抗 DPI 和封锁能力不同，需要测试后选择最稳定和高效的方案。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 如何设置不同用户的带宽限制？</h5></div>
-    <div class="panel-body">
-        管理员可为每个用户设置独立的带宽上限和流量配额。超过配额后可自动阻断或降速，确保服务器资源合理分配，避免单个用户占用过多带宽而影响其他用户体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 的分流规则支持哪些条件？</h5></div>
-    <div class="panel-body">
-        支持按域名、IP 地址、端口、请求路径、协议类型或关键词进行分流。结合策略组，可实现广告屏蔽、视频加速、游戏优化等多种自定义网络策略。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 多路复用在短连接中优势是什么？</h5></div>
@@ -210,19 +185,44 @@ opkg <span class="token function">install</span> luci-app-clash</pre></div><h2>�
         多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适合高频短连接场景，如游戏和即时通讯，提升吞吐量和连接稳定性，优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 支持 Hysteria 协议吗？</h5></div>
-    <div class="panel-body">
-        新版本的 WinXray 已整合了 V2Ray 内核更新，支持 Hysteria 协议。用户可通过导入 Clash 或 sing-box 类型的订阅使用基于 QUIC 的高性能连接，速度和稳定性均更出色。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 如何防止流量被 DPI 检测？</h5></div>
     <div class="panel-body">
         通过协议插件和混淆方式可以模拟正常 HTTPS 或 HTTP 流量，隐藏真实流量特征。合理配置混淆插件和加密方式，可以有效绕过 DPI 检测，保证连接稳定性和长期可用性。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些好处？</h5></div>
+    <div class="panel-body">
+        多路复用允许多个短连接共享同一 QUIC 通道，减少握手延迟和资源消耗。在高并发或频繁短连接场景下，能显著提升吞吐量和稳定性，尤其适合游戏或即时通讯应用。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 是否可以手动管理多个节点？</h5></div>
     <div class="panel-body">
-        支持。用户可以手动输入节点参数或扫描二维码导入节点，并可进行修改或删除。虽然不支持订阅自动更新，但足够满足轻量用户对节点管理和分流的基本需求。    </div>
+        支持。用户可以手动输入节点参数或扫描二维码导入节点，并可进行修改或删除。虽然不支持订阅自动更新，但足够满足轻量用户对节点管理和分流的基本需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>QuantumultX 的分流规则支持哪些条件？</h5></div>
+    <div class="panel-body">
+        支持按域名、IP 地址、端口、请求路径、协议类型或关键词进行分流。结合策略组，可实现广告屏蔽、视频加速、游戏优化等多种自定义网络策略。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 如何设置不同用户的带宽限制？</h5></div>
+    <div class="panel-body">
+        管理员可为每个用户设置独立的带宽上限和流量配额。超过配额后可自动阻断或降速，确保服务器资源合理分配，避免单个用户占用过多带宽而影响其他用户体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 的 QUIC 传输模式有哪些优势？</h5></div>
+    <div class="panel-body">
+        QUIC 传输减少握手次数，支持多路复用和 UDP 基础，降低延迟并提高吞吐量。在不稳定或高丢包环境下，QUIC 可保证视频、游戏或即时通讯的稳定性和流畅体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 支持 Hysteria 协议吗？</h5></div>
+    <div class="panel-body">
+        新版本的 WinXray 已整合了 V2Ray 内核更新，支持 Hysteria 协议。用户可通过导入 Clash 或 sing-box 类型的订阅使用基于 QUIC 的高性能连接，速度和稳定性均更出色。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的混淆和协议组合如何选择？</h5></div>
+    <div class="panel-body">
+        根据网络封锁情况选择适合的混淆和协议组合，例如 tls1.2_ticket_auth 模拟 HTTPS 流量。不同组合对抗 DPI 和封锁能力不同，需要测试后选择最稳定和高效的方案。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -270,16 +270,16 @@ opkg <span class="token function">install</span> luci-app-clash</pre></div><h2>�
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-8-18-latest-clash-verge-rev-node.htm" title="「8月18日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月18日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-node-2026-8-27.htm" title="「8月27日」最高速度19.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月27日」最高速度19.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-25-free-node-subscribe-links.htm" title="「7月25日」最高速度22.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「7月25日」最高速度22.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-16-clash-verge-rev-nodes.htm" title="「8月16日」最高速度22.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月16日」最高速度22.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-19-free-high-speed-nodes.htm" title="「7月19日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「7月19日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-github-2026-7-29.htm" title="「7月29日」最高速度23M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「7月29日」最高速度23M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-5.htm" title="「8月5日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月5日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-12-free-subscribe-node.htm" title="「8月12日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月12日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-1.htm" title="「8月1日」最高速度18.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月1日」最高速度18.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-20-node-share.htm" title="「8月20日」最高速度21.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月20日」最高速度21.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-31.htm" title="「8月31日」最高速度22.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月31日」最高速度22.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-29.htm" title="「8月29日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月29日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-9.htm" title="「8月9日」最高速度21.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月9日」最高速度21.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-1.htm" title="「9月1日」最高速度22M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月1日」最高速度22M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/today-clash-verge-rev-node-2026-8-15.htm" title="「8月15日」最高速度22.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月15日」最高速度22.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-13.htm" title="「8月13日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月13日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-24-clash-verge-rev-windows.htm" title="「8月24日」最高速度18.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月24日」最高速度18.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-22-node-share.htm" title="「8月22日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月22日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-28-clash-verge-rev-windows.htm" title="「8月28日」最高速度18.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月28日」最高速度18.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-8-clash-verge-rev-node-share.htm" title="「8月8日」最高速度18.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「8月8日」最高速度18.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -291,10 +291,10 @@ opkg <span class="token function">install</span> luci-app-clash</pre></div><h2>�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
