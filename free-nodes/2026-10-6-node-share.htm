@@ -319,34 +319,14 @@ A4：可通过应用内流量统计查看数据传输情况，或者访问被屏
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 节点延迟检测如何帮助分流？</h5></div>
+    <div class="panel-heading"><h5>Shadowrocket 节点测速功能如何优化连接？</h5></div>
     <div class="panel-body">
-        Clash 会定期测试节点延迟，并结合策略组自动选择最优节点处理流量。避免访问高延迟或失效节点，提高网页浏览、视频播放和游戏速度及稳定性，优化整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 如何选择合适混淆提高稳定性？</h5></div>
-    <div class="panel-body">
-        选择混淆方式时应根据网络环境和封锁程度，例如 tls1.2_ticket_auth 可模拟 HTTPS 流量。合理组合协议和混淆可提升节点稳定性和抗封锁能力，确保长期科学上网体验。<hr />    </div>
+        Shadowrocket 定期测速节点延迟和丢包率，并结合策略组自动切换到最佳节点。保证网页、视频和游戏流量通过最优路径，提高访问速度和连接稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 策略组如何自动优化网络访问？</h5></div>
     <div class="panel-body">
         PassWall2 结合策略组和延迟检测功能，自动选择最佳节点处理网页、视频和游戏流量。无需手动切换，保证访问速度和稳定性，提升整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何安全地共享订阅链接而不泄露个人信息？</h5></div>
-    <div class="panel-body">
-        避免将私人订阅直接在公开场合分享，若需要共享可在服务端生成只读或限速专用订阅，并定期更换 token。对外公开时移除或隐藏用户识别字段，确保他人无法通过订阅追溯出个人账户信息。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 的规则文件如何支持广告屏蔽？</h5></div>
-    <div class="panel-body">
-        规则文件可添加广告域名或 URL 列表，将请求重定向或阻断。结合策略组和自动更新，Surfboard 可实现全局广告屏蔽，提高浏览体验并节省带宽。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 用户带宽限制如何配置？</h5></div>
-    <div class="panel-body">
-        管理员可为每个用户设置上传、下载和总流量上限，超出限制可自动降速或阻止访问。保证服务器资源合理分配，避免单用户占用过多带宽，提高整体公平性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hiddify Next 用户带宽限制如何配置？</h5></div>
@@ -359,14 +339,34 @@ A4：可通过应用内流量统计查看数据传输情况，或者访问被屏
         首先检查服务器是否在线，其次查看端口、防火墙和 TLS 配置是否正确。还可以通过日志观察 handshake 是否成功，或尝试更换传输协议如 WS、gRPC 来确认问题来源。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 用户带宽限制如何配置？</h5></div>
+    <div class="panel-body">
+        管理员可为每个用户设置上传、下载和总流量上限，超出限制可自动降速或阻止访问。保证服务器资源合理分配，避免单用户占用过多带宽，提高整体公平性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 节点延迟检测如何帮助分流？</h5></div>
+    <div class="panel-body">
+        Clash 会定期测试节点延迟，并结合策略组自动选择最优节点处理流量。避免访问高延迟或失效节点，提高网页浏览、视频播放和游戏速度及稳定性，优化整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>如何将 Clash 节点导入到 Sing-box？</h5></div>
     <div class="panel-body">
         Sing-box 支持从 Clash 配置文件中导入节点。用户只需将 YAML 文件放入配置目录或通过命令导入即可。系统会自动解析规则组和节点信息，简化迁移过程。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 节点测速功能如何优化连接？</h5></div>
+    <div class="panel-heading"><h5>Surfboard 的规则文件如何支持广告屏蔽？</h5></div>
     <div class="panel-body">
-        Shadowrocket 定期测速节点延迟和丢包率，并结合策略组自动切换到最佳节点。保证网页、视频和游戏流量通过最优路径，提高访问速度和连接稳定性。    </div>
+        规则文件可添加广告域名或 URL 列表，将请求重定向或阻断。结合策略组和自动更新，Surfboard 可实现全局广告屏蔽，提高浏览体验并节省带宽。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 如何选择合适混淆提高稳定性？</h5></div>
+    <div class="panel-body">
+        选择混淆方式时应根据网络环境和封锁程度，例如 tls1.2_ticket_auth 可模拟 HTTPS 流量。合理组合协议和混淆可提升节点稳定性和抗封锁能力，确保长期科学上网体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何安全地共享订阅链接而不泄露个人信息？</h5></div>
+    <div class="panel-body">
+        避免将私人订阅直接在公开场合分享，若需要共享可在服务端生成只读或限速专用订阅，并定期更换 token。对外公开时移除或隐藏用户识别字段，确保他人无法通过订阅追溯出个人账户信息。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -414,16 +414,16 @@ A4：可通过应用内流量统计查看数据传输情况，或者访问被屏
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-9.htm" title="「9月9日」最高速度21.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月9日」最高速度21.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-28-latest-clash-verge-rev-node.htm" title="「9月28日」最高速度18.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月28日」最高速度18.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-5.htm" title="「9月5日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月5日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-14-node-share.htm" title="「9月14日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月14日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-node-2026-9-13.htm" title="「9月13日」最高速度22.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月13日」最高速度22.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-16-node-share.htm" title="「9月16日」最高速度22.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月16日」最高速度22.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-19.htm" title="「9月19日」最高速度21.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月19日」最高速度21.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-github-2026-9-27.htm" title="「9月27日」最高速度18.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月27日」最高速度18.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-9-12-node-share.htm" title="「9月12日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月12日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-10-2-latest-clash-verge-rev-node.htm" title="「10月2日」最高速度18M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月2日」最高速度18M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/today-clash-verge-rev-node-2026-9-15.htm" title="「9月15日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月15日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-14-free-subscribe-node.htm" title="「10月14日」最高速度21.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月14日」最高速度21.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-github-2026-9-7.htm" title="「9月7日」最高速度18.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月7日」最高速度18.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-github-2026-10-9.htm" title="「10月9日」最高速度20.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月9日」最高速度20.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-3.htm" title="「9月3日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月3日」最高速度20M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-github-2026-9-23.htm" title="「9月23日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月23日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-5.htm" title="「10月5日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月5日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -435,7 +435,7 @@ A4：可通过应用内流量统计查看数据传输情况，或者访问被屏
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">8</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>

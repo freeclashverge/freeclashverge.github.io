@@ -239,22 +239,43 @@ Host文件存储在<code data-start="1031" data-end="1070">C:\Windows\System32\d
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/clash-verge-rev-node-2026-10-7.htm">「10月7日」最高速度21.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></p>
+        <p>下一个：<a href="/free-nodes/clash-verge-rev-github-2026-10-9.htm">「10月9日」最高速度20.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a></p>
     </div>
 <h4>FAQ</h4>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 WebSocket 传输与 TCP 有何区别？</h5></div>
-    <div class="panel-body">
-        WebSocket 通过 HTTP 封装 TCP 流量，适合伪装成正常网页请求，增加隐蔽性。相比原生 TCP，可更好地绕过封锁和 DPI 检测，但略增加协议开销。<hr />    </div>
-</div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS 的 Flow 参数有什么作用？</h5></div>
     <div class="panel-body">
         Flow 参数用于控制 VLESS 的传输模式，如 XTLS Vision 或 Reality 模式。它能影响性能、安全性与兼容性，需根据客户端支持情况正确匹配配置。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 的 VMess over WebSocket 适合什么场景？</h5></div>
+    <div class="panel-body">
+        VMess over WebSocket 可以伪装成正常的 Web 流量，适用于被封锁较严格的网络环境。它通过将代理流量嵌入 WebSocket 协议中，使流量更难被检测和拦截。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 运行在低配设备上卡顿，如何减轻资源占用？</h5></div>
     <div class="panel-body">
         减少 rule-provider 数量、关闭不必要的日志与统计、降低 DNS 轮询频率并禁用内置测速；若使用 TUN 模式，可改为代理模式减少内核负担。必要时升级到更高性能的设备或使用更轻量内核。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Vmess 节点使用 WebSocket + TLS 时应注意哪些参数？</h5></div>
+    <div class="panel-body">
+        需确保路径（path）与主机名（host）匹配服务器配置，TLS 证书有效，端口与防火墙设置开放。建议开启 mux 与 keepalive 优化连接稳定性，并定期测试延迟避免 CDN 缓存导致连接异常。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何优化 Clash 的 DNS 设置？</h5></div>
+    <div class="panel-body">
+        在 Clash 中使用自定义 DNS 可以加快域名解析速度。建议使用 doh（DNS over HTTPS）或 dot（DNS over TLS）配置方式，既能提升速度，也能保护隐私防止 DNS 泄露。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 策略组如何实现节点优先级切换？</h5></div>
+    <div class="panel-body">
+        用户可以在 Clash 策略组中设置节点优先级，结合规则文件，自动选择延迟低、稳定性高的节点处理流量。优化网页浏览、视频播放和游戏访问速度，提高整体网络效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 的 WebSocket 传输与 TCP 有何区别？</h5></div>
+    <div class="panel-body">
+        WebSocket 通过 HTTP 封装 TCP 流量，适合伪装成正常网页请求，增加隐蔽性。相比原生 TCP，可更好地绕过封锁和 DPI 检测，但略增加协议开销。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何在 Windows 上用 Wireshark 分析代理流量以排查问题？</h5></div>
@@ -269,27 +290,7 @@ Host文件存储在<code data-start="1031" data-end="1070">C:\Windows\System32\d
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Nekobox 如何设置分流规则？</h5></div>
     <div class="panel-body">
-        Nekobox 提供图形化规则编辑界面，可基于 IP、域名、地区等条件创建分流规则。例如可设置国内直连、国外代理、特定网站走特定节点，操作直观。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何优化 Clash 的 DNS 设置？</h5></div>
-    <div class="panel-body">
-        在 Clash 中使用自定义 DNS 可以加快域名解析速度。建议使用 doh（DNS over HTTPS）或 dot（DNS over TLS）配置方式，既能提升速度，也能保护隐私防止 DNS 泄露。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Vmess 节点使用 WebSocket + TLS 时应注意哪些参数？</h5></div>
-    <div class="panel-body">
-        需确保路径（path）与主机名（host）匹配服务器配置，TLS 证书有效，端口与防火墙设置开放。建议开启 mux 与 keepalive 优化连接稳定性，并定期测试延迟避免 CDN 缓存导致连接异常。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 VMess over WebSocket 适合什么场景？</h5></div>
-    <div class="panel-body">
-        VMess over WebSocket 可以伪装成正常的 Web 流量，适用于被封锁较严格的网络环境。它通过将代理流量嵌入 WebSocket 协议中，使流量更难被检测和拦截。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 策略组如何实现节点优先级切换？</h5></div>
-    <div class="panel-body">
-        用户可以在 Clash 策略组中设置节点优先级，结合规则文件，自动选择延迟低、稳定性高的节点处理流量。优化网页浏览、视频播放和游戏访问速度，提高整体网络效率。    </div>
+        Nekobox 提供图形化规则编辑界面，可基于 IP、域名、地区等条件创建分流规则。例如可设置国内直连、国外代理、特定网站走特定节点，操作直观。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -337,16 +338,16 @@ Host文件存储在<code data-start="1031" data-end="1070">C:\Windows\System32\d
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/today-clash-verge-rev-node-2026-9-29.htm" title="「9月29日」最高速度22.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月29日」最高速度22.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/today-clash-verge-rev-node-2026-9-11.htm" title="「9月11日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月11日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-2-latest-clash-verge-rev-node.htm" title="「10月2日」最高速度18M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月2日」最高速度18M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-14-node-share.htm" title="「9月14日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月14日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-6-node-share.htm" title="「10月6日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月6日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/today-clash-verge-rev-node-2026-9-15.htm" title="「9月15日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月15日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-22-node-share.htm" title="「9月22日」最高速度19.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月22日」最高速度19.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/clash-verge-rev-node-2026-9-13.htm" title="「9月13日」最高速度22.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月13日」最高速度22.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-8-latest-clash-verge-rev-node.htm" title="「9月8日」最高速度18.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月8日」最高速度18.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-10-node-share.htm" title="「9月10日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月10日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-20-clash-verge-rev-nodes.htm" title="「9月20日」最高速度22.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月20日」最高速度22.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-16-node-share.htm" title="「9月16日」最高速度22.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月16日」最高速度22.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-4-clash-verge-rev-node-github.htm" title="「9月4日」最高速度19.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月4日」最高速度19.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-30-clash-verge-rev-node-share.htm" title="「9月30日」最高速度19.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月30日」最高速度19.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-9.htm" title="「9月9日」最高速度21.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月9日」最高速度21.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-5.htm" title="「9月5日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月5日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-10-13.htm" title="「10月13日」最高速度19.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月13日」最高速度19.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-5.htm" title="「10月5日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月5日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-28-latest-clash-verge-rev-node.htm" title="「9月28日」最高速度18.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月28日」最高速度18.6M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -358,7 +359,7 @@ Host文件存储在<code data-start="1031" data-end="1070">C:\Windows\System32\d
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">8</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
