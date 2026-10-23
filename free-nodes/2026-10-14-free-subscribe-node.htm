@@ -278,19 +278,9 @@ There is a clash of opinions.（意见发生冲突）</p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 如何结合节点测速优化策略组？</h5></div>
+    <div class="panel-heading"><h5>Netch 使用 TAP 驱动时 Windows 弹出网络变更提示，该如何处理？</h5></div>
     <div class="panel-body">
-        PassWall2 会定期测速节点延迟和丢包率，并根据策略组自动选择最优节点。通过测速和自动切换，可保证网页、视频和游戏流量走低延迟节点，提升整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 如何管理多协议节点和分流？</h5></div>
-    <div class="panel-body">
-        Nekobox 可同时管理 Shadowsocks、VMess、Trojan 等多协议节点。结合策略组和分流规则，可实现不同流量走不同节点，提升网络效率和管理便利性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 支持节点订阅批量更新吗？</h5></div>
-    <div class="panel-body">
-        支持。用户可通过订阅 URL 批量更新节点，程序会自动下载并替换旧节点。定期更新保证节点列表始终可用，减少手动维护，提高使用效率和便利性。<hr />    </div>
+        这是正常现象，TAP 虚拟网卡会改变系统网络状态。建议在首次启用时允许驱动安装并授予网络权限，若频繁弹窗可在网络设置中调整网络识别类型或将 TAP 设为非计量连接。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的节点导入方式有哪些？</h5></div>
@@ -298,24 +288,9 @@ There is a clash of opinions.（意见发生冲突）</p>
         WinXray 支持手动添加节点、从 URL 订阅导入节点，以及批量导入 JSON 配置文件。用户可以直接复制订阅地址或粘贴节点链接，程序会自动解析并添加到节点列表中，操作十分便捷。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
+    <div class="panel-heading"><h5>PassWall2 如何结合节点测速优化策略组？</h5></div>
     <div class="panel-body">
-        Matsuri 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。用户无需手动切换节点，即可保持高速访问，提高网页、视频和游戏体验的稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 的多节点测速机制是怎样的？</h5></div>
-    <div class="panel-body">
-        Matsuri 使用并发测速机制，可同时对多个节点进行延迟与带宽测试。测试结果会自动排序，并可根据延迟或速度自动切换最优节点，提升连接体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 使用 TAP 驱动时 Windows 弹出网络变更提示，该如何处理？</h5></div>
-    <div class="panel-body">
-        这是正常现象，TAP 虚拟网卡会改变系统网络状态。建议在首次启用时允许驱动安装并授予网络权限，若频繁弹窗可在网络设置中调整网络识别类型或将 TAP 设为非计量连接。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
-    <div class="panel-body">
-        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响支持代理的应用。TUN 更适合全局加速和游戏、视频等应用，保证所有流量通过节点，提高网络稳定性。<hr />    </div>
+        PassWall2 会定期测速节点延迟和丢包率，并根据策略组自动选择最优节点。通过测速和自动切换，可保证网页、视频和游戏流量走低延迟节点，提升整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 的 Rule Provider 有什么作用？</h5></div>
@@ -323,9 +298,34 @@ There is a clash of opinions.（意见发生冲突）</p>
         Rule Provider 是 Clash 的规则分发机制。用户可以订阅不同的规则集，比如广告拦截、社交媒体、流媒体等，实现按需加载。它让配置文件更加简洁、动态更新，并支持多源规则管理。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 的多节点测速机制是怎样的？</h5></div>
+    <div class="panel-body">
+        Matsuri 使用并发测速机制，可同时对多个节点进行延迟与带宽测试。测试结果会自动排序，并可根据延迟或速度自动切换最优节点，提升连接体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekoray 支持节点订阅批量更新吗？</h5></div>
+    <div class="panel-body">
+        支持。用户可通过订阅 URL 批量更新节点，程序会自动下载并替换旧节点。定期更新保证节点列表始终可用，减少手动维护，提高使用效率和便利性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
+    <div class="panel-body">
+        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响支持代理的应用。TUN 更适合全局加速和游戏、视频等应用，保证所有流量通过节点，提高网络稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekobox 如何管理多协议节点和分流？</h5></div>
+    <div class="panel-body">
+        Nekobox 可同时管理 Shadowsocks、VMess、Trojan 等多协议节点。结合策略组和分流规则，可实现不同流量走不同节点，提升网络效率和管理便利性。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的传输协议选择对性能有何影响？</h5></div>
     <div class="panel-body">
-        V2Ray 支持 TCP、WebSocket、gRPC、QUIC 等多种传输协议。不同协议在延迟、抗封锁和吞吐量上差异明显。用户可根据网络环境选择最优协议，以获得稳定且高速的连接体验。    </div>
+        V2Ray 支持 TCP、WebSocket、gRPC、QUIC 等多种传输协议。不同协议在延迟、抗封锁和吞吐量上差异明显。用户可根据网络环境选择最优协议，以获得稳定且高速的连接体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
+    <div class="panel-body">
+        Matsuri 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。用户无需手动切换节点，即可保持高速访问，提高网页、视频和游戏体验的稳定性。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -373,16 +373,16 @@ There is a clash of opinions.（意见发生冲突）</p>
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-9-26-latest-clash-verge-rev-node.htm" title="「9月26日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月26日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-14-node-share.htm" title="「9月14日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月14日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-16-free-node-subscribe.htm" title="「10月16日」最高速度18.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月16日」最高速度18.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-5.htm" title="「9月5日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月5日」最高速度21.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-2-free-node-subscribe.htm" title="「9月2日」最高速度19.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月2日」最高速度19.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-clash-verge-rev-node-2026-9-17.htm" title="「9月17日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月17日」最高速度20.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-19.htm" title="「10月19日」最高速度22.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月19日」最高速度22.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-22-node-share.htm" title="「9月22日」最高速度19.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月22日」最高速度19.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-node-2026-10-7.htm" title="「10月7日」最高速度21.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月7日」最高速度21.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-5.htm" title="「10月5日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月5日」最高速度19M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-10-free-subscribe-node.htm" title="「10月10日」最高速度19.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月10日」最高速度19.5M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-24-node-share.htm" title="「9月24日」最高速度22.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月24日」最高速度22.9M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/today-clash-verge-rev-node-2026-9-11.htm" title="「9月11日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月11日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-18-clash-verge-rev-nodes.htm" title="「9月18日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月18日」最高速度21.3M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-19.htm" title="「9月19日」最高速度21.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月19日」最高速度21.4M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-verge-rev-github-2026-9-25.htm" title="「9月25日」最高速度21.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月25日」最高速度21.8M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-14-free-subscribe-node.htm" title="「10月14日」最高速度21.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「10月14日」最高速度21.7M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-26-latest-clash-verge-rev-node.htm" title="「9月26日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月26日」最高速度20.2M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-20-clash-verge-rev-nodes.htm" title="「9月20日」最高速度22.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接">「9月20日」最高速度22.1M/S，2025年FreeClashVerge每天更新免费机场订阅节点链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -394,7 +394,7 @@ There is a clash of opinions.（意见发生冲突）</p>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
